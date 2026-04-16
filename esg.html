@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>ESG & Sovereign Governance | ООО АВТОДОРТРЕЙД-БТК</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MASTER ENTERPRISE STYLES (Embedded to prevent "Cannot GET" errors)
+       ========================================================================== */
+    :root {
+      --primary-blue: #0a2342;
+      --navy-dark: #050b14;
+      --navy-accent: #08111c;
+      --accent-gold: #c5a059;
+      --white: #ffffff;
+      --slate: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --success: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--navy-dark);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+      /* Grid background for industrial feel */
+      background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+
+    .container { width: min(1200px, calc(100% - 40px)); margin-inline: auto; }
+
+    /* --- CRITICAL LOGO FIX --- */
+    .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+    .logo-emblem {
+      width: 52px !important;
+      height: 52px !important;
+      background: linear-gradient(135deg, var(--accent-gold), #8c6c34);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .logo-emblem svg {
+      width: 32px !important;
+      height: 32px !important;
+      display: block;
+    }
+    .logo-text h1 {
+      color: #fff; font-size: 1.2rem; text-transform: uppercase; font-weight: 800; line-height: 1; margin: 0;
+    }
+    .logo-text span {
+      display: block; color: var(--accent-gold); font-size: 0.65rem; letter-spacing: 3px; font-weight: 700; margin-top: 5px;
+    }
+
+    /* --- NAVIGATION --- */
+    .navbar {
+      position: sticky; top: 0; z-index: 5000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 5%;
+      background: rgba(5, 11, 20, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+    .nav-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; }
+    .nav-link:hover { color: var(--accent-gold); }
+
+    /* --- HERO --- */
+    .page-hero {
+      padding: 120px 0 80px;
+      background: linear-gradient(rgba(5,11,20,0.9), rgba(5,11,20,0.8)), url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .hud-box {
+      max-width: 800px; padding: 40px; border-left: 5px solid var(--accent-gold);
+      background: rgba(8, 17, 28, 0.8); backdrop-filter: blur(10px);
+    }
+    .hud-box h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+    .hud-box p { color: var(--slate); font-size: 1.1rem; }
+
+    /* --- DATA HUD --- */
+    .data-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: -40px; }
+    .data-card {
+      background: var(--navy-accent); border: 1px solid var(--line); padding: 30px;
+      text-align: center; border-bottom: 3px solid var(--accent-gold);
+    }
+    .data-card h2 { font-size: 2.5rem; color: #fff; margin-bottom: 5px; }
+    .data-card p { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; }
+
+    /* --- CONTENT SECTIONS --- */
+    .section { padding: 100px 0; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .tag { color: var(--accent-gold); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 15px; }
+    h3 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 25px; }
+    .muted { color: var(--slate); margin-bottom: 30px; }
+
+    /* --- TABLES --- */
+    .table-container { background: #020617; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-top: 50px; }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; background: rgba(255,255,255,0.03); color: var(--accent-gold); padding: 20px; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
+    td { padding: 20px; border-top: 1px solid var(--line); color: #cbd5e1; font-size: 14px; }
+    .status { background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 800; }
+
+    /* --- PILLARS --- */
+    .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+    .pillar-card { background: var(--navy-accent); border: 1px solid var(--line); padding: 40px; transition: 0.3s; }
+    .pillar-card:hover { transform: translateY(-10px); border-color: var(--accent-gold); }
+    .pillar-card i { font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 25px; display: block; }
+
+    /* --- FOOTER --- */
+    footer { background: #020617; padding: 100px 0 50px; border-top: 4px solid var(--accent-gold); margin-top: 80px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+    .footer-col h4 { font-size: 11px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+    .footer-col a { display: block; color: #64748b; text-decoration: none; margin-bottom: 15px; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo-container">
+      <div class="logo-emblem">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="#0A2342"/>
+            <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="#C5A059"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h1>АВТОДОРТРЕЙД</h1>
+        <span>БТК / GLOBAL ENERGY</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="refining.html" class="nav-link">Refining</a></li>
+      <li><a href="tsa.html" class="nav-link">Logistics</a></li>
+      <li><a href="reports.html" class="nav-link">Investors</a></li>
+      <li><a href="contact.html" class="nav-link" style="color:var(--accent-gold)">Trade Portal</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="container">
+      <div class="hud-box">
+        <span class="tag">[ INSTITUTIONAL GOVERNANCE ]</span>
+        <h1>ESG Strategy & Sovereign Responsibility</h1>
+        <p>Defining the standard for industrial ethics and environmental protection across the Russian energy sector through the 2030 Sustainability Roadmap.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="data-strip">
+      <div class="data-card"><h2>A+</h2><p>ESG Institutional Rating</p></div>
+      <div class="data-card"><h2>0.02</h2><p>LTI Frequency Rate</p></div>
+      <div class="data-card"><h2>-14.2%</h2><p>Carbon Intensity Reduction</p></div>
+      <div class="data-card"><h2>98%</h2><p>Audit Transparency</p></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <i class="fas fa-microchip"></i>
+          <h3>Environmental</h3>
+          <p>Implementation of T-Star hydrocracking units to produce Euro-6 compliant fuels, reducing maritime sulfur emissions by 92% across our distribution hubs.</p>
+        </div>
+        <div class="pillar-card">
+          <i class="fas fa-users-gear"></i>
+          <h3>Social Impact</h3>
+          <p>Investing $45M annually in regional healthcare and technical educational pipelines to sustain the next generation of refinery engineers.</p>
+        </div>
+        <div class="pillar-card">
+          <i class="fas fa-gavel"></i>
+          <h3>Governance</h3>
+          <p>Absolute adherence to IFRS/RAS audit standards and international trade law through our independent Internal Control Commission.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: rgba(255,255,255,0.01);">
+    <div class="container">
+      <span class="tag">Technical Registry</span>
+      <h3>Compliance & Audit Matrix 2026</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Protocol identifier</th>
+              <th>Category</th>
+              <th>Audit Source</th>
+              <th>Verification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RAS-ESG-01</td>
+              <td>Air Quality & Emission Controls</td>
+              <td>Federal Environmental Desk</td>
+              <td><span class="status">VERIFIED</span></td>
+            </tr>
+            <tr>
+              <td>IFRS-GOV-04</td>
+              <td>Statutory Financial Transparency</td>
+              <td>Strategic Audit Group</td>
+              <td><span class="status">VERIFIED</span></td>
+            </tr>
+            <tr>
+              <td>HSE-LAB-02</td>
+              <td>Industrial Safety Protocols</td>
+              <td>Regional Safety Lab</td>
+              <td><span class="status">VERIFIED</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h2 style="font-size:1.5rem; margin-bottom:20px;">АВТОДОРТРЕЙД<span>БТК</span></h2>
+          <p style="color:#64748b; font-size:14px;">A vertically integrated major energy group focused on refining excellence and global logistics stability.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Industrial</h4>
+          <a href="refining.html">Refining Assets</a>
+          <a href="tsa.html">TSA Logistics</a>
+          <a href="products.html">Product Catalog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Corporate</h4>
+          <a href="reports.html">Investors</a>
+          <a href="board.html">The Board</a>
+          <a href="esg.html">ESG Strategy</a>
+        </div>
+        <div class="footer-col">
+          <h4>Trade</h4>
+          <a href="contact.html">Trade Portal</a>
+          <a href="compliance.html">Compliance</a>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:60px; color:#475569; font-size:12px; border-top:1px solid var(--line); padding-top:40px;">
+        INN: 7703324065 | OGRN: 1027739129186 | © 2026 ООО АВТОДОРТРЕЙД-БТК.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

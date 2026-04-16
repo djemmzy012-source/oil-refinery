@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Hydrocarbon Reserves & Strategic Resources | ООО АВТОДОРТРЕЙД-БТК</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #081628;
+      --navy-2: #0d1d33;
+      --gold: #c8a15a;
+      --gold-2: #e0c48a;
+      --slate: #5b6b7f;
+      --bg: #050b14;
+      --card: #08111c;
+      --text: #e5e7eb;
+      --line: rgba(255,255,255,0.08);
+      --container: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    a { text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    /* --- TOP TICKER --- */
+    .ticker-bar {
+      background: #000;
+      color: var(--gold);
+      padding: 10px 0;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      overflow: hidden;
+      white-space: nowrap;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(200,161,90,0.25);
+    }
+    .ticker-move { display: inline-block; animation: ticker 45s linear infinite; min-width: 200%; }
+    .tick { display: inline-block; padding: 0 30px; border-right: 1px solid var(--line); }
+    .tick span { color: #fff; margin-left: 8px; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* --- NAVIGATION --- */
+    .navbar {
+      position: sticky; top: 0; z-index: 4000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px clamp(16px, 4vw, 6%);
+      background: rgba(3, 8, 18, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .logo-container { display: flex; align-items: center; gap: 14px; color: #fff; }
+    .logo-emblem {
+      width: 48px; height: 48px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--gold), #8c6c34);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .logo-text { font-weight: 800; font-size: 1.05rem; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.5px; }
+    .logo-text span { display: block; font-size: 0.68rem; color: var(--gold); letter-spacing: 3px; margin-top: 4px; font-weight: 600; }
+
+    .nav-wrap { display: flex; align-items: center; gap: 18px; }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: 28px; }
+    .nav-item { position: relative; }
+    .nav-toggle {
+      background: none; border: none; color: rgba(255,255,255,0.8);
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1.4px; cursor: pointer; padding: 10px 0; transition: 0.3s;
+    }
+    .nav-item:hover > .nav-toggle, .nav-item.open > .nav-toggle { color: var(--gold); }
+
+    /* --- MEGA MENU --- */
+    .mega-menu {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%) translateY(10px); width: min(1120px, 92vw);
+      background: #08111c; border-top: 4px solid var(--gold);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3); border-radius: 10px;
+      padding: 35px; display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 25px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: 0.3s ease;
+    }
+    .nav-item:hover .mega-menu, .nav-item.open .mega-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .mega-col h4 { color: #f8fafc; font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 15px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+    .mega-col a { display: block; color: #94a3b8; font-size: 13px; padding: 8px 0; transition: 0.2s; }
+    .mega-col a:hover { color: var(--gold); transform: translateX(5px); }
+
+    .nav-cta {
+      padding: 12px 22px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), #9f7c42);
+      color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1px; box-shadow: 0 12px 25px rgba(200,161,90,0.25);
+    }
+    .menu-btn { display: none; background: none; border: 1px solid var(--line); color: #fff; width: 44px; height: 44px; border-radius: 8px; font-size: 18px; }
+
+    /* --- PAGE HERO --- */
+    .page-hero {
+      background:
+        linear-gradient(90deg, rgba(3,8,18,0.95) 0%, rgba(3,8,18,0.7) 60%, rgba(3,8,18,0.2) 100%),
+        url('https://images.unsplash.com/photo-1544161442-e3db36c4f67c?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      padding: clamp(80px, 12vw, 150px) 0 clamp(60px, 8vw, 100px);
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { color: var(--gold); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; display: block; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 25px; color: #fff; }
+    .page-hero p { color: #94a3b8; font-size: 1.15rem; max-width: 750px; }
+
+    /* --- CONTENT GRID --- */
+    .section { padding: 80px 0; background: #07101d; }
+    .grid-layout { display: grid; grid-template-columns: 280px 1fr; gap: 60px; }
+
+    /* --- SIDEBAR --- */
+    .sidebar { background: var(--card); border: 1px solid var(--line); padding: 30px; border-radius: 16px; position: sticky; top: 100px; height: fit-content; }
+    .sidebar h4 { color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; border-bottom: 1px solid var(--line); padding-bottom: 15px; }
+    .side-nav-list { list-style: none; }
+    .side-nav-list a { color: #94a3b8; text-decoration: none; font-size: 0.95rem; padding: 12px 0; display: block; transition: 0.3s; }
+    .side-nav-list a:hover, .side-nav-list a.active { color: #fff; border-left: 2px solid var(--gold); padding-left: 15px; background: rgba(200, 161, 90, 0.05); }
+
+    /* --- DASHBOARD WIDGETS --- */
+    .dashboard-flex { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 50px; }
+    .dash-widget { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-bottom: 3px solid var(--gold); padding: 30px 20px; text-align: center; }
+    .dash-widget label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .dash-widget .value { font-size: 1.8rem; font-weight: 800; color: #fff; }
+
+    /* --- DATA TABLE --- */
+    .table-panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-top: 50px; }
+    .data-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .data-table th { background: rgba(255,255,255,0.03); color: var(--gold); padding: 20px; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid var(--line); }
+    .data-table td { padding: 20px; border-bottom: 1px solid var(--line); color: #cbd5e1; font-size: 0.95rem; }
+    .data-table tr:hover { background: rgba(255,255,255,0.01); }
+    .status-badge { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 10px; text-transform: uppercase; }
+
+    /* --- MOBILE DRAWER --- */
+    .mobile-drawer { position: fixed; inset: 0; z-index: 5000; pointer-events: none; opacity: 0; transition: 0.3s; }
+    .mobile-drawer.open { opacity: 1; pointer-events: auto; }
+    .drawer-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
+    .drawer-panel { position: absolute; top: 0; right: 0; width: min(85vw, 400px); height: 100%; background: var(--navy-2); transform: translateX(100%); transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); padding: 40px; border-left: 1px solid var(--line); }
+    .mobile-drawer.open .drawer-panel { transform: translateX(0); }
+
+    /* --- FOOTER --- */
+    footer { background: #020617; border-top: 4px solid var(--gold); padding: 100px 0 50px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+    .footer-col h4 { color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+    .footer-col a { display: block; color: #64748b; font-size: 14px; margin-bottom: 12px; transition: 0.3s; }
+    .footer-col a:hover { color: #fff; }
+    .fine-print { border-top: 1px solid var(--line); margin-top: 60px; padding-top: 40px; text-align: center; color: #475569; font-size: 12px; }
+
+    @media (max-width: 1100px) {
+      .nav-links, .nav-cta { display: none; }
+      .menu-btn { display: block; }
+      .grid-layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .dashboard-flex { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ticker-bar">
+    <div class="ticker-move">
+      <div class="tick">BRENT CRUDE INDEX: <span id="brent-price">$85.12</span></div>
+      <div class="tick">URALS BLEND EXPORT: <span id="urals-price">$82.45</span></div>
+      <div class="tick">ESPO CRUDE GRADE: <span id="espo-price">$84.10</span></div>
+      <div class="tick">RESERVE AUDIT STATUS: <span style="color:#10b981">PRMS VERIFIED</span></div>
+      <div class="tick">REPLACEMENT RATIO: <span>104% (FY2025)</span></div>
+      <div class="tick">ACTIVE WELL COUNT: <span>1,248</span></div>
+      <div class="tick">BRENT CRUDE INDEX: <span>$85.12</span></div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo-container">
+      <div class="logo-emblem"><i class="fas fa-shield-halved"></i></div>
+      <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / UPSTREAM ASSETS</span></div>
+    </a>
+
+    <div class="nav-wrap">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <button class="nav-toggle">Governance</button>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>Board & Control</h4>
+              <a href="board.html">Board of Directors</a>
+              <a href="risk.html">Risk Management</a>
+              <a href="audit.html">Internal Audit</a>
+            </div>
+            <div class="mega-col">
+              <h4>Investors</h4>
+              <a href="reports.html">Financial Reports</a>
+              <a href="shareholders.html">Shareholder Center</a>
+              <a href="docs.html">Statutory Docs</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-toggle" style="color:var(--gold);">Industrial Business</button>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>Upstream</h4>
+              <a href="geology.html">Geological Exploration</a>
+              <a href="reserves.html">Hydrocarbon Reserves</a>
+              <a href="gas.html">Natural Gas Ops</a>
+            </div>
+            <div class="mega-col">
+              <h4>Downstream</h4>
+              <a href="refining.html">Refining Complex</a>
+              <a href="products.html">Product Catalog</a>
+              <a href="tsa.html">Storage Logistics</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="products.html" class="nav-toggle">Production</a></li>
+        <li><a href="tsa.html" class="nav-toggle">Logistics</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Trade Portal</a>
+      <button class="menu-btn" id="drawerOpen"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-overlay" id="drawerClose"></div>
+    <div class="drawer-panel">
+      <h3 style="color:var(--gold); margin-bottom:30px; letter-spacing:2px; font-size:12px; text-transform:uppercase;">Asset Navigation</h3>
+      <a href="index.html" style="display:block; padding:20px 0; border-bottom:1px solid var(--line); color:#fff; font-weight:700;">Corporate Home</a>
+      <a href="reserves.html" style="display:block; padding:20px 0; border-bottom:1px solid var(--line); color:var(--gold); font-weight:700;">Strategic Reserves</a>
+      <a href="refining.html" style="display:block; padding:20px 0; border-bottom:1px solid var(--line); color:#fff; font-weight:700;">Refining Division</a>
+      <a href="tsa.html" style="display:block; padding:20px 0; border-bottom:1px solid var(--line); color:#fff; font-weight:700;">Logistics & TSA</a>
+      <a href="contact.html" style="display:block; margin-top:40px; text-align:center; padding:15px; background:var(--gold); color:#000; font-weight:800; border-radius:5px;">ENTER TRADE PORTAL</a>
+    </div>
+  </div>
+
+  <header class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Strategic Mineral Base</span>
+      <h1>Hydrocarbon Reserves & Strategic Inventory</h1>
+      <p>Management of sovereign energy riches through high-fidelity geological modeling and strict PRMS auditing standards.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-layout">
+        
+        <aside class="sidebar">
+          <h4>Upstream Menu</h4>
+          <ul class="side-nav-list">
+            <li><a href="geology.html">Geological Exploration</a></li>
+            <li><a href="reserves.html" class="active">Hydrocarbon Reserves</a></li>
+            <li><a href="gas.html">Natural Gas Ops</a></li>
+            <li><a href="refining.html">Refining Complex</a></li>
+          </ul>
+        </aside>
+
+        <div class="content-area">
+          <h2>Asset Valuation & Inventory</h2>
+          <p>
+            The ООО "АВТОДОРТРЕЙД-БТК" upstream portfolio is defined by its massive geographic footprint and multi-decade production horizon. We utilize the <strong>Petroleum Resources Management System (PRMS)</strong> as our core reporting framework, ensuring that all Proven (1P) and Probable (2P) volumes are audited by independent global verification firms for maximum institutional transparency.
+          </p>
+
+          <div class="dashboard-flex">
+            <div class="dash-widget">
+              <label>Crude Reserves</label>
+              <div class="value">6.8B <span>BBL</span></div>
+              <p style="font-size:10px; opacity:0.5; margin-top:5px;">1P + 2P CLASSIFICATION</p>
+            </div>
+            <div class="dash-widget">
+              <label>Natural Gas</label>
+              <div class="value">30.5 <span>TCF</span></div>
+              <p style="font-size:10px; opacity:0.5; margin-top:5px;">GAS INVENTORY</p>
+            </div>
+            <div class="dash-widget">
+              <label>Replacement Ratio</label>
+              <div class="value">104%</div>
+              <p style="font-size:10px; opacity:0.5; margin-top:5px;">RRR INDEX (ANNUAL)</p>
+            </div>
+            <div class="dash-widget">
+              <label>Supply Horizon</label>
+              <div class="value">28.4 <span>YRS</span></div>
+              <p style="font-size:10px; opacity:0.5; margin-top:5px;">ACTIVE LIFECYCLE</p>
+            </div>
+          </div>
+
+          <div class="table-panel">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Hydrocarbon Asset Class</th>
+                  <th>1P (Proved)</th>
+                  <th>2P (Probable)</th>
+                  <th>Verification Level</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Siberian Light Sweet Crude</td>
+                  <td>4.2 Billion BBL</td>
+                  <td>6.8 Billion BBL</td>
+                  <td><span class="status-badge" style="color:#10b981;"><i class="fas fa-circle-check"></i> Sovereign Verified</span></td>
+                </tr>
+                <tr>
+                  <td>Urals Export Blend</td>
+                  <td>2.1 Billion BBL</td>
+                  <td>3.5 Billion BBL</td>
+                  <td><span class="status-badge" style="color:#10b981;"><i class="fas fa-circle-check"></i> PRMS Certified</span></td>
+                </tr>
+                <tr>
+                  <td>Natural Gas (LNG Feedstock)</td>
+                  <td>12.4 Tcf</td>
+                  <td>18.1 Tcf</td>
+                  <td><span class="status-badge" style="color:#10b981;"><i class="fas fa-circle-check"></i> SPE Verified</span></td>
+                </tr>
+                <tr>
+                  <td>Condensates & NGL</td>
+                  <td>850 Million BBL</td>
+                  <td>1.2 Billion BBL</td>
+                  <td><span class="status-badge" style="color:var(--gold);"><i class="fas fa-clock"></i> Audit Pending</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top:60px; padding:40px; background:rgba(200,161,90,0.05); border-left:4px solid var(--gold); border-radius:12px;">
+            <h3 style="font-family:'Playfair Display', serif; color:#fff; margin-bottom:20px;">Geostructural Integrity & Auditing</h3>
+            <p style="color:#94a3b8; font-size:1rem; line-height:1.8;">
+              Our commitment to accuracy involves annual seismic data acquisition and 3D reservoir modeling. Every reported barrel is backed by rigorous geostatistical analysis and third-party validation from leading petroleum engineering firms. This ensures that our extraction targets are both technologically feasible and economically sustainable over the long-term production cycle.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo-container" style="margin-bottom:25px;">
+            <div class="logo-emblem"><i class="fas fa-shield-halved"></i></div>
+            <div class="logo-text">АВТОДОРТРЕЙД<span>БТК Group</span></div>
+          </div>
+          <p style="color:#64748b; font-size:0.85rem;">Strategic commodity production and refining major. Vertical industrial dominance ensuring sovereign energy security.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Industrial</h4>
+          <a href="refining.html">Refining Assets</a>
+          <a href="products.html">Product Spec</a>
+          <a href="reserves.html">Hydrocarbon Base</a>
+        </div>
+        <div class="footer-col">
+          <h4>Compliance</h4>
+          <a href="risk.html">Risk Management</a>
+          <a href="audit.html">Audit Reports</a>
+          <a href="docs.html">Statutory Documents</a>
+        </div>
+        <div class="footer-col">
+          <h4>Terminals</h4>
+          <a href="#"><i class="fas fa-chart-line" style="color:var(--gold); margin-right:10px;"></i> Bloomberg Energy</a>
+          <a href="#"><i class="fas fa-globe" style="color:var(--gold); margin-right:10px;"></i> Reuters Petroleum</a>
+        </div>
+      </div>
+      <div class="fine-print">
+        <p>INN: 7703324065 | OGRN: 1027739129186 | © 2026 ООО АВТОДОРТРЕЙД-БТК. ISO 9001 Certified.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* 1. TICKER PRICE UPDATES */
+    function updatePrices() {
+      const base = { brent: 85.12, urals: 82.45, espo: 84.10 };
+      setInterval(() => {
+        const fluc = (Math.random() * 0.12) - 0.06;
+        document.getElementById('brent-price').innerText = "$" + (base.brent + fluc).toFixed(2);
+        document.getElementById('urals-price').innerText = "$" + (base.urals + fluc).toFixed(2);
+        document.getElementById('espo-price').innerText = "$" + (base.espo + fluc).toFixed(2);
+      }, 3000);
+    }
+    updatePrices();
+
+    /* 2. MOBILE DRAWER LOGIC */
+    const drawer = document.getElementById('mobileDrawer');
+    const openBtn = document.getElementById('drawerOpen');
+    const closeBtn = document.getElementById('drawerClose');
+
+    if(openBtn) openBtn.onclick = () => drawer.classList.add('open');
+    if(closeBtn) closeBtn.onclick = () => drawer.classList.remove('open');
+
+    /* 3. MEGA MENU / NAV HANDLING */
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+      const toggle = item.querySelector('.nav-toggle');
+      if(toggle) {
+        toggle.onclick = (e) => {
+          e.preventDefault();
+          navItems.forEach(other => { if(other !== item) other.classList.remove('open'); });
+          item.classList.toggle('open');
+        };
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-item')) {
+        navItems.forEach(item => item.classList.remove('open'));
+      }
+    });
+  </script>
+
+</body>
+</html>

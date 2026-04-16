@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Environmental Stewardship & Decarbonization | ООО АВТОДОРТРЕЙД-БТК</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MASTER ENTERPRISE STYLES (Bulletproof Embedded CSS)
+       ========================================================================== */
+    :root {
+      --primary-blue: #0a2342;
+      --navy-dark: #050b14;
+      --navy-accent: #08111c;
+      --accent-gold: #c5a059;
+      --white: #ffffff;
+      --slate: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --success: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--navy-dark);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+
+    .container { width: min(1200px, calc(100% - 40px)); margin-inline: auto; }
+
+    /* --- LOGO SYSTEM (Fixed for All Views) --- */
+    .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+    .logo-emblem {
+      width: 48px !important; height: 48px !important;
+      background: linear-gradient(135deg, var(--accent-gold), #8c6c34);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .logo-emblem svg { width: 30px !important; height: 30px !important; display: block; }
+    .logo-text h1 { color: #fff; font-size: 1.15rem; text-transform: uppercase; font-weight: 800; line-height: 1; margin: 0; }
+    .logo-text span { display: block; color: var(--accent-gold); font-size: 0.6rem; letter-spacing: 3px; font-weight: 700; margin-top: 5px; }
+
+    /* --- NAVBAR --- */
+    .navbar {
+      position: sticky; top: 0; z-index: 5000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 5%; background: rgba(5, 11, 20, 0.98);
+      backdrop-filter: blur(15px); border-bottom: 1px solid var(--line);
+    }
+    .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
+    .nav-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; }
+    .nav-link:hover { color: var(--accent-gold); }
+
+    /* --- TICKER --- */
+    .ticker { background: #000; color: var(--accent-gold); padding: 10px 0; font-family: 'JetBrains Mono'; font-size: 10px; font-weight: 700; overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--line); }
+    .ticker-move { display: inline-block; animation: ticker 45s linear infinite; }
+    .tick { display: inline-block; padding: 0 35px; border-right: 1px solid var(--line); }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* --- HERO --- */
+    .hero {
+      padding: 120px 0 80px;
+      background: linear-gradient(rgba(5,11,20,0.92), rgba(5,11,20,0.92)), url('https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+    }
+    .hud-box { padding: 45px; border-left: 5px solid var(--accent-gold); background: rgba(8, 17, 28, 0.85); backdrop-filter: blur(12px); }
+    .hud-box h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
+    .hud-box p { color: var(--slate); font-size: 1.2rem; max-width: 750px; }
+
+    /* --- TECHNICAL DASHBOARD --- */
+    .data-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: -40px; }
+    .data-card { background: var(--navy-accent); border: 1px solid var(--line); padding: 35px 25px; text-align: center; border-bottom: 3px solid var(--accent-gold); }
+    .data-card h2 { font-size: 2.8rem; color: #fff; margin-bottom: 5px; font-weight: 800; }
+    .data-card p { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; }
+
+    /* --- CONTENT SECTIONS --- */
+    .section { padding: 100px 0; }
+    .tag { color: var(--accent-gold); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 20px; }
+    h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 30px; }
+    .muted { color: var(--slate); font-size: 1.05rem; margin-bottom: 40px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .feature-card { background: var(--navy-accent); border: 1px solid var(--line); padding: 40px; margin-bottom: 20px; border-radius: 4px; }
+    .feature-card i { font-size: 2rem; color: var(--accent-gold); margin-bottom: 20px; display: block; }
+    .feature-card h4 { font-size: 1.3rem; margin-bottom: 12px; color: #fff; }
+
+    /* --- CHART / PROGRESS BARS --- */
+    .metric-list { margin-top: 40px; }
+    .metric-item { margin-bottom: 30px; }
+    .metric-label { display: flex; justify-content: space-between; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #fff; margin-bottom: 10px; }
+    .bar-bg { height: 6px; background: rgba(255,255,255,0.05); border-radius: 99px; position: relative; }
+    .bar-fill { height: 100%; background: var(--accent-gold); border-radius: 99px; }
+
+    /* --- TABLE --- */
+    .table-container { background: #020617; border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; margin-top: 50px; }
+    table { width: 100%; border-collapse: collapse; min-width: 800px; }
+    th { text-align: left; background: rgba(255,255,255,0.04); color: var(--accent-gold); padding: 22px; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
+    td { padding: 22px; border-top: 1px solid var(--line); color: #cbd5e1; font-size: 14px; }
+
+    /* --- FOOTER --- */
+    footer { background: #020617; padding: 100px 0 50px; border-top: 4px solid var(--accent-gold); margin-top: 80px; }
+    .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 50px; }
+    .f-col h4 { font-size: 11px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; }
+    .f-col a { display: block; color: #64748b; text-decoration: none; margin-bottom: 15px; font-size: 14px; transition: 0.2s; }
+    .f-col a:hover { color: #fff; }
+
+    /* --- MOBILE RESPONSIVE --- */
+    @media (max-width: 1000px) {
+      .nav-links { display: none; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hud-box h1 { font-size: 2.2rem; }
+      .data-strip { grid-template-columns: 1fr 1fr; }
+      .data-card h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-move">
+      <div class="tick">APG UTILIZATION: <span style="color:#10b981">97.8%</span></div>
+      <div class="tick">CARBON INTENSITY: <span style="color:#fff">-18.4% YOY</span></div>
+      <div class="tick">ISO 14001:2015: <span style="color:#10b981">VERIFIED</span></div>
+      <div class="tick">SULFUR REDUCTION (EURO-6): <span style="color:#fff">92.1%</span></div>
+      <div class="tick">APG UTILIZATION: <span>97.8%</span></div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+      <a href="index.html" class="logo-container">
+        <div class="logo-emblem">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="#0A2342"/>
+              <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="#C5A059"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>АВТОДОРТРЕЙД</h1>
+          <span>БТК / ECO-GOVERNANCE</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="refining.html" class="nav-link">Assets</a></li>
+        <li><a href="environment.html" class="nav-link" style="color:var(--accent-gold)">Eco-Policy</a></li>
+        <li><a href="contact.html" class="nav-link">Trade Desk</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hud-box">
+        <span class="tag">[ INDUSTRIAL ECOLOGY & DECARBONIZATION ]</span>
+        <h1>Green Refining Architecture</h1>
+        <p>Implementing extreme catalytic desulfurization and carbon sequestration units to ensure ООО "АВТОДОРТРЕЙД-БТК" leads the energy transition through technical excellence.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="data-strip">
+      <div class="data-card"><h2>97.8%</h2><p>Associated Gas Utilization</p></div>
+      <div class="data-card"><h2>84.2%</h2><p>Water Recycling Loop</p></div>
+      <div class="data-card"><h2>Euro-6</h2><p>Fuel Output Standard</p></div>
+      <div class="data-card"><h2>-18%</h2><p>Emission Intensity Reduction</p></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <span class="tag">Technical Mastery</span>
+          <h3>Advanced Hydrotreating Units</h3>
+          <p class="muted">Our primary refinery complex utilizes the proprietary T-Star hydrocracking process. This allows us to remove 99.9% of nitrogen and sulfur compounds from crude feedstock, ensuring our heavy-end distillates meet the strictest maritime environmental protocols.</p>
+          
+          <div class="metric-list">
+            <div class="metric-item">
+              <div class="metric-label"><span>Desulfurization Efficiency</span><span>99.9%</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 99.9%;"></div></div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label"><span>Associated Petroleum Gas Utilization</span><span>97.8%</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 97.8%;"></div></div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label"><span>Thermal Oxidizer Reliability</span><span>94.5%</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 94.5%;"></div></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="image-box">
+          <div class="feature-card">
+            <i class="fas fa-wind"></i>
+            <h4>Thermal Oxidation</h4>
+            <p>Utilizing high-temperature closed-loop oxidizers to eliminate VOC emissions by 98.4%, far exceeding RAS environmental mandates.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-droplet-slash"></i>
+            <h4>Zero-Discharge Cycle</h4>
+            <p>Our industrial water treatment facility returns 84% of process water to the cooling loops, preserving regional freshwater reserves.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: rgba(255,255,255,0.01);">
+    <div class="container">
+      <span class="tag">Compliance Registry</span>
+      <h3>Environmental Regulatory Matrix</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Regulation Code</th>
+              <th>Compliance Category</th>
+              <th>Verification Agency</th>
+              <th>Current Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ISO-14001:2026</td>
+              <td>Environmental Management Systems</td>
+              <td>Bureau Veritas / International</td>
+              <td><span style="color:var(--success); font-weight:800;">[ CERTIFIED ]</span></td>
+            </tr>
+            <tr>
+              <td>RAS-ECO-7703</td>
+              <td>Federal Air Quality Standard</td>
+              <td>Sovereign Ecological Oversight</td>
+              <td><span style="color:var(--success); font-weight:800;">[ COMPLIANT ]</span></td>
+            </tr>
+            <tr>
+              <td>UN-SDG-07/13</td>
+              <td>Climate Action & Clean Energy</td>
+              <td>Group ESG Audit Desk</td>
+              <td><span style="color:var(--success); font-weight:800;">[ VERIFIED ]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="f-grid">
+        <div class="f-col">
+          <div class="logo-container" style="margin-bottom:30px;">
+            <div class="logo-emblem" style="width:40px !important; height:40px !important;">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="#0A2342"/><path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="#C5A059"/></svg>
+            </div>
+            <div class="logo-text"><h1>АВТОДОРТРЕЙД</h1><span>БТК / GROUP</span></div>
+          </div>
+          <p style="color:#64748b; font-size:13px;">Vertically integrated major energy producer ensuring environmental integrity and industrial excellence.</p>
+        </div>
+        <div class="f-col">
+          <h4>Industrial</h4>
+          <a href="refining.html">Refining Complex</a>
+          <a href="tsa.html">TSA Logistics</a>
+          <a href="products.html">Product specs</a>
+        </div>
+        <div class="f-col">
+          <h4>Eco-Oversight</h4>
+          <a href="environment.html">Policy Documents</a>
+          <a href="reports.html">Audit Results</a>
+          <a href="esg.html">Strategy 2030</a>
+        </div>
+        <div class="f-col">
+          <h4>Trade Portal</h4>
+          <a href="contact.html">LOI/ICPO Desk</a>
+          <a href="docs.html">Statutory Docs</a>
+          <a href="contact.html">Careers</a>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:60px; color:#475569; font-size:12px; border-top:1px solid var(--line); padding-top:40px;">
+        INN: 7703324065 | OGRN: 1027739129186 | © 2026 ООО АВТОДОРТРЕЙД-БТК.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

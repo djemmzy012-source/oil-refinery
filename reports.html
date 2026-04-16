@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Investor Disclosures & Financial Reporting | ООО АВТОДОРТРЕЙД-БТК</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MASTER ENTERPRISE STYLES (Embedded for 100% Stability)
+       ========================================================================== */
+    :root {
+      --primary-blue: #0a2342;
+      --navy-dark: #050b14;
+      --navy-accent: #08111c;
+      --accent-gold: #c5a059;
+      --gold-dim: rgba(197, 160, 89, 0.15);
+      --white: #ffffff;
+      --slate: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --success: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--navy-dark);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+
+    .container { width: min(1200px, calc(100% - 40px)); margin-inline: auto; }
+
+    /* --- LOGO SYSTEM (Fixed for Mobile & Desktop) --- */
+    .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+    .logo-emblem {
+      width: 48px !important; height: 48px !important;
+      background: linear-gradient(135deg, var(--accent-gold), #8c6c34);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .logo-emblem svg { width: 30px !important; height: 30px !important; display: block; }
+    .logo-text h1 { color: #fff; font-size: 1.15rem; text-transform: uppercase; font-weight: 800; line-height: 1; margin: 0; }
+    .logo-text span { display: block; color: var(--accent-gold); font-size: 0.6rem; letter-spacing: 3px; font-weight: 700; margin-top: 5px; }
+
+    /* --- NAVBAR --- */
+    .navbar {
+      position: sticky; top: 0; z-index: 5000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 5%;
+      background: rgba(5, 11, 20, 0.98);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
+    .nav-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; }
+    .nav-link:hover { color: var(--accent-gold); }
+
+    /* --- TICKER --- */
+    .ticker { background: #000; color: var(--accent-gold); padding: 10px 0; font-family: 'JetBrains Mono'; font-size: 10px; font-weight: 700; overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--gold-dim); }
+    .ticker-move { display: inline-block; animation: ticker 40s linear infinite; }
+    .tick { display: inline-block; padding: 0 30px; border-right: 1px solid var(--line); }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* --- HERO --- */
+    .hero {
+      padding: 100px 0 60px;
+      background: linear-gradient(rgba(5,11,20,0.92), rgba(5,11,20,0.92)), url('https://images.unsplash.com/photo-1454165833767-027ffbc96660?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+    }
+    .hud-box { padding: 40px; border-left: 5px solid var(--accent-gold); background: rgba(8, 17, 28, 0.8); backdrop-filter: blur(10px); }
+    .hud-box h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 15px; }
+    .hud-box p { color: var(--slate); font-size: 1.1rem; max-width: 700px; }
+
+    /* --- KPI STRIP --- */
+    .kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: -30px; }
+    .kpi-card { background: var(--navy-accent); border: 1px solid var(--line); padding: 30px 20px; text-align: center; border-bottom: 3px solid var(--accent-gold); }
+    .kpi-card h2 { font-size: 2.2rem; color: #fff; margin-bottom: 5px; }
+    .kpi-card p { font-family: 'JetBrains Mono'; font-size: 9px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; }
+
+    /* --- REPORT REPOSITORY --- */
+    .section { padding: 80px 0; }
+    .report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; margin-top: 40px; }
+    .report-card { 
+      background: var(--navy-accent); border: 1px solid var(--line); padding: 40px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative;
+    }
+    .report-card:hover { transform: translateY(-8px); border-color: var(--accent-gold); background: #0a1524; }
+    .type-tag { font-family: 'JetBrains Mono'; font-size: 9px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+    .report-card h4 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; margin-bottom: 12px; }
+    .report-card p { color: var(--slate); font-size: 0.9rem; margin-bottom: 25px; }
+    .dl-btn { 
+      display: inline-flex; align-items: center; gap: 10px; color: #fff; font-size: 10px; font-weight: 800; 
+      text-transform: uppercase; letter-spacing: 1px; padding: 12px 20px; border: 1px solid var(--line); text-decoration: none; transition: 0.3s;
+    }
+    .dl-btn:hover { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
+
+    /* --- TECHNICAL TABLE --- */
+    .table-wrap { background: #020617; border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; margin-top: 60px; }
+    table { width: 100%; border-collapse: collapse; min-width: 800px; }
+    th { text-align: left; background: rgba(255,255,255,0.03); color: var(--accent-gold); padding: 20px; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+    td { padding: 20px; border-top: 1px solid var(--line); color: #cbd5e1; font-size: 13px; }
+    .status-badge { background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 10px; border-radius: 4px; font-size: 9px; font-weight: 800; }
+
+    /* --- FOOTER --- */
+    footer { background: #020617; padding: 80px 0 40px; border-top: 4px solid var(--accent-gold); margin-top: 60px; }
+    .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+    .f-col h4 { font-size: 10px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+    .f-col a { display: block; color: #64748b; text-decoration: none; margin-bottom: 12px; font-size: 13px; transition: 0.2s; }
+    .f-col a:hover { color: #fff; }
+
+    /* --- RESPONSIVE FIXES --- */
+    @media (max-width: 1000px) {
+      .nav-links { display: none; }
+      .hud-box h1 { font-size: 2.2rem; }
+    }
+    @media (max-width: 600px) {
+      .kpi-strip { grid-template-columns: 1fr 1fr; }
+      .hud-box { padding: 25px; }
+      .report-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-move">
+      <div class="tick">FY 2025 CONSOLIDATED REVENUE: <span style="color:#fff">$2.42B</span></div>
+      <div class="tick">EBITDA MARGIN: <span style="color:#10b981">28.4%</span></div>
+      <div class="tick">REFINERY YIELD (EURO-6): <span style="color:#fff">94.2%</span></div>
+      <div class="tick">AUDIT STATUS: <span style="color:#10b981">CLEAN OPINION</span></div>
+      <div class="tick">FY 2025 CONSOLIDATED REVENUE: <span>$2.42B</span></div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+      <a href="index.html" class="logo-container">
+        <div class="logo-emblem">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="#0A2342"/>
+              <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="#C5A059"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>АВТОДОРТРЕЙД</h1>
+          <span>БТК / INVESTOR RELATIONS</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="refining.html" class="nav-link">Refining</a></li>
+        <li><a href="reports.html" class="nav-link" style="color:var(--accent-gold)">Reports</a></li>
+        <li><a href="contact.html" class="nav-link">Trade Desk</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hud-box">
+        <span style="color:var(--accent-gold); font-family:'JetBrains Mono'; font-size:10px; letter-spacing:3px; display:block; margin-bottom:15px;">[ FINANCIAL DISCLOSURE HUB ]</span>
+        <h1>Institutional Reporting & Transparency</h1>
+        <p>Providing global stakeholders with audited operational results, IFRS consolidated statements, and strategic throughput diagnostics for ООО "АВТОДОРТРЕЙД-БТК".</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="kpi-strip">
+      <div class="kpi-card"><h2>$2.4B</h2><p>Total Assets (RAS)</p></div>
+      <div class="kpi-card"><h2>14.2%</h2><p>Dividend Yield Est.</p></div>
+      <div class="kpi-card"><h2>11.2</h2><p>Nelson Complexity</p></div>
+      <div class="kpi-card"><h2>A+</h2><p>Sovereign Credit Rating</p></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div style="max-width:800px;">
+        <span style="color:var(--accent-gold); font-weight:800; font-size:11px; text-transform:uppercase; letter-spacing:3px; display:block; margin-bottom:15px;">Document Vault</span>
+        <h3>Consolidated Annual Disclosures</h3>
+        <p style="color:var(--slate); margin-bottom:40px;">Our reporting standards are benchmarked against global energy majors, ensuring absolute visibility into capital allocation, net debt optimization, and refining margins.</p>
+      </div>
+
+      <div class="report-grid">
+        <div class="report-card">
+          <span class="type-tag">Financial / IFRS</span>
+          <h4>Annual Report FY 2025</h4>
+          <p>Consolidated financial statements audited by the Strategic Global Group. Full breakdown of EBITDA and Net Income across all refinery subsidiaries.</p>
+          <div style="color:var(--slate); font-size:11px; margin-bottom:20px;"><i class="far fa-file-pdf"></i> PDF (14.2 MB) | April 2026</div>
+          <a href="#" class="dl-btn"><i class="fas fa-download"></i> Access Report</a>
+        </div>
+
+        <div class="report-card">
+          <span class="type-tag">Operational Audit</span>
+          <h4>Refinery Throughput Q1</h4>
+          <p>Detailed technical audit of production volumes, fuel specification compliance (Euro-6), and operational load factors across our primary distillation units.</p>
+          <div style="color:var(--slate); font-size:11px; margin-bottom:20px;"><i class="far fa-file-pdf"></i> PDF (8.4 MB) | March 2026</div>
+          <a href="#" class="dl-btn"><i class="fas fa-download"></i> Access Report</a>
+        </div>
+
+        <div class="report-card">
+          <span class="type-tag">Statutory / RAS</span>
+          <h4>Statutory Disclosure RAS</h4>
+          <p>Consolidated Russian Accounting Standard filings for federal regulatory compliance and regional asset valuation reporting.</p>
+          <div style="color:var(--slate); font-size:11px; margin-bottom:20px;"><i class="far fa-file-pdf"></i> PDF (5.1 MB) | Feb 2026</div>
+          <a href="#" class="dl-btn"><i class="fas fa-download"></i> Access Report</a>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Reporting Period</th>
+              <th>Audited Segment</th>
+              <th>Audit Agency</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>FY 2025</td>
+              <td>Group Financials (IFRS)</td>
+              <td>International Audit Bureau</td>
+              <td><span class="status-badge">CLEAN OPINION</span></td>
+            </tr>
+            <tr>
+              <td>Q1 2026</td>
+              <td>Technical Operations & HSE</td>
+              <td>Federal Engineering Desk</td>
+              <td><span class="status-badge">VERIFIED</span></td>
+            </tr>
+            <tr>
+              <td>FY 2025</td>
+              <td>ESG & Carbon Disclosures</td>
+              <td>Green Growth Oversight</td>
+              <td><span class="status-badge">CERTIFIED</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="f-grid">
+        <div class="f-col">
+          <div class="logo-container" style="margin-bottom:25px;">
+            <div class="logo-emblem" style="width:40px !important; height:40px !important;">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="#0A2342"/><path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="#C5A059"/></svg>
+            </div>
+            <div class="logo-text"><h1>АВТОДОРТРЕЙД</h1><span>БТК / GROUP</span></div>
+          </div>
+          <p style="color:#64748b; font-size:13px;">Leading vertically integrated major ensuring global energy stability and refining excellence.</p>
+        </div>
+        <div class="f-col">
+          <h4>Industrial</h4>
+          <a href="refining.html">Refining Complex</a>
+          <a href="tsa.html">TSA Logistics</a>
+          <a href="products.html">Product Specs</a>
+        </div>
+        <div class="f-col">
+          <h4>Investors</h4>
+          <a href="reports.html">Financial Center</a>
+          <a href="shareholders.html">Shareholders</a>
+          <a href="esg.html">ESG Policy</a>
+        </div>
+        <div class="f-col">
+          <h4>Portal</h4>
+          <a href="contact.html">Trade Desk</a>
+          <a href="docs.html">Statutory Docs</a>
+          <a href="contact.html">Careers</a>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:60px; color:#475569; font-size:12px; border-top:1px solid var(--line); padding-top:40px;">
+        INN: 7703324065 | OGRN: 1027739129186 | © 2026 ООО АВТОДОРТРЕЙД-БТК.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
