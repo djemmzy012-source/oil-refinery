@@ -31,6 +31,9 @@
       line-height: 1.7;
       overflow-x: hidden;
       width: 100%;
+      /* MANDATORY TRANSLATE FIX */
+      top: 0px !important; 
+      position: static !important;
     }
 
     a { text-decoration: none; }
@@ -177,7 +180,7 @@
       font-size: 18px; flex-shrink: 0;
     }
 
-    /* INNER PAGE HERO - EXPLICIT TANK FARM IMAGE & MUCH LIGHTER GRADIENT */
+    /* INNER PAGE HERO */
     .page-hero {
       background:
         linear-gradient(90deg, rgba(3,8,18,0.7) 0%, rgba(3,8,18,0.3) 60%, rgba(3,8,18,0.05) 100%),
@@ -338,10 +341,34 @@
       color: var(--gold); border-left-color: var(--gold); background: rgba(200,161,90,0.06);
     }
 
+    /* ==========================================================================
+       OPTION 1: AGGRESSIVE BANNER SUPPRESSION (STAYS IN CSS)
+       ========================================================================== */
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame, .VIpgJm-ZpYbe-OR_B-nm6s6 { display: none !important; visibility: hidden !important; }
+    #goog-gt-tt, .goog-te-balloon-frame, .goog-tooltip { display: none !important; visibility: hidden !important; }
+    .goog-text-highlight { background: none !important; box-shadow: none !important; }
+    .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+    .goog-te-gadget img { display: none !important; }
+    #google_translate_element { display: inline-flex; align-items: center; min-width: 110px; }
+    .goog-te-gadget select {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid var(--gold) !important;
+      color: var(--gold) !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      padding: 8px 12px !important;
+      border-radius: 4px !important;
+      outline: none !important;
+      cursor: pointer !important;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 1100px) {
       .nav-links, .nav-cta { display: none; }
-      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; order: 3; }
+      #google_translate_element { order: 2; margin-right: 10px; }
       .mega-menu { display: none; }
       .nav-wrap.open .nav-links {
         display: flex; position: absolute; top: 64px; left: 0; right: 0;
@@ -457,9 +484,11 @@
         <li class="nav-item"><a class="nav-link" href="tsa.html">Logistics</a></li>
         <li class="nav-item"><a class="nav-link" href="compliance.html">Sustainability</a></li>
       </ul>
-    </div>
 
-    <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
+      <div id="google_translate_element"></div>
+
+      <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
+    </div>
   </nav>
 
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
@@ -677,6 +706,18 @@
     </div>
   </footer>
 
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en', 
+        includedLanguages: 'en,ru', 
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
   <script>
     function updatePrices() {
       const base = { urals: 82.45, espo: 84.10, brent: 85.12 };
@@ -772,4 +813,3 @@
   </script>
 </body>
 </html>
-```

@@ -31,6 +31,9 @@
       line-height: 1.7;
       overflow-x: hidden;
       width: 100%;
+      /* MANDATORY TRANSLATE FIX */
+      top: 0px !important; 
+      position: static !important;
     }
 
     a { text-decoration: none; }
@@ -125,18 +128,12 @@
     .nav-links { list-style: none; display: flex; align-items: center; gap: 28px; }
     .nav-item { position: relative; }
 
-    .nav-toggle {
+    .nav-toggle, .nav-link {
       background: none; border: none; color: rgba(255,255,255,0.82);
       font-size: 11px; font-weight: 800; text-transform: uppercase;
       letter-spacing: 1.4px; cursor: pointer; padding: 10px 0; transition: 0.25s;
     }
     .nav-item:hover > .nav-toggle, .nav-item.open > .nav-toggle { color: var(--gold); }
-
-    .nav-link {
-      color: rgba(255,255,255,0.82); font-size: 11px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 1.4px; transition: 0.25s;
-      padding: 10px 0; display: inline-block;
-    }
     .nav-link:hover { color: var(--gold); }
 
     /* MEGA MENU */
@@ -177,7 +174,7 @@
       font-size: 18px; flex-shrink: 0;
     }
 
-    /* INNER PAGE HERO - INDUSTRIAL PIPES */
+    /* INNER PAGE HERO */
     .page-hero {
       background:
         linear-gradient(90deg, rgba(3,8,18,0.85) 0%, rgba(3,8,18,0.5) 60%, rgba(3,8,18,0.1) 100%),
@@ -284,16 +281,7 @@
     .callout-text h4 { color: #fff; font-size: 1.2rem; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
     .callout-text p { color: #9ca3af; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
 
-    /* FOOTER STRIP */
-    .footer-strip {
-      background: linear-gradient(135deg, var(--navy), #020617); color: #fff;
-      padding: 34px 0; border-top: 1px solid var(--line);
-    }
-    .footer-strip-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; align-items: center;
-    }
-
-    /* MAIN FOOTER */
+    /* FOOTER */
     footer {
       background: #020617; color: #fff; padding: 80px 0 40px; border-top: 4px solid var(--gold);
     }
@@ -347,10 +335,34 @@
       color: var(--gold); border-left-color: var(--gold); background: rgba(200,161,90,0.06);
     }
 
+    /* ==========================================================================
+       TRANSLATOR AGGRESSIVE FIX: Locked Alignment
+       ========================================================================== */
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame, .VIpgJm-ZpYbe-OR_B-nm6s6 { display: none !important; visibility: hidden !important; }
+    #goog-gt-tt, .goog-te-balloon-frame, .goog-tooltip { display: none !important; visibility: hidden !important; }
+    .goog-text-highlight { background: none !important; box-shadow: none !important; }
+    .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+    .goog-te-gadget img { display: none !important; }
+    #google_translate_element { display: inline-flex; align-items: center; min-width: 110px; }
+    .goog-te-gadget select {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid var(--gold) !important;
+      color: var(--gold) !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      padding: 8px 12px !important;
+      border-radius: 4px !important;
+      outline: none !important;
+      cursor: pointer !important;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 1100px) {
       .nav-links, .nav-cta { display: none; }
-      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; order: 3; }
+      #google_translate_element { order: 2; margin-right: 10px; }
       .mega-menu { display: none; }
       .nav-wrap.open .nav-links {
         display: flex; position: absolute; top: 64px; left: 0; right: 0;
@@ -384,11 +396,8 @@
       <div class="tick">URALS BLEND: <span id="urals-price">$82.45</span> <i class="fas fa-caret-up"></i></div>
       <div class="tick">ESPO CRUDE: <span id="espo-price">$84.10</span> <i class="fas fa-caret-up"></i></div>
       <div class="tick">BRENT INDEX: <span id="brent-price">$85.12</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">GASOIL 10PPM: <span>$812.50</span></div>
       <div class="tick">GLOBAL TSA STATUS: <span style="color:#10b981">OPERATIONAL (92%)</span></div>
       <div class="tick">REFINERY THROUGHPUT: <span>93.7K BBL/D</span></div>
-      <div class="tick">URALS BLEND: <span>$82.45</span></div>
-      <div class="tick">ESPO CRUDE: <span>$84.10</span></div>
     </div>
   </div>
 
@@ -425,65 +434,28 @@
               <a href="shareholders.html">Shareholder Info</a>
               <a href="docs.html">Statutory Docs</a>
             </div>
-            <div class="mega-col">
-              <h4>ESG Center</h4>
-              <a href="esg.html">Sustainability Report</a>
-              <a href="environment.html">Environmental Policy</a>
-              <a href="impact.html">Social Impact</a>
-            </div>
           </div>
         </li>
-
-        <li class="nav-item has-mega">
-          <button class="nav-toggle">Industrial Business</button>
-          <div class="mega-menu">
-            <div class="mega-col">
-              <h4>Upstream</h4>
-              <a href="geology.html">Exploration & Geology</a>
-              <a href="reserves.html">Hydrocarbon Reserves</a>
-              <a href="gas.html">Natural Gas Ops</a>
-            </div>
-            <div class="mega-col">
-              <h4>Refining & Sales</h4>
-              <a href="refining.html">Refining Complex</a>
-              <a href="products.html">Petrochemical Sales</a>
-              <a href="gas-proc.html">Gas Processing</a>
-            </div>
-            <div class="mega-col">
-              <h4>Logistics</h4>
-              <a href="tsa.html">Storage Infrastructure</a>
-              <a href="tsa.html">TSA Agreement</a>
-              <a href="tsa.html">Marine Terminals</a>
-            </div>
-            <div class="mega-col">
-              <h4>Global Talent</h4>
-              <a href="contact.html">Refinery Engineers</a>
-              <a href="contact.html">Operations Staff</a>
-              <a href="contact.html">Global Careers</a>
-            </div>
-          </div>
-        </li>
-
         <li class="nav-item"><a class="nav-link" href="products.html">Production</a></li>
         <li class="nav-item"><a class="nav-link" href="tsa.html">Logistics</a></li>
         <li class="nav-item"><a class="nav-link" href="compliance.html" style="color:var(--gold);">Sustainability</a></li>
       </ul>
-    </div>
 
-    <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
+      <div id="google_translate_element"></div>
+
+      <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
+    </div>
   </nav>
 
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="drawer-panel">
       <div class="drawer-top">
-        <div class="drawer-brand">
-          <div class="logo-emblem"><i class="fas fa-shield-halved"></i></div>
-          <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / GLOBAL ENERGY</span></div>
+        <div class="drawer-brand" style="display:flex; align-items:center; gap:12px; color:#fff;">
+          <div class="logo-emblem" style="width:36px; height:36px;"><i class="fas fa-shield-halved"></i></div>
+          <span style="font-weight:800; font-size:0.9rem;">BTK GROUP</span>
         </div>
-        <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-          <i class="fas fa-times"></i>
-        </button>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
       </div>
 
       <div class="drawer-sections">
@@ -493,26 +465,17 @@
             <a href="board.html">Board of Directors</a>
             <a href="risk.html">Risk Management</a>
             <a href="audit.html">Internal Audit</a>
-            <a href="docs.html">Corporate Documents</a>
+            <a href="about.html">About Us</a>
           </div>
         </div>
         <div class="drawer-section">
-          <button class="drawer-section-btn">Industrial Business <i class="fas fa-chevron-down"></i></button>
-          <div class="drawer-links">
-            <a href="geology.html">Exploration & Geology</a>
-            <a href="reserves.html">Hydrocarbon Reserves</a>
-            <a href="refining.html">Refining Complex</a>
-            <a href="tsa.html">Storage Infrastructure</a>
-          </div>
-        </div>
-        <div class="drawer-section">
-          <button class="drawer-section-btn">Quick Links <i class="fas fa-chevron-down"></i></button>
+          <button class="drawer-section-btn">Industrial <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
             <a href="products.html">Production</a>
             <a href="tsa.html">Logistics</a>
-            <a href="contact.html">Trade Portal</a>
           </div>
         </div>
+        <a href="contact.html" class="nav-cta" style="margin-top:20px; width:100%; justify-content:center;">Trade Portal</a>
       </div>
     </div>
   </div>
@@ -606,71 +569,26 @@
     </div>
   </section>
 
-  <div class="footer-strip">
-    <div class="container">
-      <div class="footer-strip-grid">
-        <div>
-          <strong style="color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">Strategic Contact</strong>
-          <p style="margin-top: 10px; color: rgba(255,255,255,0.78);">Commercial inquiries, investor relations, and trade coordination.</p>
-        </div>
-        <div>
-          <p style="font-size: 0.9rem;"><i class="fas fa-envelope" style="color: var(--gold); margin-right: 10px;"></i> info@btk-group.example</p>
-        </div>
-        <div>
-          <p style="font-size: 0.9rem;"><i class="fas fa-phone" style="color: var(--gold); margin-right: 10px;"></i> +7 (495) 000-00-00</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <footer>
     <div class="container">
-      <div class="f-grid">
-        <div class="f-col">
-          <div class="logo-container" style="margin-bottom: 20px;">
-            <div class="logo-emblem" style="width: 40px; height: 40px;"><i class="fas fa-shield-halved"></i></div>
-            <div class="logo-text">АВТОДОРТРЕЙД<span>БТК</span></div>
-          </div>
-          <p style="color:#94a3b8; font-size:0.92rem; margin-bottom: 16px;">
-            A leading vertically integrated energy enterprise delivering refined products, secure logistics, and disciplined governance.
-          </p>
-          <p style="color:#fff; font-size:0.84rem;"><strong>HQ:</strong> Presnenskaya Nab. 12, Moscow, Russia</p>
-        </div>
-
-        <div class="f-col">
-          <h4>Operations</h4>
-          <a href="refining.html">Refining Assets</a>
-          <a href="products.html">Product Portfolio</a>
-          <a href="tsa.html">TSA Network</a>
-          <a href="compliance.html">ESG Reporting</a>
-        </div>
-
-        <div class="f-col">
-          <h4>Governance</h4>
-          <a href="board.html">Corporate Board</a>
-          <a href="about.html">Mission & Vision</a>
-          <a href="docs.html">Investor Relations</a>
-          <a href="strategy.html">Global Strategy</a>
-        </div>
-
-        <div class="f-col">
-          <h4>Partner Portal</h4>
-          <a href="contact.html">Buyer Inquiry</a>
-          <a href="contact.html">Career Opportunities</a>
-          <a href="contact.html">Submit LOI/ICPO</a>
-          <div style="margin-top: 16px;">
-            <a href="#" style="display:inline; margin-right: 12px;"><i class="fab fa-linkedin"></i></a>
-            <a href="#" style="display:inline;"><i class="fab fa-twitter"></i></a>
-          </div>
-        </div>
-      </div>
-
       <div class="fine-print">
         <p><strong>INN:</strong> 7703324065 | <strong>OGRN:</strong> 1027739129186 | <strong>Nelson Index:</strong> 11.2</p>
-        <p style="margin-top: 8px;">© 2024 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved. Strategic Energy & Logistics.</p>
+        <p style="margin-top: 8px;">© 2026 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved. Strategic Energy & Logistics.</p>
       </div>
     </div>
   </footer>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en', 
+        includedLanguages: 'en,ru', 
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
     function updatePrices() {
@@ -678,91 +596,30 @@
       setInterval(() => {
         const fluc = (Math.random() * 0.1) - 0.05;
         const urals = document.getElementById('urals-price');
-        const espo = document.getElementById('espo-price');
-        const brent = document.getElementById('brent-price');
         if (urals) urals.innerText = "$" + (base.urals + fluc).toFixed(2);
-        if (espo) espo.innerText = "$" + (base.espo + fluc).toFixed(2);
-        if (brent) brent.innerText = "$" + (base.brent + fluc).toFixed(2);
       }, 3000);
     }
     updatePrices();
 
     const menuBtn = document.getElementById('menuBtn');
-    const navWrap = document.getElementById('navWrap');
-    const navItems = document.querySelectorAll('.nav-item.has-mega');
-
     const mobileDrawer = document.getElementById('mobileDrawer');
     const drawerOverlay = document.getElementById('drawerOverlay');
     const drawerClose = document.getElementById('drawerClose');
     const drawerSections = document.querySelectorAll('.drawer-section');
     const drawerSectionBtns = document.querySelectorAll('.drawer-section-btn');
 
-    function openDrawer() {
-      if (!mobileDrawer) return;
-      mobileDrawer.classList.add('open');
-      mobileDrawer.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+    function openDrawer() { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeDrawer() { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; }
 
-    function closeDrawer() {
-      if (!mobileDrawer) return;
-      mobileDrawer.classList.remove('open');
-      mobileDrawer.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      drawerSections.forEach(section => section.classList.remove('open'));
-    }
-
-    if (menuBtn) {
-      menuBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openDrawer();
-      });
-    }
-
-    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
-    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    if (menuBtn) menuBtn.onclick = openDrawer;
+    if (drawerOverlay) drawerOverlay.onclick = closeDrawer;
+    if (drawerClose) drawerClose.onclick = closeDrawer;
 
     drawerSectionBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
+      btn.onclick = () => {
         const section = btn.parentElement;
-        const isOpen = section.classList.contains('open');
-        drawerSections.forEach(s => s.classList.remove('open'));
-        if (!isOpen) section.classList.add('open');
-      });
-    });
-
-    navItems.forEach(item => {
-      const toggle = item.querySelector('.nav-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          navItems.forEach(other => {
-            if (other !== item) other.classList.remove('open');
-          });
-          item.classList.toggle('open');
-        });
-      }
-    });
-
-    document.addEventListener('click', (e) => {
-      const clickedInsideNav = navWrap && navWrap.contains(e.target);
-      if (!clickedInsideNav) {
-        navItems.forEach(item => item.classList.remove('open'));
-      }
-    });
-
-    document.querySelectorAll('.mega-menu a, .nav-link, .nav-cta, .drawer-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navItems.forEach(item => item.classList.remove('open'));
-        closeDrawer();
-      });
-    });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 1100) {
-        closeDrawer();
-      }
+        section.classList.toggle('open');
+      };
     });
   </script>
 </body>

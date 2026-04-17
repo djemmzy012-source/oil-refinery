@@ -30,377 +30,127 @@
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
-      width: 100%;
+      /* PREVENT TRANSLATE BANNER SHIFT */
+      top: 0px !important; 
+      position: static !important;
     }
 
     a { text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container {
-      width: min(var(--container), calc(100% - 32px));
-      margin-inline: auto;
-    }
+    .container { width: min(var(--container), calc(100% - 32px)); margin-inline: auto; }
 
     /* TOP TICKER */
     .ticker-bar {
-      background: #020617;
-      color: var(--gold);
-      padding: 10px 0;
-      font-size: 12px;
-      font-weight: 600;
-      overflow: hidden;
-      white-space: nowrap;
-      letter-spacing: 1px;
-      border-bottom: 1px solid rgba(200,161,90,0.25);
+      background: #020617; color: var(--gold); padding: 10px 0; font-size: 12px;
+      font-weight: 600; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(200,161,90,0.25);
     }
-    .ticker-move {
-      display: inline-block;
-      animation: ticker 38s linear infinite;
-      min-width: 200%;
-    }
-    .tick {
-      display: inline-block;
-      padding: 0 26px;
-      border-right: 1px solid var(--line);
-    }
-    .tick span { color: #fff; margin-left: 5px; }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    .ticker-move { display: inline-block; animation: ticker 38s linear infinite; min-width: 200%; }
+    .tick { display: inline-block; padding: 0 26px; border-right: 1px solid var(--line); }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* NAV */
+    /* NAVBAR */
     .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 4000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding: 14px clamp(16px, 4vw, 6%);
-      background: rgba(3, 8, 18, 0.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 4000; display: flex; justify-content: space-between; align-items: center;
+      padding: 14px clamp(16px, 4vw, 6%); background: rgba(3, 8, 18, 0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);
     }
+    .logo-container { display: flex; align-items: center; gap: 14px; color: #fff; }
+    .logo-emblem { width: 48px; height: 48px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--gold), #8c6c34); flex-shrink: 0; }
+    .logo-text { font-weight: 800; font-size: 1.05rem; line-height: 1.05; text-transform: uppercase; white-space: nowrap; }
+    .logo-text span { display: block; font-size: 0.68rem; color: var(--gold); letter-spacing: 3px; margin-top: 4px; }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: #fff;
-      min-width: 0;
-    }
-    .logo-emblem {
-      width: 48px;
-      height: 48px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      background: linear-gradient(135deg, var(--gold), #8c6c34);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      flex-shrink: 0;
-    }
-    .logo-text {
-      font-weight: 800;
-      font-size: 1.05rem;
-      line-height: 1.05;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-    .logo-text span {
-      display: block;
-      font-size: 0.68rem;
-      color: var(--gold);
-      letter-spacing: 3px;
-      margin-top: 4px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .nav-wrap { display: flex; align-items: center; gap: 18px; position: relative; }
+    .nav-wrap { display: flex; align-items: center; gap: 18px; }
     .nav-links { list-style: none; display: flex; align-items: center; gap: 28px; }
-    .nav-item { position: relative; }
-
-    .nav-toggle {
-      background: none; border: none; color: rgba(255,255,255,0.82);
-      font-size: 11px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1.4px; cursor: pointer; padding: 10px 0; transition: 0.25s;
-    }
-    .nav-item:hover > .nav-toggle, .nav-item.open > .nav-toggle { color: var(--gold); }
-
-    .nav-link {
-      color: rgba(255,255,255,0.82); font-size: 11px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 1.4px; transition: 0.25s;
-      padding: 10px 0; display: inline-block;
-    }
+    .nav-link { color: rgba(255,255,255,0.82); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.4px; }
     .nav-link:hover { color: var(--gold); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; background: linear-gradient(135deg, var(--gold), #9f7c42); color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase; }
 
-    /* MEGA MENU */
-    .mega-menu {
-      position: absolute; top: calc(100% + 14px); left: 50%;
-      transform: translateX(-50%) translateY(8px); width: min(1120px, 92vw);
-      background: #08111c; border-top: 4px solid var(--gold);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.18); border-radius: 10px;
-      padding: 30px; display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 22px; opacity: 0; visibility: hidden; pointer-events: none;
-      transition: 0.25s ease; z-index: 5000;
+    /* ==========================================================================
+       THE TRANSLATOR SKIN (Fixing the "Box" look)
+       ========================================================================== */
+    #google_translate_element { display: inline-flex; align-items: center; min-width: 100px; }
+    .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+    .goog-te-gadget img { display: none !important; }
+    .goog-te-gadget select {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid var(--gold) !important;
+      color: var(--gold) !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      padding: 8px 12px !important;
+      border-radius: 4px !important;
+      outline: none !important;
+      cursor: pointer !important;
     }
-    .nav-item:hover .mega-menu, .nav-item.open .mega-menu, .mega-menu:hover {
-      opacity: 1; visibility: visible; pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
-    }
-    .mega-col h4 {
-      color: #f8fafc; font-size: 11px; text-transform: uppercase;
-      letter-spacing: 1.4px; margin-bottom: 14px; padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-    }
-    .mega-col a {
-      display: block; color: #cbd5e1; font-size: 13px; padding: 9px 0;
-      transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .mega-col a:hover { color: var(--gold); transform: translateX(4px); }
+    /* Hide the Google top banner */
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; visibility: hidden !important; }
+    #goog-gt-tt, .goog-tooltip, .goog-te-balloon-frame { display: none !important; }
 
-    .nav-cta {
-      display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px;
-      border-radius: 999px; background: linear-gradient(135deg, var(--gold), #9f7c42);
-      color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1px; box-shadow: 0 12px 25px rgba(200,161,90,0.25);
-      white-space: nowrap; flex-shrink: 0;
-    }
-    .menu-btn {
-      display: none; background: none; border: 1px solid rgba(255,255,255,0.18);
-      color: #fff; width: 44px; height: 44px; border-radius: 10px;
-      font-size: 18px; flex-shrink: 0;
-    }
+    /* MOBILE MENU BTN */
+    .menu-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.18); color: #fff; width: 44px; height: 44px; border-radius: 10px; font-size: 18px; cursor: pointer; }
 
-    /* INNER PAGE HERO - LIGHTENED GRADIENT & NEW IMAGE */
+    /* HERO */
     .page-hero {
-      background:
-        linear-gradient(90deg, rgba(3,8,18,0.85) 0%, rgba(3,8,18,0.5) 60%, rgba(3,8,18,0.1) 100%),
-        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000&auto=format&fit=crop');
-      background-size: cover; background-position: center;
-      padding: clamp(80px, 10vw, 120px) 0 clamp(60px, 8vw, 90px);
-      color: #fff; border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(3,8,18,0.85) 0%, rgba(3,8,18,0.5) 60%, rgba(3,8,18,0.1) 100%), url('https://images.unsplash.com/photo-1579970114068-158731f245c3?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover; background-position: center; padding: clamp(80px, 10vw, 120px) 0 clamp(60px, 8vw, 90px); color: #fff; border-bottom: 1px solid var(--line);
     }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px; font-size: 11px;
-      font-weight: 800; text-transform: uppercase; letter-spacing: 3px;
-      color: var(--gold-2); margin-bottom: 18px; flex-wrap: wrap;
-    }
-    .page-hero h1 {
-      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4.2rem);
-      line-height: 1; margin-bottom: 16px; word-break: break-word; max-width: 800px;
-    }
-    .page-hero p {
-      max-width: 680px; font-size: clamp(1rem, 2vw, 1.15rem);
-      color: rgba(255,255,255,0.85); font-weight: 400;
-    }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--gold-2); margin-bottom: 18px; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: 1; margin-bottom: 16px; max-width: 800px; }
 
-    /* PAGE LAYOUT */
+    /* LAYOUT & CARDS */
     .section { padding: clamp(60px, 8vw, 90px) 0; background: #07101d; }
-    .page-layout {
-      display: grid; grid-template-columns: 280px 1fr; gap: clamp(30px, 5vw, 60px); align-items: start;
-    }
+    .page-layout { display: grid; grid-template-columns: 280px 1fr; gap: clamp(30px, 5vw, 60px); align-items: start; }
+    .side-nav { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; position: sticky; top: 100px; }
+    .side-nav a { display: flex; align-items: center; justify-content: space-between; color: #cbd5e1; padding: 12px 14px; border-radius: 8px; margin-bottom: 4px; }
+    .side-nav a.active { background: rgba(200,161,90,0.1); color: var(--gold); font-weight: 600; border-left: 3px solid var(--gold); }
 
-    /* SIDEBAR NAV */
-    .side-nav {
-      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 24px; position: sticky; top: 100px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    .side-nav h4 {
-      color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
-    }
-    .side-nav ul { list-style: none; }
-    .side-nav a {
-      display: flex; align-items: center; justify-content: space-between; color: #cbd5e1;
-      font-size: 0.95rem; padding: 12px 14px; border-radius: 8px; margin-bottom: 4px; transition: 0.2s;
-    }
-    .side-nav a:hover { background: rgba(255,255,255,0.04); color: #fff; }
-    .side-nav a.active {
-      background: rgba(200,161,90,0.1); color: var(--gold); font-weight: 600; border-left: 3px solid var(--gold);
-    }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0; }
+    .dash-card { background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 16px; padding: 26px 20px; text-align: center; }
+    .dash-card .value { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--gold); }
 
-    /* MAIN CONTENT */
-    .content-area h2 {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.1; color: #f8fafc; margin-bottom: 24px;
-    }
-    .content-area > p { color: #9ca3af; font-size: 1.05rem; margin-bottom: 24px; }
-    h3 {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem);
-      color: #f8fafc; margin-bottom: 24px; padding-top: 20px;
-    }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .info-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px 24px; }
+    .info-card i { color: var(--gold); font-size: 1.6rem; margin-bottom: 18px; padding: 14px; background: rgba(200,161,90,0.1); border-radius: 12px; display: inline-block; }
 
-    /* DATA TABLE / LABORATORY ASSAY */
-    .table-wrap {
-      width: 100%; overflow-x: auto; background: var(--card); border: 1px solid var(--line);
-      border-radius: 12px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      margin-top: 30px;
-    }
-    .table-header {
-      padding: 20px 24px; border-bottom: 1px solid var(--line);
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(255,255,255,0.02);
-    }
-    .table-header h4 { color: #fff; font-size: 1.1rem; }
-    .table-header span { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800;}
-    
-    .data-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; }
-    .data-table th {
-      padding: 16px 24px; background: rgba(0,0,0,0.2); color: #9ca3af;
-      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--line);
-    }
-    .data-table td { padding: 16px 24px; border-bottom: 1px solid var(--line); color: #cbd5e1; font-size: 0.95rem; }
-    .data-table tr:last-child td { border-bottom: none; }
-    .data-table td:first-child { font-weight: 600; color: #f8fafc; }
-    .data-table td:nth-child(2) { color: #9ca3af; font-size: 0.9rem; }
-    .data-table td:last-child { color: var(--gold); font-weight: 600; }
+    .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
+    .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-top: 3px solid var(--gold); padding: 24px 20px; border-radius: 12px; }
+    .step-num { color: rgba(200,161,90,0.3); font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; line-height: 1; }
 
-    /* DASHBOARD BANNER */
-    .dashboard-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0;
-    }
-    .dash-card {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 16px;
-      padding: 26px 20px; text-align: center; color: #fff; min-width: 0;
-    }
-    .dash-card h4 {
-      color: rgba(255,255,255,0.74); font-size: 10px; text-transform: uppercase;
-      letter-spacing: 2px; margin-bottom: 12px;
-    }
-    .dash-card .value {
-      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--gold); margin-bottom: 6px;
-    }
-    .dash-card small { color: rgba(255,255,255,0.72); font-size: 0.8rem; }
+    /* TABLE */
+    .table-wrap { width: 100%; overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin-top: 40px; }
+    .table-header { padding: 20px 24px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
+    .data-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    .data-table th { padding: 16px 24px; background: rgba(0,0,0,0.2); color: #9ca3af; font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid var(--line); }
+    .data-table td { padding: 16px 24px; border-bottom: 1px solid var(--line); color: #cbd5e1; }
 
-    /* CARDS */
-    .card-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
-    }
-    .info-card {
-      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 28px 24px; box-shadow: 0 10px 24px rgba(15,23,42,0.04); transition: 0.3s;
-    }
-    .info-card:hover { border-color: rgba(200,161,90,0.4); transform: translateY(-4px); }
-    .info-card i {
-      color: var(--gold); font-size: 1.6rem; margin-bottom: 18px; display: inline-block;
-      padding: 14px; background: rgba(200,161,90,0.1); border-radius: 12px;
-    }
-    .info-card h4 {
-      color: #f8fafc; font-size: 1.1rem; margin-bottom: 10px; font-weight: 700;
-    }
-    .info-card p { color: #9ca3af; font-size: 0.92rem; line-height: 1.6; }
-
-    /* STEP GRID */
-    .step-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px;
-    }
-    .step-card {
-      background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-top: 3px solid var(--gold);
-      padding: 24px 20px; border-radius: 12px; position: relative;
-    }
-    .step-num {
-      color: rgba(200,161,90,0.3); font-family: 'Playfair Display', serif;
-      font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 10px;
-    }
-    .step-card h4 { color: #f8fafc; font-size: 1rem; margin-bottom: 8px; }
-    .step-card p { color: #9ca3af; font-size: 0.88rem; line-height: 1.5; }
-
-    /* FOOTER STRIP */
-    .footer-strip {
-      background: linear-gradient(135deg, var(--navy), #020617); color: #fff;
-      padding: 34px 0; border-top: 1px solid var(--line);
-    }
-    .footer-strip-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; align-items: center;
-    }
-
-    /* MAIN FOOTER */
-    footer {
-      background: #020617; color: #fff; padding: 80px 0 40px; border-top: 4px solid var(--gold);
-    }
-    .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; }
-    .f-col h4 {
-      color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px;
-    }
-    .f-col a { display: block; color: #94a3b8; font-size: 14px; margin-bottom: 10px; }
-    .f-col a:hover { color: var(--gold); }
-    .fine-print {
-      border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; padding-top: 24px;
-      color: #64748b; font-size: 0.78rem; text-align: center;
-    }
+    footer { background: #020617; color: #fff; padding: 60px 0 40px; border-top: 4px solid var(--gold); }
 
     /* MOBILE DRAWER */
-    .mobile-drawer {
-      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
-    }
+    .mobile-drawer { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: 0.3s; }
     .mobile-drawer.open { opacity: 1; pointer-events: auto; }
-    .drawer-overlay {
-      position: absolute; inset: 0; background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(6px);
-    }
-    .drawer-panel {
-      position: absolute; top: 0; right: 0; width: min(92vw, 420px); height: 100%;
-      background: linear-gradient(180deg, #07111d 0%, #050b14 100%); border-left: 1px solid var(--line);
-      transform: translateX(100%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1); padding: 18px; overflow-y: auto;
-    }
+    .drawer-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.68); backdrop-filter: blur(6px); }
+    .drawer-panel { position: absolute; top: 0; right: 0; width: min(92vw, 420px); height: 100%; background: #07111d; transform: translateX(100%); transition: 0.35s cubic-bezier(.2,.8,.2,1); padding: 18px; overflow-y: auto; }
     .mobile-drawer.open .drawer-panel { transform: translateX(0); }
-    .drawer-top {
-      display: flex; align-items: center; justify-content: space-between; gap: 14px;
-      padding-bottom: 18px; border-bottom: 1px solid var(--line);
-    }
-    .drawer-brand { display: flex; align-items: center; gap: 12px; color: #fff; min-width: 0; }
-    .drawer-close {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      color: #fff; width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
-    }
-    .drawer-sections { padding: 16px 0 30px; }
-    .drawer-section { margin-bottom: 10px; }
-    .drawer-section-btn {
-      width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid var(--line);
-      padding: 16px 14px; border-radius: 12px; text-align: left; font-weight: 700;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px; letter-spacing: 0.4px;
-    }
-    .drawer-links { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 6px; }
-    .drawer-section.open .drawer-links { max-height: 900px; }
-    .drawer-links a {
-      display: block; padding: 12px 10px; color: #cbd5e1; border-left: 2px solid transparent;
-    }
-    .drawer-links a:hover {
-      color: var(--gold); border-left-color: var(--gold); background: rgba(200,161,90,0.06);
-    }
+    .drawer-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 15px; }
+    .drawer-close { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 42px; height: 42px; border-radius: 10px; cursor: pointer; }
+    .drawer-section-btn { width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid var(--line); padding: 16px 14px; border-radius: 12px; text-align: left; font-weight: 700; display: flex; align-items: center; justify-content: space-between; cursor: pointer; margin-bottom: 8px; }
+    .drawer-links { max-height: 0; overflow: hidden; transition: 0.3s ease; padding-left: 10px; }
+    .drawer-section.open .drawer-links { max-height: 500px; }
+    .drawer-links a { display: block; padding: 12px; color: #cbd5e1; }
 
     /* RESPONSIVE */
     @media (max-width: 1100px) {
       .nav-links, .nav-cta { display: none; }
-      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
-      .mega-menu { display: none; }
-      .nav-wrap.open .nav-links {
-        display: flex; position: absolute; top: 64px; left: 0; right: 0;
-        background: rgba(3, 8, 18, 0.99); padding: 18px 6% 24px; flex-direction: column;
-        align-items: flex-start; gap: 8px; border-bottom: 1px solid var(--line); z-index: 4500;
-      }
-      .nav-item, .nav-toggle, .nav-link { width: 100%; text-align: left; padding: 14px 0; }
-      .logo-text { font-size: 0.98rem; }
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; order: 3; }
+      #google_translate_element { order: 2; margin-right: 15px; }
       .page-layout { grid-template-columns: 1fr; }
-      .side-nav { position: static; margin-bottom: 20px; }
+      .side-nav { position: static; margin-bottom: 30px; }
       .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 700px) {
-      .container { width: min(var(--container), calc(100% - 24px)); }
-      .navbar { padding: 12px 12px; }
-      .logo-emblem { width: 42px; height: 42px; }
-      .logo-text { font-size: 0.82rem; white-space: normal; }
-      .logo-text span { letter-spacing: 2px; font-size: 0.58rem; }
-      .page-hero { padding: 60px 0 40px; }
-      .footer-strip-grid, .f-grid { grid-template-columns: 1fr; }
       .dashboard-grid { grid-template-columns: 1fr; }
-      .drawer-panel { width: min(96vw, 420px); padding: 14px; }
-      .data-table th, .data-table td { padding: 12px 16px; font-size: 0.85rem; }
+      .navbar { padding: 12px; }
+      .logo-text { font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -408,14 +158,10 @@
 
   <div class="ticker-bar">
     <div class="ticker-move">
-      <div class="tick">URALS BLEND: <span id="urals-price">$82.45</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">ESPO CRUDE: <span id="espo-price">$84.10</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">BRENT INDEX: <span id="brent-price">$85.12</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">GASOIL 10PPM: <span>$812.50</span></div>
+      <div class="tick">URALS BLEND: <span id="urals-price">$82.45</span></div>
+      <div class="tick">ESPO CRUDE: <span id="espo-price">$84.10</span></div>
+      <div class="tick">BRENT INDEX: <span id="brent-price">$85.12</span></div>
       <div class="tick">GLOBAL TSA STATUS: <span style="color:#10b981">OPERATIONAL (92%)</span></div>
-      <div class="tick">REFINERY THROUGHPUT: <span>93.7K BBL/D</span></div>
-      <div class="tick">URALS BLEND: <span>$82.45</span></div>
-      <div class="tick">ESPO CRUDE: <span>$84.10</span></div>
     </div>
   </div>
 
@@ -425,387 +171,132 @@
       <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / GLOBAL ENERGY</span></div>
     </a>
 
-    <div class="nav-wrap" id="navWrap">
-      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">
-        <i class="fas fa-bars"></i>
-      </button>
-
+    <div class="nav-wrap">
+      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
       <ul class="nav-links">
-        <li class="nav-item has-mega">
-          <button class="nav-toggle">Governance</button>
-          <div class="mega-menu">
-            <div class="mega-col">
-              <h4>Board & Control</h4>
-              <a href="board.html">Board of Directors</a>
-              <a href="risk.html">Risk Management</a>
-              <a href="audit.html">Internal Audit</a>
-            </div>
-            <div class="mega-col">
-              <h4>Company Profile</h4>
-              <a href="about.html">About BTK Group</a>
-              <a href="history.html">Corporate History</a>
-              <a href="strategy.html">Strategic Prospects</a>
-            </div>
-            <div class="mega-col">
-              <h4>Investors</h4>
-              <a href="reports.html">Financial Reports</a>
-              <a href="shareholders.html">Shareholder Info</a>
-              <a href="docs.html">Statutory Docs</a>
-            </div>
-            <div class="mega-col">
-              <h4>ESG Center</h4>
-              <a href="esg.html">Sustainability Report</a>
-              <a href="environment.html">Environmental Policy</a>
-              <a href="impact.html">Social Impact</a>
-            </div>
-          </div>
-        </li>
-
-        <li class="nav-item has-mega">
-          <button class="nav-toggle">Industrial Business</button>
-          <div class="mega-menu">
-            <div class="mega-col">
-              <h4>Upstream</h4>
-              <a href="geology.html">Exploration & Geology</a>
-              <a href="reserves.html">Hydrocarbon Reserves</a>
-              <a href="gas.html">Natural Gas Ops</a>
-            </div>
-            <div class="mega-col">
-              <h4>Refining & Sales</h4>
-              <a href="refining.html">Refining Complex</a>
-              <a href="products.html">Petrochemical Sales</a>
-              <a href="gas-proc.html">Gas Processing</a>
-            </div>
-            <div class="mega-col">
-              <h4>Logistics</h4>
-              <a href="tsa.html">Storage Infrastructure</a>
-              <a href="tsa.html">TSA Agreement</a>
-              <a href="tsa.html">Marine Terminals</a>
-            </div>
-            <div class="mega-col">
-              <h4>Global Talent</h4>
-              <a href="contact.html">Refinery Engineers</a>
-              <a href="contact.html">Operations Staff</a>
-              <a href="contact.html">Global Careers</a>
-            </div>
-          </div>
-        </li>
-
-        <li class="nav-item"><a class="nav-link" href="products.html">Production</a></li>
-        <li class="nav-item"><a class="nav-link" href="tsa.html">Logistics</a></li>
-        <li class="nav-item"><a class="nav-link" href="compliance.html">Sustainability</a></li>
+        <li><a href="geology.html" class="nav-link" style="color:var(--gold);">Exploration</a></li>
+        <li><a href="refining.html" class="nav-link">Refining</a></li>
+        <li><a href="tsa.html" class="nav-link">Logistics</a></li>
       </ul>
-    </div>
 
-    <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
+      <div id="google_translate_element"></div>
+
+      <a href="contact.html" class="nav-cta">Trade Portal</a>
+    </div>
   </nav>
 
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="drawer-panel">
       <div class="drawer-top">
-        <div class="drawer-brand">
-          <div class="logo-emblem"><i class="fas fa-shield-halved"></i></div>
-          <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / GLOBAL ENERGY</span></div>
+        <div class="drawer-brand" style="display:flex; align-items:center; gap:10px; color:#fff;">
+          <div class="logo-emblem" style="width:36px; height:36px;"><i class="fas fa-shield-halved"></i></div>
+          <span style="font-weight:800; font-size:0.9rem;">BTK GROUP</span>
         </div>
-        <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-          <i class="fas fa-times"></i>
-        </button>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
       </div>
-
       <div class="drawer-sections">
         <div class="drawer-section">
-          <button class="drawer-section-btn">Governance <i class="fas fa-chevron-down"></i></button>
-          <div class="drawer-links">
-            <a href="board.html">Board of Directors</a>
-            <a href="risk.html">Risk Management</a>
-            <a href="audit.html">Internal Audit</a>
-            <a href="docs.html">Corporate Documents</a>
-          </div>
-        </div>
-        <div class="drawer-section">
-          <button class="drawer-section-btn">Industrial Business <i class="fas fa-chevron-down"></i></button>
+          <button class="drawer-section-btn">Industrial Operations <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
             <a href="geology.html">Exploration & Geology</a>
-            <a href="reserves.html">Hydrocarbon Reserves</a>
+            <a href="gas.html">Natural Gas Ops</a>
             <a href="refining.html">Refining Complex</a>
-            <a href="tsa.html">Storage Infrastructure</a>
           </div>
         </div>
-        <div class="drawer-section">
-          <button class="drawer-section-btn">Quick Links <i class="fas fa-chevron-down"></i></button>
-          <div class="drawer-links">
-            <a href="products.html">Production</a>
-            <a href="tsa.html">Logistics</a>
-            <a href="contact.html">Trade Portal</a>
-          </div>
-        </div>
+        <a href="contact.html" class="nav-cta" style="margin-top:20px; width:100%; justify-content:center;">Trade Portal</a>
       </div>
     </div>
   </div>
 
   <header class="page-hero">
     <div class="container">
-      <div class="eyebrow"><i class="fas fa-layer-group" style="font-size:10px;"></i> Upstream Operations</div>
-      <h1>Upstream Asset Exploration & Geoscience</h1>
-      <p>Subsurface intelligence, high-precision seismic mapping, and advanced reservoir modeling to secure long-term sovereign energy yields.</p>
+      <div class="eyebrow"><i class="fas fa-layer-group"></i> Upstream Operations</div>
+      <h1>Asset Exploration & Geoscience</h1>
+      <p>Subsurface intelligence and reservoir modeling to secure long-term sovereign energy yields.</p>
     </div>
   </header>
 
   <section class="section">
     <div class="container">
       <div class="page-layout">
-        
         <aside class="side-nav">
           <h4>Upstream Portfolio</h4>
           <ul>
-            <li><a href="geology.html" class="active">Exploration & Geoscience <i class="fas fa-arrow-right" style="font-size:10px;"></i></a></li>
-            <li><a href="reserves.html">Proven Reserves & Assets</a></li>
-            <li><a href="gas.html">Natural Gas Extraction</a></li>
-            <li><a href="refining.html">Petroleum Refining</a></li>
+            <li><a href="geology.html" class="active">Exploration <i class="fas fa-arrow-right"></i></a></li>
+            <li><a href="reserves.html">Proven Reserves</a></li>
+            <li><a href="gas.html">Gas Extraction</a></li>
           </ul>
         </aside>
 
         <div class="content-area">
           <h2>Seismic Intelligence & Subsurface Engineering</h2>
-          <p>
-            ООО "АВТОДОРТРЕЙД-БТК" deploys cutting-edge geological research and vast computational modeling to identify, assess, and commercialize high-yield hydrocarbon deposits. We do not rely on traditional exploration alone; our upstream division utilizes proprietary 4D seismic inversion and advanced petrophysical algorithms to de-risk multi-billion dollar drilling programs.
-          </p>
+          <p>ООО "АВТОДОРТРЕЙД-БТК" deploys cutting-edge research to identify high-yield hydrocarbon deposits.</p>
 
           <div class="dashboard-grid">
-            <div class="dash-card">
-              <h4>Proven Reserves</h4>
-              <div class="value">4.2B</div>
-              <small>Barrels of Oil Equivalent (BOE)</small>
-            </div>
-            <div class="dash-card">
-              <h4>Exploration Acreage</h4>
-              <div class="value">12.5M</div>
-              <small>Gross Acres Globally</small>
-            </div>
-            <div class="dash-card">
-              <h4>Wildcat Success</h4>
-              <div class="value">68%</div>
-              <small>Exploratory Drilling Rate</small>
-            </div>
-            <div class="dash-card">
-              <h4>Basin Modeling</h4>
-              <div class="value">Active</div>
-              <small>Petroleum Systems Analysis</small>
-            </div>
+            <div class="dash-card"><h4>Proven Reserves</h4><div class="value">4.2B</div><small>BOE</small></div>
+            <div class="dash-card"><h4>Exploration</h4><div class="value">12.5M</div><small>Acres</small></div>
+            <div class="dash-card"><h4>Success Rate</h4><div class="value">68%</div><small>Drilling</small></div>
+            <div class="dash-card"><h4>Modeling</h4><div class="value">Active</div><small>Analysis</small></div>
           </div>
-
-          <h3 style="border-top: 1px solid var(--line); padding-top: 40px;">Core Exploration Technologies</h3>
-          <p>We leverage industrial-scale data acquisition to locate deeply buried structural and stratigraphic traps.</p>
 
           <div class="card-grid">
-            <div class="info-card">
-              <i class="fas fa-satellite-dish"></i>
-              <h4>4D Seismic Imaging</h4>
-              <p>High-resolution subsurface mapping utilizing time-lapse acoustic waveform inversion to track fluid movement and optimize well placement over the life of the field.</p>
-            </div>
-            
-            <div class="info-card">
-              <i class="fas fa-microscope"></i>
-              <h4>Petrophysical Core Analysis</h4>
-              <p>Laboratory-grade micro-analysis of core samples to determine absolute porosity, permeability matrices, and fluid saturation modeling prior to commercial extraction.</p>
-            </div>
-            
-            <div class="info-card">
-              <i class="fas fa-mountain"></i>
-              <h4>Electromagnetic Sounding</h4>
-              <p>Deployment of advanced Controlled-Source Electromagnetic (CSEM) surveys to differentiate between commercial hydrocarbon reservoirs and non-viable saline aquifers.</p>
-            </div>
+            <div class="info-card"><i class="fas fa-satellite-dish"></i><h4>4D Seismic Imaging</h4><p>High-resolution subsurface mapping utilizing time-lapse acoustic waveform inversion.</p></div>
+            <div class="info-card"><i class="fas fa-microscope"></i><h4>Petrophysical Analysis</h4><p>Laboratory-grade micro-analysis of core samples to determine absolute porosity matrices.</p></div>
           </div>
 
-          <h3 style="border-top: 1px solid var(--line); padding-top: 40px;">The Field Development Lifecycle</h3>
-          <p>From initial basin gravitational surveys to executing full-field commercial production frameworks.</p>
-          
+          <h3 style="border-top: 1px solid var(--line); padding-top: 40px;">The Development Lifecycle</h3>
           <div class="step-grid">
-            <div class="step-card">
-              <div class="step-num">01</div>
-              <h4>Survey & Acquisition</h4>
-              <p>Deploying marine and land-based seismic fleets to map structural anomalies.</p>
-            </div>
-            <div class="step-card">
-              <div class="step-num">02</div>
-              <h4>Data Processing</h4>
-              <p>Utilizing supercomputing clusters to render highly complex depth-migration models.</p>
-            </div>
-            <div class="step-card">
-              <div class="step-num">03</div>
-              <h4>Appraisal Drilling</h4>
-              <p>Executing targeted wildcat wells to confirm pressure, flow rates, and fluid composition.</p>
-            </div>
-            <div class="step-card">
-              <div class="step-num">04</div>
-              <h4>Commercialization</h4>
-              <p>Engineering a multi-billion dollar Field Development Plan (FDP) for peak recovery.</p>
-            </div>
+            <div class="step-card"><div class="step-num">01</div><h4>Survey</h4><p>Land-based seismic fleets mapping structural anomalies.</p></div>
+            <div class="step-card"><div class="step-num">02</div><h4>Processing</h4><p>Utilizing supercomputing clusters for complex models.</p></div>
+            <div class="step-card"><div class="step-num">03</div><h4>Appraisal</h4><p>Targeted wildcat wells to confirm pressure and composition.</p></div>
           </div>
 
+          <div class="table-wrap">
+            <div class="table-header"><h4>Yamal Peninsula / Basin-Y3</h4><span>Laboratory Assay Table (GOST-R)</span></div>
+            <table class="data-table">
+              <thead><tr><th>Component</th><th>Methodology</th><th>Observed Value</th></tr></thead>
+              <tbody>
+                <tr><td>API Gravity</td><td>ASTM D1298</td><td><strong style="color:var(--gold);">39.5° API</strong></td></tr>
+                <tr><td>Permeability Matrix</td><td>GOST 26450.2</td><td><strong style="color:var(--gold);">145 mD</strong></td></tr>
+                <tr><td>Reservoir Saturation</td><td>GOST 25543</td><td><strong style="color:var(--gold);">78.2% So</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="footer-strip">
-    <div class="container">
-      <div class="footer-strip-grid">
-        <div>
-          <strong style="color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">Strategic Contact</strong>
-          <p style="margin-top: 10px; color: rgba(255,255,255,0.78);">Commercial inquiries, investor relations, and trade coordination.</p>
-        </div>
-        <div>
-          <p style="font-size: 0.9rem;"><i class="fas fa-envelope" style="color: var(--gold); margin-right: 10px;"></i> info@btk-group.example</p>
-        </div>
-        <div>
-          <p style="font-size: 0.9rem;"><i class="fas fa-phone" style="color: var(--gold); margin-right: 10px;"></i> +7 (495) 000-00-00</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <footer>
-    <div class="container">
-      <div class="f-grid">
-        <div class="f-col">
-          <div class="logo-container" style="margin-bottom: 20px;">
-            <div class="logo-emblem" style="width: 40px; height: 40px;"><i class="fas fa-shield-halved"></i></div>
-            <div class="logo-text">АВТОДОРТРЕЙД<span>БТК</span></div>
-          </div>
-          <p style="color:#94a3b8; font-size:0.92rem; margin-bottom: 16px;">
-            A leading vertically integrated energy enterprise delivering refined products, secure logistics, and disciplined governance.
-          </p>
-          <p style="color:#fff; font-size:0.84rem;"><strong>HQ:</strong> Presnenskaya Nab. 12, Moscow, Russia</p>
-        </div>
-
-        <div class="f-col">
-          <h4>Operations</h4>
-          <a href="refining.html">Refining Assets</a>
-          <a href="products.html">Product Portfolio</a>
-          <a href="tsa.html">TSA Network</a>
-          <a href="compliance.html">ESG Reporting</a>
-        </div>
-
-        <div class="f-col">
-          <h4>Governance</h4>
-          <a href="board.html">Corporate Board</a>
-          <a href="about.html">Mission & Vision</a>
-          <a href="docs.html">Investor Relations</a>
-          <a href="strategy.html">Global Strategy</a>
-        </div>
-
-        <div class="f-col">
-          <h4>Partner Portal</h4>
-          <a href="contact.html">Buyer Inquiry</a>
-          <a href="contact.html">Career Opportunities</a>
-          <a href="contact.html">Submit LOI/ICPO</a>
-          <div style="margin-top: 16px;">
-            <a href="#" style="display:inline; margin-right: 12px;"><i class="fab fa-linkedin"></i></a>
-            <a href="#" style="display:inline;"><i class="fab fa-twitter"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="fine-print">
-        <p><strong>INN:</strong> 7703324065 | <strong>OGRN:</strong> 1027739129186 | <strong>Nelson Index:</strong> 11.2</p>
-        <p style="margin-top: 8px;">© 2024 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved. Strategic Energy & Logistics.</p>
-      </div>
+    <div class="container" style="text-align:center;">
+      <p style="color:#475569; font-size:12px;">© 2026 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <script>
-    function updatePrices() {
-      const base = { urals: 82.45, espo: 84.10, brent: 85.12 };
-      setInterval(() => {
-        const fluc = (Math.random() * 0.1) - 0.05;
-        const urals = document.getElementById('urals-price');
-        const espo = document.getElementById('espo-price');
-        const brent = document.getElementById('brent-price');
-        if (urals) urals.innerText = "$" + (base.urals + fluc).toFixed(2);
-        if (espo) espo.innerText = "$" + (base.espo + fluc).toFixed(2);
-        if (brent) brent.innerText = "$" + (base.brent + fluc).toFixed(2);
-      }, 3000);
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ru', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
     }
-    updatePrices();
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+  <script>
     const menuBtn = document.getElementById('menuBtn');
-    const navWrap = document.getElementById('navWrap');
-    const navItems = document.querySelectorAll('.nav-item.has-mega');
-
     const mobileDrawer = document.getElementById('mobileDrawer');
     const drawerOverlay = document.getElementById('drawerOverlay');
     const drawerClose = document.getElementById('drawerClose');
-    const drawerSections = document.querySelectorAll('.drawer-section');
     const drawerSectionBtns = document.querySelectorAll('.drawer-section-btn');
 
-    function openDrawer() {
-      if (!mobileDrawer) return;
-      mobileDrawer.classList.add('open');
-      mobileDrawer.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+    function openDrawer() { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeDrawer() { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; }
 
-    function closeDrawer() {
-      if (!mobileDrawer) return;
-      mobileDrawer.classList.remove('open');
-      mobileDrawer.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      drawerSections.forEach(section => section.classList.remove('open'));
-    }
-
-    if (menuBtn) {
-      menuBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openDrawer();
-      });
-    }
-
-    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
-    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    if (menuBtn) menuBtn.onclick = openDrawer;
+    if (drawerOverlay) drawerOverlay.onclick = closeDrawer;
+    if (drawerClose) drawerClose.onclick = closeDrawer;
 
     drawerSectionBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const section = btn.parentElement;
-        const isOpen = section.classList.contains('open');
-        drawerSections.forEach(s => s.classList.remove('open'));
-        if (!isOpen) section.classList.add('open');
-      });
-    });
-
-    navItems.forEach(item => {
-      const toggle = item.querySelector('.nav-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          navItems.forEach(other => {
-            if (other !== item) other.classList.remove('open');
-          });
-          item.classList.toggle('open');
-        });
-      }
-    });
-
-    document.addEventListener('click', (e) => {
-      const clickedInsideNav = navWrap && navWrap.contains(e.target);
-      if (!clickedInsideNav) {
-        navItems.forEach(item => item.classList.remove('open'));
-      }
-    });
-
-    document.querySelectorAll('.mega-menu a, .nav-link, .nav-cta, .drawer-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navItems.forEach(item => item.classList.remove('open'));
-        closeDrawer();
-      });
-    });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 1100) {
-        closeDrawer();
-      }
+      btn.onclick = () => { btn.parentElement.classList.toggle('open'); };
     });
   </script>
 </body>

@@ -31,6 +31,9 @@
       line-height: 1.7;
       overflow-x: hidden;
       width: 100%;
+      /* MANDATORY TRANSLATE FIX */
+      top: 0px !important; 
+      position: static !important;
     }
 
     a { text-decoration: none; }
@@ -123,14 +126,6 @@
 
     .nav-wrap { display: flex; align-items: center; gap: 18px; position: relative; }
     .nav-links { list-style: none; display: flex; align-items: center; gap: 28px; }
-    .nav-item { position: relative; }
-
-    .nav-toggle {
-      background: none; border: none; color: rgba(255,255,255,0.82);
-      font-size: 11px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1.4px; cursor: pointer; padding: 10px 0; transition: 0.25s;
-    }
-    .nav-item:hover > .nav-toggle, .nav-item.open > .nav-toggle { color: var(--gold); }
 
     .nav-link {
       color: rgba(255,255,255,0.82); font-size: 11px; font-weight: 800;
@@ -138,31 +133,6 @@
       padding: 10px 0; display: inline-block;
     }
     .nav-link:hover { color: var(--gold); }
-
-    /* MEGA MENU */
-    .mega-menu {
-      position: absolute; top: calc(100% + 14px); left: 50%;
-      transform: translateX(-50%) translateY(8px); width: min(1120px, 92vw);
-      background: #08111c; border-top: 4px solid var(--gold);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.18); border-radius: 10px;
-      padding: 30px; display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 22px; opacity: 0; visibility: hidden; pointer-events: none;
-      transition: 0.25s ease; z-index: 5000;
-    }
-    .nav-item:hover .mega-menu, .nav-item.open .mega-menu, .mega-menu:hover {
-      opacity: 1; visibility: visible; pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
-    }
-    .mega-col h4 {
-      color: #f8fafc; font-size: 11px; text-transform: uppercase;
-      letter-spacing: 1.4px; margin-bottom: 14px; padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-    }
-    .mega-col a {
-      display: block; color: #cbd5e1; font-size: 13px; padding: 9px 0;
-      transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .mega-col a:hover { color: var(--gold); transform: translateX(4px); }
 
     .nav-cta {
       display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px;
@@ -174,10 +144,32 @@
     .menu-btn {
       display: none; background: none; border: 1px solid rgba(255,255,255,0.18);
       color: #fff; width: 44px; height: 44px; border-radius: 10px;
-      font-size: 18px; flex-shrink: 0;
+      font-size: 18px; flex-shrink: 0; cursor: pointer;
     }
 
-    /* INNER PAGE HERO - HEAVY INDUSTRIAL REFINERY (NIGHT) */
+    /* ==========================================================================
+       TRANSLATOR PREMIUM SKIN
+       ========================================================================== */
+    #google_translate_element { display: inline-flex; align-items: center; min-width: 100px; }
+    .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+    .goog-te-gadget img { display: none !important; }
+    .goog-te-gadget select {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid var(--gold) !important;
+      color: var(--gold) !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      padding: 8px 12px !important;
+      border-radius: 4px !important;
+      outline: none !important;
+      cursor: pointer !important;
+    }
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; visibility: hidden !important; }
+    #goog-gt-tt, .goog-tooltip, .goog-te-balloon-frame { display: none !important; }
+
+    /* INNER HERO */
     .page-hero {
       background:
         linear-gradient(90deg, rgba(3,8,18,0.95) 0%, rgba(3,8,18,0.7) 60%, rgba(3,8,18,0.2) 100%),
@@ -189,15 +181,13 @@
     .eyebrow {
       display: inline-flex; align-items: center; gap: 10px; font-size: 11px;
       font-weight: 800; text-transform: uppercase; letter-spacing: 3px;
-      color: var(--gold-2); margin-bottom: 18px; flex-wrap: wrap;
+      color: var(--gold-2); margin-bottom: 18px;
     }
     .page-hero h1 {
       font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4.2rem);
       line-height: 1; margin-bottom: 16px; word-break: break-word; max-width: 800px;
     }
-    .page-hero p {
-      max-width: 680px; font-size: clamp(1rem, 2vw, 1.15rem); color: #94a3b8; font-weight: 500;
-    }
+    .page-hero p { max-width: 680px; font-size: clamp(1rem, 2vw, 1.15rem); color: #94a3b8; font-weight: 500; }
 
     /* PAGE LAYOUT */
     .section { padding: clamp(60px, 8vw, 90px) 0; background: #07101d; }
@@ -208,142 +198,61 @@
     /* SIDEBAR NAV */
     .side-nav {
       background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 24px; position: sticky; top: 100px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      padding: 24px; position: sticky; top: 100px;
     }
-    .side-nav h4 {
-      color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
-    }
-    .side-nav ul { list-style: none; }
-    .side-nav a {
-      display: flex; align-items: center; justify-content: space-between; color: #cbd5e1;
-      font-size: 0.95rem; padding: 12px 14px; border-radius: 8px; margin-bottom: 4px; transition: 0.2s;
-    }
-    .side-nav a:hover { background: rgba(255,255,255,0.04); color: #fff; }
-    .side-nav a.active {
-      background: rgba(200,161,90,0.1); color: var(--gold); font-weight: 600; border-left: 3px solid var(--gold);
-    }
+    .side-nav h4 { color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .side-nav a { display: flex; align-items: center; justify-content: space-between; color: #cbd5e1; font-size: 0.95rem; padding: 12px 14px; border-radius: 8px; margin-bottom: 4px; transition: 0.2s; }
+    .side-nav a.active { background: rgba(200,161,90,0.1); color: var(--gold); font-weight: 600; border-left: 3px solid var(--gold); }
 
-    /* MAIN CONTENT */
-    .content-area h2 {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.1; color: #f8fafc; margin-bottom: 24px;
-    }
-    .content-area > p { color: #9ca3af; font-size: 1.05rem; margin-bottom: 40px; }
-
-    /* DASHBOARD GRID */
-    .dashboard-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0;
-    }
-    .dash-card {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 12px;
-      padding: 24px 20px; text-align: center; color: #fff; border-bottom: 3px solid var(--gold);
-    }
-    .dash-card label {
-      display: block; color: rgba(255,255,255,0.5); font-size: 10px; text-transform: uppercase;
-      letter-spacing: 2px; margin-bottom: 10px;
-    }
+    /* DASHBOARD */
+    .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0; }
+    .dash-card { background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 12px; padding: 24px 20px; text-align: center; border-bottom: 3px solid var(--gold); }
+    .dash-card label { display: block; color: rgba(255,255,255,0.5); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
     .dash-card .value { font-size: 1.8rem; font-weight: 800; color: #fff; }
 
-    /* PROCESS STEPS */
+    /* PROCESS */
     .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
-    .process-card {
-      background: var(--card); border: 1px solid var(--line); padding: 30px; border-radius: 16px;
-      transition: 0.3s ease;
-    }
-    .process-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+    .process-card { background: var(--card); border: 1px solid var(--line); padding: 30px; border-radius: 16px; }
     .process-card i { color: var(--gold); font-size: 2.2rem; margin-bottom: 20px; display: block; }
     .process-card h4 { color: #fff; font-size: 1.2rem; margin-bottom: 12px; }
-    .process-card p { color: #9ca3af; font-size: 0.95rem; line-height: 1.6; }
 
     /* TABLE */
     .table-container { margin-top: 50px; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
-    .spec-table { width: 100%; border-collapse: collapse; text-align: left; background: var(--card); }
+    .spec-table { width: 100%; border-collapse: collapse; text-align: left; background: var(--card); min-width: 600px; }
     .spec-table th { padding: 20px; background: rgba(255,255,255,0.03); color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
     .spec-table td { padding: 20px; border-top: 1px solid var(--line); color: #cbd5e1; font-size: 0.95rem; }
-    .spec-table tr:hover { background: rgba(255,255,255,0.01); }
 
-    /* FOOTER STRIP */
-    .footer-strip {
-      background: linear-gradient(135deg, var(--navy), #020617); color: #fff;
-      padding: 34px 0; border-top: 1px solid var(--line);
-    }
-    .footer-strip-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; align-items: center;
-    }
-
-    /* MAIN FOOTER */
-    footer {
-      background: #020617; color: #fff; padding: 80px 0 40px; border-top: 4px solid var(--gold);
-    }
-    .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; }
-    .f-col h4 {
-      color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px;
-    }
-    .f-col a { display: block; color: #94a3b8; font-size: 14px; margin-bottom: 10px; }
-    .f-col a:hover { color: var(--gold); }
-    .fine-print {
-      border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; padding-top: 24px;
-      color: #64748b; font-size: 0.78rem; text-align: center;
-    }
+    /* FOOTER */
+    footer { background: #020617; color: #fff; padding: 80px 0 40px; border-top: 4px solid var(--gold); }
+    .fine-print { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; padding-top: 24px; text-align: center; color: #64748b; font-size: 0.78rem; }
 
     /* MOBILE DRAWER */
-    .mobile-drawer {
-      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
-    }
+    .mobile-drawer { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: 0.3s; }
     .mobile-drawer.open { opacity: 1; pointer-events: auto; }
-    .drawer-overlay {
-      position: absolute; inset: 0; background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(6px);
-    }
-    .drawer-panel {
-      position: absolute; top: 0; right: 0; width: min(92vw, 420px); height: 100%;
-      background: linear-gradient(180deg, #07111d 0%, #050b14 100%); border-left: 1px solid var(--line);
-      transform: translateX(100%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1); padding: 18px; overflow-y: auto;
-    }
+    .drawer-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.68); backdrop-filter: blur(6px); }
+    .drawer-panel { position: absolute; top: 0; right: 0; width: min(92vw, 420px); height: 100%; background: #07111d; transform: translateX(100%); transition: 0.35s cubic-bezier(.2,.8,.2,1); padding: 18px; overflow-y: auto; }
     .mobile-drawer.open .drawer-panel { transform: translateX(0); }
-    .drawer-top {
-      display: flex; align-items: center; justify-content: space-between; gap: 14px;
-      padding-bottom: 18px; border-bottom: 1px solid var(--line);
-    }
-    .drawer-brand { display: flex; align-items: center; gap: 12px; color: #fff; min-width: 0; }
-    .drawer-close {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      color: #fff; width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
-    }
-    .drawer-sections { padding: 16px 0 30px; }
-    .drawer-section { margin-bottom: 10px; }
-    .drawer-section-btn {
-      width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid var(--line);
-      padding: 16px 14px; border-radius: 12px; text-align: left; font-weight: 700;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px; letter-spacing: 0.4px;
-    }
-    .drawer-links { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 6px; }
-    .drawer-section.open .drawer-links { max-height: 900px; }
-    .drawer-links a {
-      display: block; padding: 12px 10px; color: #cbd5e1; border-left: 2px solid transparent;
-    }
-    .drawer-links a:hover {
-      color: var(--gold); border-left-color: var(--gold); background: rgba(200,161,90,0.06);
-    }
+    .drawer-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 15px; }
+    .drawer-close { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 42px; height: 42px; border-radius: 10px; cursor: pointer; }
+    .drawer-section-btn { width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid var(--line); padding: 16px 14px; border-radius: 12px; text-align: left; font-weight: 700; display: flex; align-items: center; justify-content: space-between; cursor: pointer; margin-bottom: 10px; }
+    .drawer-links { max-height: 0; overflow: hidden; transition: 0.3s ease; padding-left: 10px; }
+    .drawer-section.open .drawer-links { max-height: 500px; }
+    .drawer-links a { display: block; padding: 12px; color: #cbd5e1; }
 
     /* RESPONSIVE */
     @media (max-width: 1100px) {
       .nav-links, .nav-cta { display: none; }
-      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
-      .mega-menu { display: none; }
-      .logo-text { font-size: 0.98rem; }
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; order: 3; }
+      #google_translate_element { order: 2; margin-right: 15px; }
       .page-layout { grid-template-columns: 1fr; }
       .side-nav { position: static; margin-bottom: 20px; }
       .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 700px) {
       .container { width: min(var(--container), calc(100% - 24px)); }
-      .navbar { padding: 12px 12px; }
-      .logo-text { font-size: 0.82rem; white-space: normal; }
-      .logo-text span { letter-spacing: 2px; font-size: 0.58rem; }
-      .page-hero { padding: 60px 0 40px; }
-      .footer-strip-grid, .f-grid { grid-template-columns: 1fr; }
-      .drawer-panel { width: min(96vw, 420px); padding: 14px; }
+      .navbar { padding: 12px; }
+      .logo-text { font-size: 0.85rem; }
+      .dashboard-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -351,14 +260,10 @@
 
   <div class="ticker-bar">
     <div class="ticker-move">
-      <div class="tick">URALS BLEND: <span id="urals-price">$82.45</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">ESPO CRUDE: <span id="espo-price">$84.10</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">BRENT INDEX: <span id="brent-price">$85.12</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">GASOIL 10PPM: <span>$812.50</span></div>
+      <div class="tick">URALS BLEND: <span id="urals-price">$82.45</span></div>
+      <div class="tick">ESPO CRUDE: <span id="espo-price">$84.10</span></div>
+      <div class="tick">BRENT INDEX: <span id="brent-price">$85.12</span></div>
       <div class="tick">REFINERY LOAD: <span style="color:#10b981">94.2% CAPACITY</span></div>
-      <div class="tick">SYSTEM STATUS: <span style="color:#10b981">OPERATIONAL</span></div>
-      <div class="tick">URALS BLEND: <span>$82.45</span></div>
-      <div class="tick">ESPO CRUDE: <span>$84.10</span></div>
     </div>
   </div>
 
@@ -368,121 +273,46 @@
       <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / GLOBAL ENERGY</span></div>
     </a>
 
-    <div class="nav-wrap" id="navWrap">
-      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">
-        <i class="fas fa-bars"></i>
-      </button>
-
+    <div class="nav-wrap">
+      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
       <ul class="nav-links">
-        <li class="nav-item has-mega">
-          <button class="nav-toggle">Governance</button>
-          <div class="mega-menu">
-            <div class="mega-col">
-              <h4>Board & Control</h4>
-              <a href="board.html">Board of Directors</a>
-              <a href="risk.html">Risk Management</a>
-              <a href="audit.html">Internal Audit</a>
-            </div>
-            <div class="mega-col">
-              <h4>Company Profile</h4>
-              <a href="about.html">About BTK Group</a>
-              <a href="history.html">Corporate History</a>
-              <a href="strategy.html">Strategic Prospects</a>
-            </div>
-            <div class="mega-col">
-              <h4>Investors</h4>
-              <a href="reports.html">Financial Reports</a>
-              <a href="shareholders.html">Shareholder Info</a>
-              <a href="docs.html">Statutory Docs</a>
-            </div>
-            <div class="mega-col">
-              <h4>ESG Center</h4>
-              <a href="esg.html">Sustainability Report</a>
-              <a href="environment.html">Environmental Policy</a>
-              <a href="impact.html">Social Impact</a>
-            </div>
-          </div>
-        </li>
-
-        <li class="nav-item has-mega">
-          <button class="nav-toggle" style="color:var(--gold);">Industrial Business</button>
-          <div class="mega-menu">
-            <div class="mega-col">
-              <h4>Upstream</h4>
-              <a href="geology.html">Exploration & Geology</a>
-              <a href="reserves.html">Hydrocarbon Reserves</a>
-              <a href="gas.html">Natural Gas Ops</a>
-            </div>
-            <div class="mega-col">
-              <h4>Refining & Sales</h4>
-              <a href="refining.html">Refining Complex</a>
-              <a href="products.html">Petrochemical Sales</a>
-              <a href="gas-proc.html">Gas Processing</a>
-            </div>
-            <div class="mega-col">
-              <h4>Logistics</h4>
-              <a href="tsa.html">Storage Infrastructure</a>
-              <a href="tsa.html">TSA Agreement</a>
-              <a href="tsa.html">Marine Terminals</a>
-            </div>
-            <div class="mega-col">
-              <h4>Global Talent</h4>
-              <a href="contact.html">Refinery Engineers</a>
-              <a href="contact.html">Operations Staff</a>
-              <a href="contact.html">Global Careers</a>
-            </div>
-          </div>
-        </li>
-
-        <li class="nav-item"><a class="nav-link" href="products.html">Production</a></li>
-        <li class="nav-item"><a class="nav-link" href="tsa.html">Logistics</a></li>
-        <li class="nav-item"><a class="nav-link" href="compliance.html">Sustainability</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="refining.html" class="nav-link" style="color:var(--gold);">Operations</a></li>
+        <li><a href="tsa.html" class="nav-link">Logistics</a></li>
       </ul>
-    </div>
 
-    <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
+      <div id="google_translate_element"></div>
+      <a href="contact.html" class="nav-cta">Trade Portal</a>
+    </div>
   </nav>
 
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="drawer-panel">
       <div class="drawer-top">
-        <div class="drawer-brand">
-          <div class="logo-emblem"><i class="fas fa-shield-halved"></i></div>
-          <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / GLOBAL ENERGY</span></div>
+        <div class="drawer-brand" style="display:flex; align-items:center; gap:10px; color:#fff;">
+          <div class="logo-emblem" style="width:36px; height:36px;"><i class="fas fa-shield-halved"></i></div>
+          <span style="font-weight:800; font-size:0.9rem;">BTK GROUP</span>
         </div>
-        <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-          <i class="fas fa-times"></i>
-        </button>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
       </div>
-
       <div class="drawer-sections">
         <div class="drawer-section">
-          <button class="drawer-section-btn">Governance <i class="fas fa-chevron-down"></i></button>
+          <button class="drawer-section-btn">Refining Ops <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
-            <a href="board.html">Board of Directors</a>
-            <a href="risk.html">Risk Management</a>
-            <a href="audit.html">Internal Audit</a>
-            <a href="docs.html">Corporate Documents</a>
+            <a href="refining.html" style="color:var(--gold)">Refining Assets</a>
+            <a href="products.html">Product Specs</a>
+            <a href="gas-proc.html">Gas Processing</a>
           </div>
         </div>
         <div class="drawer-section">
-          <button class="drawer-section-btn">Industrial Business <i class="fas fa-chevron-down"></i></button>
+          <button class="drawer-section-btn">Logistics <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
-            <a href="geology.html">Exploration & Geology</a>
-            <a href="reserves.html">Hydrocarbon Reserves</a>
-            <a href="refining.html">Refining Complex</a>
-            <a href="tsa.html">Storage Infrastructure</a>
+            <a href="tsa.html">TSA Network</a>
+            <a href="geology.html">Exploration</a>
           </div>
         </div>
-        <div class="drawer-section">
-          <button class="drawer-section-btn">Quick Links <i class="fas fa-chevron-down"></i></button>
-          <div class="drawer-links">
-            <a href="products.html">Production</a>
-            <a href="tsa.html">Logistics</a>
-            <a href="contact.html">Trade Portal</a>
-          </div>
-        </div>
+        <a href="contact.html" class="nav-cta" style="margin-top:20px; width:100%; justify-content:center;">Trade Portal</a>
       </div>
     </div>
   </div>
@@ -498,238 +328,78 @@
   <section class="section">
     <div class="container">
       <div class="page-layout">
-        
         <aside class="side-nav">
           <h4>Refining Menu</h4>
           <ul>
-            <li><a href="refining.html" class="active">Refining Assets <i class="fas fa-arrow-right" style="font-size:10px;"></i></a></li>
+            <li><a href="refining.html" class="active">Refining Assets <i class="fas fa-arrow-right"></i></a></li>
             <li><a href="products.html">Product Catalog</a></li>
             <li><a href="gas-proc.html">Gas Processing</a></li>
-            <li><a href="compliance.html">Technical Safety</a></li>
           </ul>
         </aside>
 
         <div class="content-area">
           <h2>Downstream Excellence</h2>
-          <p>
-            ООО "АВТОДОРТРЕЙД-БТК" operates an integrated network of refining assets designed for the high-yield conversion of Urals and ESPO crude blends. By leveraging a high Nelson Complexity Index, we maximize the extraction of light distillates while strictly adhering to global environmental Euro-5 directives.
-          </p>
+          <p>ООО "АВТОДОРТРЕЙД-БТК" operates an integrated network of refining assets designed for high-yield conversion of Urals and ESPO blends. By leveraging a 11.4 Nelson Complexity Index, we maximize light distillate extraction.</p>
 
           <div class="dashboard-grid">
-            <div class="dash-card">
-              <label>Capacity</label>
-              <div class="value">340K</div>
-              <p style="font-size:10px; opacity:0.6;">Barrels Per Day (BPD)</p>
-            </div>
-            <div class="dash-card">
-              <label>Nelson Index</label>
-              <div class="value">11.4</div>
-              <p style="font-size:10px; opacity:0.6;">Complexity Scale</p>
-            </div>
-            <div class="dash-card">
-              <label>Yield Rate</label>
-              <div class="value">76%</div>
-              <p style="font-size:10px; opacity:0.6;">Light Distillates</p>
-            </div>
-            <div class="dash-card">
-              <label>Compliance</label>
-              <div class="value">Euro-5</div>
-              <p style="font-size:10px; opacity:0.6;">Active Protocol</p>
-            </div>
+            <div class="dash-card"><label>Capacity</label><div class="value">340K</div><p style="font-size:10px; opacity:0.6;">BPD</p></div>
+            <div class="dash-card"><label>Nelson Index</label><div class="value">11.4</div><p style="font-size:10px; opacity:0.6;">Complexity</p></div>
+            <div class="dash-card"><label>Yield Rate</label><div class="value">76%</div><p style="font-size:10px; opacity:0.6;">Light Yield</p></div>
+            <div class="dash-card"><label>Compliance</label><div class="value">Euro-5</div><p style="font-size:10px; opacity:0.6;">Protocol</p></div>
           </div>
-
-          <h3>The Processing Workflow</h3>
-          <p>Our operational framework focuses on the deep molecular cracking of hydrocarbons to produce verified fuel standards.</p>
 
           <div class="process-grid">
-            <div class="process-card">
-              <i class="fas fa-fire-alt"></i>
-              <h4>VDU Distillation</h4>
-              <p>Atmospheric and Vacuum Distillation (CDU/VDU) separating crude by thermal boiling points into base fractions.</p>
-            </div>
-            <div class="process-card">
-              <i class="fas fa-atom"></i>
-              <h4>Catalytic Cracking</h4>
-              <p>Breaking long-chain molecules into high-value products like Jet JP54 and Ultra-Low Sulfur Diesel (EN590).</p>
-            </div>
-            <div class="process-card">
-              <i class="fas fa-vial"></i>
-              <h4>Hydrotreating (HDS)</h4>
-              <p>Removing sulfur and impurities under high hydrogen pressure to meet the strictest environmental indices.</p>
-            </div>
+            <div class="process-card"><i class="fas fa-fire-alt"></i><h4>VDU Distillation</h4><p>Atmospheric and Vacuum Distillation (CDU/VDU) separating crude by thermal boiling points.</p></div>
+            <div class="process-card"><i class="fas fa-atom"></i><h4>Catalytic Cracking</h4><p>Breaking long-chain molecules into high-value products like Jet JP54 and EN590 Diesel.</p></div>
           </div>
 
-          <h3 style="margin-top: 60px;">Output Specifications</h3>
           <div class="table-container">
             <table class="spec-table">
-              <thead>
-                <tr>
-                  <th>Product Category</th>
-                  <th>Standard Specification</th>
-                  <th>Primary Application</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Category</th><th>Standard</th><th>Application</th></tr></thead>
               <tbody>
-                <tr>
-                  <td>Diesel EN590</td>
-                  <td>10PPM Sulfur Max</td>
-                  <td>Heavy Logistics / Trucking</td>
-                </tr>
-                <tr>
-                  <td>Jet Fuel JP54</td>
-                  <td>Aviation Kerosene</td>
-                  <td>Commercial / Cargo Aviation</td>
-                </tr>
-                <tr>
-                  <td>Fuel Oil M100</td>
-                  <td>GOST 10585-2013</td>
-                  <td>Industrial Boilers / Marine</td>
-                </tr>
-                <tr>
-                  <td>LPG Mix</td>
-                  <td>Propane/Butane</td>
-                  <td>Residential Grids / Industry</td>
-                </tr>
+                <tr><td>Diesel EN590</td><td>10PPM Sulfur</td><td>Heavy Logistics</td></tr>
+                <tr><td>Jet Fuel JP54</td><td>Aviation Grade</td><td>Cargo Aviation</td></tr>
+                <tr><td>Fuel Oil M100</td><td>GOST 10585</td><td>Marine / Industrial</td></tr>
               </tbody>
             </table>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <div class="footer-strip">
-    <div class="container">
-      <div class="footer-strip-grid">
-        <div>
-          <strong style="color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">Operations Control</strong>
-          <p style="margin-top: 10px; color: rgba(255,255,255,0.78);">Engineering inquiries, plant safety, and facility coordination.</p>
-        </div>
-        <div>
-          <p style="font-size: 0.9rem;"><i class="fas fa-envelope" style="color: var(--gold); margin-right: 10px;"></i> operations@btk-group.example</p>
-        </div>
-        <div>
-          <p style="font-size: 0.9rem;"><i class="fas fa-phone" style="color: var(--gold); margin-right: 10px;"></i> +7 (495) 000-00-03</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <footer>
     <div class="container">
-      <div class="f-grid">
-        <div class="f-col">
-          <div class="logo-container" style="margin-bottom: 20px;">
-            <div class="logo-emblem" style="width: 40px; height: 40px;"><i class="fas fa-shield-halved"></i></div>
-            <div class="logo-text">АВТОДОРТРЕЙД<span>БТК</span></div>
-          </div>
-          <p style="color:#94a3b8; font-size:0.92rem; margin-bottom: 16px;">
-            A leading vertically integrated energy enterprise delivering refined products, secure logistics, and disciplined governance.
-          </p>
-          <p style="color:#fff; font-size:0.84rem;"><strong>HQ:</strong> 125040, г. Москва, ул. Ямского Поля 5-я, д.23/25, к.2</p>
-        </div>
-
-        <div class="f-col">
-          <h4>Operations</h4>
-          <a href="refining.html">Refining Assets</a>
-          <a href="products.html">Product Portfolio</a>
-          <a href="tsa.html">TSA Network</a>
-          <a href="compliance.html">ESG Reporting</a>
-        </div>
-
-        <div class="f-col">
-          <h4>Governance</h4>
-          <a href="board.html">Corporate Board</a>
-          <a href="about.html">Mission & Vision</a>
-          <a href="docs.html">Investor Relations</a>
-          <a href="strategy.html">Global Strategy</a>
-        </div>
-
-        <div class="f-col">
-          <h4>Partner Portal</h4>
-          <a href="contact.html">Buyer Inquiry</a>
-          <a href="contact.html">Career Opportunities</a>
-          
-          <div style="margin-top: 16px;">
-            <a href="#" style="display:inline-block; margin-right: 14px; color: #94a3b8; font-size: 0.85rem;">
-              <i class="fas fa-chart-line" style="color: var(--gold); margin-right: 6px;"></i> Bloomberg Terminal
-            </a>
-            <a href="#" style="display:inline-block; color: #94a3b8; font-size: 0.85rem;">
-              <i class="fas fa-globe" style="color: var(--gold); margin-right: 6px;"></i> Reuters Energy
-            </a>
-          </div>
-        </div>
-      </div>
-
       <div class="fine-print">
-        <p><strong>INN:</strong> 7703324065 | <strong>OGRN:</strong> 1027739129186 | <strong>ISO 9001 Certified</strong></p>
-        <p style="margin-top: 8px;">© 2026 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved. Strategic Energy & Logistics.</p>
+        <p><strong>INN:</strong> 7703324065 | <strong>OGRN:</strong> 1027739129186</p>
+        <p>© 2026 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
 
-  <script>
-    function updatePrices() {
-      const base = { urals: 82.45, espo: 84.10, brent: 85.12 };
-      setInterval(() => {
-        const fluc = (Math.random() * 0.1) - 0.05;
-        const urals = document.getElementById('urals-price');
-        const espo = document.getElementById('espo-price');
-        const brent = document.getElementById('brent-price');
-        if (urals) urals.innerText = "$" + (base.urals + fluc).toFixed(2);
-        if (espo) espo.innerText = "$" + (base.espo + fluc).toFixed(2);
-        if (brent) brent.innerText = "$" + (base.brent + fluc).toFixed(2);
-      }, 3000);
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ru', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
     }
-    updatePrices();
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+  <script>
     const menuBtn = document.getElementById('menuBtn');
     const mobileDrawer = document.getElementById('mobileDrawer');
     const drawerOverlay = document.getElementById('drawerOverlay');
     const drawerClose = document.getElementById('drawerClose');
-    const drawerSections = document.querySelectorAll('.drawer-section');
     const drawerSectionBtns = document.querySelectorAll('.drawer-section-btn');
 
-    function openDrawer() {
-      mobileDrawer.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
+    function openDrawer() { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeDrawer() { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; }
 
-    function closeDrawer() {
-      mobileDrawer.classList.remove('open');
-      document.body.style.overflow = '';
-      drawerSections.forEach(section => section.classList.remove('open'));
-    }
-
-    if (menuBtn) menuBtn.addEventListener('click', openDrawer);
-    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
-    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    if (menuBtn) menuBtn.onclick = openDrawer;
+    if (drawerOverlay) drawerOverlay.onclick = closeDrawer;
+    if (drawerClose) drawerClose.onclick = closeDrawer;
 
     drawerSectionBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const section = btn.parentElement;
-        const isOpen = section.classList.contains('open');
-        drawerSections.forEach(s => s.classList.remove('open'));
-        if (!isOpen) section.classList.add('open');
-      });
-    });
-
-    const navItems = document.querySelectorAll('.nav-item.has-mega');
-    navItems.forEach(item => {
-      const toggle = item.querySelector('.nav-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          navItems.forEach(other => { if (other !== item) other.classList.remove('open'); });
-          item.classList.toggle('open');
-        });
-      }
-    });
-
-    document.addEventListener('click', () => {
-      navItems.forEach(item => item.classList.remove('open'));
+      btn.onclick = () => { btn.parentElement.classList.toggle('open'); };
     });
   </script>
 </body>
