@@ -13,7 +13,8 @@
       --navy: #081628;
       --navy-2: #0d1d33;
       --gold: #c8a15a;
-      --gold-dim: rgba(200, 161, 90, 0.15);
+      --gold-2: #e0c48a;
+      --slate: #5b6b7f;
       --bg: #050b14;
       --card: #08111c;
       --text: #e5e7eb;
@@ -28,83 +29,128 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
-      background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 0);
-      background-size: 50px 50px;
-      /* MANDATORY TRANSLATE FIX */
+      overflow-x: hidden;
+      width: 100%;
       top: 0px !important; 
       position: static !important;
+      background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 0);
+      background-size: 50px 50px;
     }
 
-    .container { width: min(var(--container), calc(100% - 32px)); margin-inline: auto; }
+    a { text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin-inline: auto;
+    }
 
     /* --- TICKER --- */
     .ticker-bar {
-      background: #000;
-      color: var(--gold);
-      padding: 10px 0;
-      font-size: 11px;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      overflow: hidden;
-      white-space: nowrap;
-      border-bottom: 1px solid var(--gold-dim);
+      background: #020617; color: var(--gold); padding: 10px 0; font-size: 11px;
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; overflow: hidden;
+      white-space: nowrap; border-bottom: 1px solid var(--gold-dim);
     }
     .ticker-move { display: inline-block; animation: ticker 40s linear infinite; min-width: 200%; }
     .tick { display: inline-block; padding: 0 30px; border-right: 1px solid var(--line); }
     @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* --- NAVIGATION --- */
+    /* --- NAV MASTER --- */
     .navbar {
-      position: sticky; top: 0; z-index: 4000;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px clamp(16px, 4vw, 6%);
-      background: rgba(3, 8, 18, 0.98);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 4000; display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; padding: 14px clamp(16px, 4vw, 6%);
+      background: rgba(3, 8, 18, 0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);
     }
-    .logo-container { display: flex; align-items: center; gap: 14px; color: #fff; text-decoration: none; }
-    .logo-emblem { width: 44px; height: 44px; background: var(--gold); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #000; font-size: 20px; }
-    .logo-text { font-weight: 800; font-size: 1.1rem; text-transform: uppercase; line-height: 1; }
-    .logo-text span { display: block; font-size: 0.65rem; color: var(--gold); letter-spacing: 3px; margin-top: 4px; }
 
-    .nav-wrap { display: flex; align-items: center; gap: 20px; }
-    .nav-links { list-style: none; display: flex; align-items: center; gap: 30px; }
-    .nav-toggle { background: none; border: none; color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; padding: 10px 0; }
-    .nav-toggle:hover { color: var(--gold); }
-    .nav-link { color: #fff; text-decoration: none; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
-    .nav-link:hover { color: var(--gold); }
+    .logo-container { display: flex; align-items: center; gap: 14px; color: #fff; min-width: 0; }
+    .logo-emblem {
+      width: 48px; height: 48px; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--gold), #8c6c34); box-shadow: 0 10px 25px rgba(0,0,0,0.2); flex-shrink: 0; overflow: hidden;
+    }
+    .logo-emblem svg { width: 32px; height: 32px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); }
+    .logo-text { font-weight: 800; font-size: 1.05rem; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+    .logo-text span { display: block; font-size: 0.68rem; color: var(--gold); letter-spacing: 3px; margin-top: 4px; font-weight: 600; white-space: nowrap; }
 
-    .nav-cta { padding: 12px 24px; border-radius: 999px; background: linear-gradient(135deg, var(--gold), #9f7c42); color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase; text-decoration: none; box-shadow: 0 10px 20px rgba(200,161,90,0.2); }
-    .menu-btn { display: none; background: none; border: 1px solid var(--line); color: #fff; width: 44px; height: 44px; border-radius: 8px; font-size: 18px; cursor: pointer; }
+    .nav-wrap { display: flex; align-items: center; gap: 18px; position: relative; }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: 28px; }
+    .nav-item { position: relative; }
+    
+    .nav-toggle {
+      background: none; border: none; color: rgba(255,255,255,0.82); font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.4px; cursor: pointer; padding: 10px 0; transition: 0.25s;
+    }
+    .nav-link {
+      color: rgba(255,255,255,0.82); font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1.4px; transition: 0.25s; padding: 10px 0; display: inline-block;
+    }
+    .nav-item:hover > .nav-toggle, .nav-item.open > .nav-toggle, .nav-link:hover { color: var(--gold); }
 
-    /* --- TRANSLATOR PREMIUM SKIN --- */
+    /* MEGA MENU */
+    .mega-menu {
+      position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px);
+      width: min(1120px, 92vw); background: #08111c; border-top: 4px solid var(--gold);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.18); border-radius: 10px; padding: 30px; display: grid;
+      grid-template-columns: repeat(4, 1fr); gap: 22px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: 0.25s ease; z-index: 5000;
+    }
+    .nav-item:hover .mega-menu, .nav-item.open .mega-menu, .mega-menu:hover { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .mega-col h4 { color: #f8fafc; font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .mega-col a { display: block; color: #cbd5e1; font-size: 13px; padding: 9px 0; transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .mega-col a:hover { color: var(--gold); transform: translateX(4px); }
+
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), #9f7c42); color: #fff; font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 12px 25px rgba(200,161,90,0.25); white-space: nowrap; flex-shrink: 0;
+    }
+    .menu-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.18); color: #fff; width: 44px; height: 44px; border-radius: 10px; font-size: 18px; flex-shrink: 0; cursor: pointer; }
+
+    /* SMART TRANSLATOR FIXES */
     #google_translate_element { display: inline-flex; align-items: center; min-width: 100px; }
     .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
     .goog-te-gadget img { display: none !important; }
     .goog-te-gadget select {
-      background: rgba(255, 255, 255, 0.05) !important;
-      border: 1px solid var(--gold) !important;
-      color: var(--gold) !important;
-      font-family: 'Inter', sans-serif !important;
-      font-size: 10px !important;
-      font-weight: 800 !important;
-      text-transform: uppercase !important;
-      padding: 8px 12px !important;
-      border-radius: 4px !important;
-      outline: none !important;
-      cursor: pointer !important;
+      background: rgba(255, 255, 255, 0.05) !important; border: 1px solid var(--gold) !important; color: var(--gold) !important;
+      font-family: 'Inter', sans-serif !important; font-size: 10px !important; font-weight: 800 !important; text-transform: uppercase !important;
+      padding: 8px 12px !important; border-radius: 4px !important; outline: none !important; cursor: pointer !important;
     }
-    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; visibility: hidden !important; }
-    #goog-gt-tt, .goog-tooltip, .goog-te-balloon-frame { display: none !important; }
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame, .VIpgJm-ZpYbe-OR_B-nm6s6 { display: none !important; visibility: hidden !important; }
+    #goog-gt-tt, .goog-te-balloon-frame, .goog-tooltip, .goog-tooltip:hover { display: none !important; visibility: hidden !important; }
+    .goog-text-highlight { background: none !important; box-shadow: none !important; }
 
-    /* --- HERO --- */
+    /* --- MOBILE DRAWER MASTER --- */
+    .mobile-drawer { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; }
+    .mobile-drawer.open { opacity: 1; pointer-events: auto; }
+    .drawer-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(6px); }
+    .drawer-panel {
+      position: absolute; top: 0; right: 0; width: min(92vw, 420px); height: 100%; background: linear-gradient(180deg, #07111d 0%, #050b14 100%);
+      border-left: 1px solid rgba(255,255,255,0.08); transform: translateX(100%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+      padding: 18px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mobile-drawer.open .drawer-panel { transform: translateX(0); }
+    .drawer-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .drawer-brand { display: flex; align-items: center; gap: 12px; color: #fff; min-width: 0; }
+    .drawer-close { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0; cursor: pointer; }
+    .drawer-sections { padding: 16px 0 30px; }
+    .drawer-section { margin-bottom: 10px; }
+    .drawer-section-btn {
+      width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid rgba(255,255,255,0.08); padding: 16px 14px;
+      border-radius: 12px; text-align: left; font-weight: 700; display: flex; align-items: center; justify-content: space-between; gap: 12px; letter-spacing: 0.4px; cursor: pointer;
+    }
+    .drawer-links { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 6px; }
+    .drawer-section.open .drawer-links { max-height: 900px; }
+    .drawer-links a { display: block; padding: 12px 10px; color: #cbd5e1; border-left: 2px solid transparent; }
+    .drawer-links a:hover { color: var(--gold); border-left-color: var(--gold); background: rgba(200,161,90,0.06); }
+
+    /* --- PAGE HERO (GUARANTEED WORKING IMAGE) --- */
     .page-hero {
       position: relative;
       background: 
         linear-gradient(to right, rgba(5, 11, 20, 0.95), rgba(5, 11, 20, 0.4)), 
-        url('https://images.unsplash.com/photo-1540360030280-cf450a1262bc?q=80&w=2000&auto=format&fit=crop'); 
-      background-size: cover; background-position: center;
-      padding: 140px 0 100px;
+        url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?q=80&w=2000&auto=format&fit=crop'); 
+      background-size: cover; 
+      background-position: center;
+      padding: 140px 0 100px; 
       border-bottom: 1px solid var(--gold-dim);
     }
     .hud-box { border: 1px solid var(--gold-dim); background: rgba(8, 17, 28, 0.85); padding: 50px; max-width: 850px; border-left: 5px solid var(--gold); backdrop-filter: blur(10px); }
@@ -113,11 +159,9 @@
 
     /* --- STRATEGY CONTENT --- */
     .section { padding: 80px 0; }
-    .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 50px; }
+    .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 50px; width: 100%; overflow-x: auto; }
     .pillar-card {
-      background: var(--card); border: 1px solid var(--line); padding: 40px;
-      position: relative; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-top: 3px solid transparent;
+      background: var(--card); border: 1px solid var(--line); padding: 40px; position: relative; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-top: 3px solid transparent;
     }
     .pillar-card:hover { transform: translateY(-10px); border-color: var(--gold); border-top-color: var(--gold); }
     .pillar-card i { color: var(--gold); font-size: 2.8rem; margin-bottom: 25px; display: block; }
@@ -127,38 +171,37 @@
     /* --- METRICS --- */
     .metrics-panel {
       margin-top: 80px; background: #020617; border: 1px solid var(--line);
-      padding: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;
+      padding: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; width: 100%; overflow-x: auto;
     }
     .metric-item label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
     .metric-value { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
     .progress-bar { height: 4px; background: var(--line); position: relative; }
     .progress-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--gold); box-shadow: 0 0 10px var(--gold); }
 
-    /* --- FOOTER --- */
-    footer { background: #020617; border-top: 4px solid var(--gold); padding: 100px 0 50px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-    .footer-col h4 { color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
-    .footer-col a { display: block; color: #64748b; text-decoration: none; margin-bottom: 15px; font-size: 0.9rem; }
-    .fine-print { border-top: 1px solid var(--line); margin-top: 60px; padding-top: 40px; text-align: center; color: #475569; font-size: 12px; }
+    /* --- FOOTER MASTER --- */
+    footer { background: #020617; color: #fff; padding: 80px 0 40px; border-top: 4px solid var(--gold); }
+    .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; }
+    .f-col h4 { color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
+    .f-col a { display: block; color: #94a3b8; font-size: 14px; margin-bottom: 10px; transition: 0.2s; }
+    .f-col a:hover { color: var(--gold); }
+    .fine-print { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; padding-top: 24px; color: #64748b; font-size: 0.78rem; text-align: center; }
 
-    /* --- MOBILE DRAWER --- */
-    .mobile-drawer { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: 0.3s; }
-    .mobile-drawer.open { opacity: 1; pointer-events: auto; }
-    .drawer-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); }
-    .drawer-panel { position: absolute; top: 0; right: 0; width: min(85vw, 400px); height: 100%; background: #07111d; transform: translateX(100%); transition: 0.35s cubic-bezier(.2,.8,.2,1); padding: 30px; overflow-y: auto; }
-    .mobile-drawer.open .drawer-panel { transform: translateX(0); }
-    .drawer-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 30px; }
-    .drawer-close { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
-    .drawer-section-btn { width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid var(--line); padding: 18px; text-align: left; font-weight: 700; display: flex; justify-content: space-between; border-radius: 8px; margin-bottom: 10px; cursor: pointer; }
-    .drawer-links { max-height: 0; overflow: hidden; transition: 0.3s ease; padding-left: 10px; }
-    .drawer-section.open .drawer-links { max-height: 500px; }
-    .drawer-links a { display: block; padding: 12px; color: #94a3b8; text-decoration: none; }
-
-    /* --- RESPONSIVE --- */
+    /* --- RESPONSIVE FIXES --- */
     @media (max-width: 1100px) {
       .nav-links, .nav-cta { display: none; }
-      .menu-btn { display: inline-flex; align-items: center; justify-content: center; order: 3; }
-      #google_translate_element { order: 2; margin-right: 15px; }
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(var(--container), calc(100% - 24px)); }
+      .navbar { padding: 12px; }
+      .logo-emblem { width: 42px; height: 42px; }
+      .logo-text { font-size: 0.82rem; white-space: normal; }
+      .logo-text span { letter-spacing: 2px; font-size: 0.58rem; }
+      .f-grid { grid-template-columns: 1fr; gap: 24px; }
+      .drawer-panel { width: min(96vw, 420px); padding: 14px; }
+    }
+    @media (max-width: 420px) {
+      .logo-text { font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -171,53 +214,90 @@
       <div class="tick">CAPEX ALLOCATION: <span style="color:var(--gold)">$1.4B</span></div>
       <div class="tick">APAC CORRIDOR: <span style="color:#10b981">EXPANDING</span></div>
       <div class="tick">2030 TARGET: <span>+22% THROUGHPUT</span></div>
+      <div class="tick">BRENT CRUDE: <span>$85.12</span></div>
     </div>
   </div>
 
   <nav class="navbar">
     <a href="index.html" class="logo-container">
-      <div class="logo-emblem"><i class="fas fa-shield-halved"></i></div>
-      <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / GROUP STRATEGY</span></div>
+      <div class="logo-emblem">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+            <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+        </svg>
+      </div>
+      <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / STRATEGY</span></div>
     </a>
-    <div class="nav-wrap">
+
+    <div class="nav-wrap" id="navWrap">
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
       <ul class="nav-links">
-        <li><a href="about.html" class="nav-link">Governance</a></li>
-        <li><a href="refining.html" class="nav-link">Refining</a></li>
-        <li><a href="tsa.html" class="nav-link">Logistics</a></li>
+        <li class="nav-item has-mega">
+          <button class="nav-toggle">Governance</button>
+          <div class="mega-menu">
+            <div class="mega-col"><h4>Board & Control</h4><a href="board.html">Board of Directors</a><a href="risk.html">Risk Management</a><a href="audit.html">Internal Audit</a></div>
+            <div class="mega-col"><h4>Company Profile</h4><a href="about.html">About BTK Group</a><a href="history.html">Corporate History</a><a href="strategy.html">Strategic Prospects</a></div>
+            <div class="mega-col"><h4>Investors</h4><a href="reports.html">Financial Reports</a><a href="shareholders.html">Shareholder Info</a><a href="docs.html">Statutory Docs</a></div>
+            <div class="mega-col"><h4>ESG Center</h4><a href="esg.html">Sustainability Report</a><a href="environment.html">Environmental Policy</a><a href="impact.html">Social Impact</a></div>
+          </div>
+        </li>
+
+        <li class="nav-item has-mega">
+          <button class="nav-toggle">Industrial Business</button>
+          <div class="mega-menu">
+            <div class="mega-col"><h4>Upstream</h4><a href="geology.html">Exploration & Geology</a><a href="reserves.html">Hydrocarbon Reserves</a><a href="gas.html">Natural Gas Ops</a></div>
+            <div class="mega-col"><h4>Refining & Sales</h4><a href="refining.html">Refining Complex</a><a href="products.html">Petrochemical Sales</a><a href="gas-proc.html">Gas Processing</a></div>
+            <div class="mega-col"><h4>Logistics</h4><a href="tsa.html">Storage Infrastructure</a><a href="tsa.html">TSA Agreement</a><a href="tsa.html">Marine Terminals</a></div>
+            <div class="mega-col"><h4>Global Talent</h4><a href="contact.html">Refinery Engineers</a><a href="contact.html">Operations Staff</a><a href="contact.html">Global Careers</a></div>
+          </div>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="products.html">Production</a></li>
+        <li class="nav-item"><a class="nav-link" href="tsa.html">Logistics</a></li>
+        <li class="nav-item"><a class="nav-link" href="compliance.html">Sustainability</a></li>
       </ul>
 
       <div id="google_translate_element"></div>
-
-      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
-      <a href="contact.html" class="nav-cta">Trade Portal</a>
+      <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
     </div>
   </nav>
 
-  <div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="drawer-panel">
       <div class="drawer-top">
-        <h3 style="color:var(--gold); letter-spacing:2px; font-size:12px; text-transform:uppercase;">Strategy Hub</h3>
-        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+        <div class="drawer-brand">
+          <div class="logo-emblem">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+                <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+            </svg>
+          </div>
+          <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / STRATEGY</span></div>
+        </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
       </div>
+
       <div class="drawer-sections">
         <div class="drawer-section">
-          <button class="drawer-section-btn">Goals 2030 <i class="fas fa-chevron-down"></i></button>
+          <button class="drawer-section-btn">Governance <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
-            <a href="strategy.html" style="color:var(--gold)">Strategic Horizon</a>
-            <a href="reports.html">Performance Audit</a>
-            <a href="impact.html">Social Impact</a>
+            <a href="board.html">Board of Directors</a><a href="risk.html">Risk Management</a><a href="audit.html">Internal Audit</a><a href="about.html">About BTK Group</a><a href="history.html">Corporate History</a><a href="strategy.html" style="color:var(--gold);">Strategic Prospects</a><a href="reports.html">Financial Reports</a><a href="shareholders.html">Shareholder Info</a><a href="docs.html">Statutory Docs</a><a href="esg.html">Sustainability Report</a><a href="environment.html">Environmental Policy</a><a href="impact.html">Social Impact</a>
           </div>
         </div>
         <div class="drawer-section">
-          <button class="drawer-section-btn">Assets <i class="fas fa-chevron-down"></i></button>
+          <button class="drawer-section-btn">Industrial Business <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
-            <a href="refining.html">Refining Complex</a>
-            <a href="tsa.html">Storage Logistics</a>
-            <a href="reserves.html">Strategic Reserves</a>
+            <a href="geology.html">Exploration & Geology</a><a href="reserves.html">Hydrocarbon Reserves</a><a href="gas.html">Natural Gas Ops</a><a href="refining.html">Refining Complex</a><a href="products.html">Petrochemical Sales</a><a href="gas-proc.html">Gas Processing</a><a href="tsa.html">Storage Infrastructure</a><a href="tsa.html">TSA Agreement</a><a href="tsa.html">Marine Terminals</a><a href="contact.html">Refinery Engineers</a><a href="contact.html">Operations Staff</a><a href="contact.html">Global Careers</a>
           </div>
         </div>
-        <a href="contact.html" class="nav-cta" style="display:block; text-align:center; margin-top:30px; text-decoration:none;">Trade Portal</a>
+        <div class="drawer-section">
+          <button class="drawer-section-btn">Quick Links <i class="fas fa-chevron-down"></i></button>
+          <div class="drawer-links"><a href="products.html">Production</a><a href="tsa.html">Logistics</a><a href="compliance.html">Sustainability</a><a href="contact.html">Trade Portal</a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -276,63 +356,166 @@
   </section>
 
   <footer>
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <h2 style="color:#fff;">АВТОДОРТРЕЙД<span>БТК Group</span></h2>
-        <p style="color:#64748b; font-size:0.85rem; margin-top:15px;">A vertically integrated energy major ensuring global stability through strategic foresight.</p>
+    <div class="container">
+      <div class="f-grid">
+        <div class="f-col">
+          <div class="logo-container" style="margin-bottom: 20px;">
+            <div class="logo-emblem" style="width: 40px; height: 40px;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+                    <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+                </svg>
+            </div>
+            <div class="logo-text">АВТОДОРТРЕЙД<span>БТК</span></div>
+          </div>
+          <p style="color:#94a3b8; font-size:0.92rem; margin-bottom: 16px;">
+            A leading vertically integrated energy enterprise delivering refined products, secure logistics, and disciplined governance.
+          </p>
+          <p style="color:#fff; font-size:0.84rem;"><strong>HQ:</strong> Presnenskaya Nab. 12, Moscow, Russia</p>
+        </div>
+
+        <div class="f-col">
+          <h4>Operations</h4>
+          <a href="refining.html">Refining Assets</a>
+          <a href="products.html">Product Portfolio</a>
+          <a href="tsa.html">TSA Network</a>
+          <a href="compliance.html">ESG Reporting</a>
+        </div>
+
+        <div class="f-col">
+          <h4>Governance</h4>
+          <a href="board.html">Corporate Board</a>
+          <a href="about.html">Mission & Vision</a>
+          <a href="docs.html">Investor Relations</a>
+          <a href="strategy.html">Global Strategy</a>
+        </div>
+
+        <div class="f-col">
+          <h4>Partner Portal</h4>
+          <a href="contact.html">Buyer Inquiry</a>
+          <a href="contact.html">Career Opportunities</a>
+          <a href="contact.html">Submit LOI/ICPO</a>
+          <div style="margin-top: 16px;">
+            <a href="#" style="display:inline; margin-right: 12px; color:#cbd5e1;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="display:inline; color:#cbd5e1;"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Corporate</h4>
-        <a href="about.html">About Us</a>
-        <a href="board.html">The Board</a>
-        <a href="strategy.html">Strategic Goals</a>
+
+      <div class="fine-print">
+        <p><strong>INN:</strong> 7703324065 | <strong>OGRN:</strong> 1027739129186 | <strong>Nelson Index:</strong> 11.2</p>
+        <p style="margin-top: 8px;">© 2026 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved. Strategic Energy & Logistics.</p>
       </div>
-      <div class="footer-col">
-        <h4>Refining</h4>
-        <a href="refining.html">Assets</a>
-        <a href="products.html">Product Spec</a>
-        <a href="tsa.html">Logistics</a>
-      </div>
-    </div>
-    <div class="fine-print">
-      <p>INN: 7703324065 | OGRN: 1027739129186 | © 2026 ООО АВТОДОРТРЕЙД-БТК. ISO 9001 Certified.</p>
     </div>
   </footer>
 
   <script type="text/javascript">
     function googleTranslateElementInit() {
-      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ru', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
+      new google.translate.TranslateElement({
+        pageLanguage: 'en', 
+        includedLanguages: 'en,ru', 
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+        autoDisplay: false
+      }, 'google_translate_element');
     }
   </script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    const drawerOverlay = document.getElementById('drawerOverlay');
-    const drawerClose = document.getElementById('drawerClose');
-    const drawerSectionBtns = document.querySelectorAll('.drawer-section-btn');
-
-    function openDrawer() { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeDrawer() { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; }
-
-    if (menuBtn) menuBtn.onclick = openDrawer;
-    if (drawerOverlay) drawerOverlay.onclick = closeDrawer;
-    if (drawerClose) drawerClose.onclick = closeDrawer;
-
-    drawerSectionBtns.forEach((btn) => {
-      btn.onclick = () => { btn.parentElement.classList.toggle('open'); };
-    });
-
     function updatePrices() {
       const base = { brent: 85.12 };
       setInterval(() => {
         const fluc = (Math.random() * 0.1) - 0.05;
-        const el = document.getElementById('t-brent');
-        if(el) el.innerText = "$" + (base.brent + fluc).toFixed(2);
+        const brent = document.getElementById('t-brent');
+        if (brent) brent.innerText = "$" + (base.brent + fluc).toFixed(2);
       }, 3000);
     }
     updatePrices();
-<script src="btk-fix.js"></script>
+
+    const menuBtn = document.getElementById('menuBtn');
+    const navWrap = document.getElementById('navWrap');
+    const navItems = document.querySelectorAll('.nav-item.has-mega');
+
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const drawerClose = document.getElementById('drawerClose');
+    const drawerSections = document.querySelectorAll('.drawer-section');
+    const drawerSectionBtns = document.querySelectorAll('.drawer-section-btn');
+
+    function openDrawer() {
+      if (!mobileDrawer) return;
+      mobileDrawer.classList.add('open');
+      mobileDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      if (!mobileDrawer) return;
+      mobileDrawer.classList.remove('open');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      drawerSections.forEach(section => section.classList.remove('open'));
+    }
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openDrawer();
+      });
+    }
+
+    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+
+    drawerSectionBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const section = btn.parentElement;
+        const isOpen = section.classList.contains('open');
+        drawerSections.forEach(s => s.classList.remove('open'));
+        if (!isOpen) section.classList.add('open');
+      });
+    });
+
+    navItems.forEach(item => {
+      const toggle = item.querySelector('.nav-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          navItems.forEach(other => {
+            if (other !== item) other.classList.remove('open');
+          });
+          item.classList.toggle('open');
+        });
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      const clickedInsideNav = navWrap && navWrap.contains(e.target);
+      if (!clickedInsideNav) {
+        navItems.forEach(item => item.classList.remove('open'));
+      }
+    });
+
+    document.querySelectorAll('.mega-menu a, .nav-link, .nav-cta, .drawer-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navItems.forEach(item => item.classList.remove('open'));
+        closeDrawer();
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDrawer();
+        navItems.forEach(item => item.classList.remove('open'));
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1100) {
+        closeDrawer();
+      }
+    });
+  </script>
 </body>
 </html>

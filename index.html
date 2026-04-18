@@ -10,7 +10,7 @@
 
   <style>
     :root {
-      --navy: #081628;
+      --navy: #050b14;
       --navy-2: #0d1d33;
       --gold: #c8a15a;
       --gold-2: #e0c48a;
@@ -24,14 +24,17 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 1px 1px, rgba(200,161,90,0.08) 1px, transparent 0),
+        var(--bg);
+      background-size: 48px 48px;
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
       width: 100%;
-      /* MANDATORY TRANSLATE FIX */
       top: 0px !important; 
       position: static !important;
     }
@@ -44,6 +47,70 @@
       margin-inline: auto;
     }
 
+    /* ===============================
+       INTERACTION SYSTEM
+    ================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      transition: 
+        opacity 0.9s cubic-bezier(.2,.8,.2,1),
+        transform 0.9s cubic-bezier(.2,.8,.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .lift-card {
+      transition: 
+        transform 0.4s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.4s cubic-bezier(.2,.8,.2,1);
+    }
+    .lift-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+    }
+
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 24px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      border-radius: 0;
+      transition: 0.25s cubic-bezier(.2,.8,.2,1);
+      min-width: 170px;
+      cursor: pointer;
+    }
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .btn:hover::after {
+      opacity: 0.4;
+    }
+
+    .translate-cage {
+      border: 1px solid rgba(200,161,90,0.4);
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: rgba(8,17,28,0.9);
+      box-shadow: inset 0 0 12px rgba(200,161,90,0.08);
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
     /* TOP TICKER */
     .ticker-bar {
       background: #020617;
@@ -317,20 +384,6 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px 24px;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.4px;
-      border-radius: 0;
-      transition: 0.25s;
-      min-width: 170px;
     }
 
     .btn-gold {
@@ -969,9 +1022,8 @@
     }
 
     /* ==========================================================================
-       OPTION 1: AGGRESSIVE BANNER SUPPRESSION (STAYS IN CSS)
+       GOOGLE TRANSLATE CAGING & SUPPRESSION
        ========================================================================== */
-    /* Hides every known version of the Google Top Banner Frame */
     .goog-te-banner-frame.skiptranslate, 
     .goog-te-banner-frame, 
     .VIpgJm-ZpYbe-OR_B-nm6s6 { 
@@ -979,7 +1031,6 @@
       visibility: hidden !important; 
     }
     
-    /* Hides the hover-over tooltips and "Show Original" balloons */
     #goog-gt-tt, 
     .goog-te-balloon-frame, 
     .goog-tooltip, 
@@ -988,25 +1039,28 @@
       visibility: hidden !important; 
     }
     
-    /* Clean up the translated text highlight */
     .goog-text-highlight { background: none !important; box-shadow: none !important; }
 
-    /* Custom styles for the dropdown button in Navbar */
-    .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
-    .goog-te-gadget img { display: none !important; }
-    .goog-te-gadget select {
-      background: rgba(255, 255, 255, 0.05) !important;
+    .translate-cage .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+    .translate-cage .goog-te-gadget img { display: none !important; }
+    .translate-cage .goog-te-gadget select {
+      background: rgba(8,17,28,0.95) !important;
       border: 1px solid var(--gold) !important;
       color: var(--gold) !important;
       font-family: 'Inter', sans-serif !important;
       font-size: 10px !important;
       font-weight: 800 !important;
       text-transform: uppercase !important;
-      padding: 8px 12px !important;
+      padding: 8px 28px 8px 12px !important;
       border-radius: 4px !important;
       outline: none !important;
       cursor: pointer !important;
-      margin-left: 10px;
+      appearance: none !important;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23c8a15a%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M6%209l6%206%206-6%22%2F%3E%3C%2Fsvg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 8px center !important;
+      background-size: 14px !important;
+      margin-left: 0 !important;
     }
   </style>
 </head>
@@ -1107,12 +1161,12 @@
         <li class="nav-item"><a class="nav-link" href="compliance.html">Sustainability</a></li>
       </ul>
 
-      <div id="google_translate_element"></div>
+      <div class="translate-cage" style="display:inline-block; vertical-align:middle;">
+        <div id="google_translate_element"></div>
+      </div>
 
       <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
     </div>
-
-    
   </nav>
 
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
@@ -1183,13 +1237,13 @@
     </div>
   </div>
 
-  <header class="hero">
+  <header class="hero reveal">
     <div class="container">
       <div class="hero-box">
         <div class="eyebrow"><i class="fas fa-circle" style="font-size:8px;"></i> Vertically Integrated Energy Platform</div>
         <h1>Powering Global Energy Markets.</h1>
         <p>
-          ООО "АВТОДОРТРЕЙД-БТК" manages refining assets, storage corridors, and export logistics built to support large-scale international energy supply.
+          ООО "АВТОДОРТРЕЙД-БТК" manages refining assets, <strong>trunk pipeline corridors</strong>, <strong>rail-freight networks</strong>, and marine export logistics built to support large-scale international energy supply.
         </p>
         <div class="hero-btns">
           <a href="products.html" class="btn btn-gold">Refined Products</a>
@@ -1199,7 +1253,7 @@
     </div>
   </header>
 
-  <div class="data-strip">
+  <div class="data-strip reveal">
     <div class="data-card">
       <h2>$2.4B</h2>
       <p>Asset Portfolio</p>
@@ -1218,7 +1272,7 @@
     </div>
   </div>
 
-  <section class="section">
+  <section class="section reveal">
     <div class="container">
       <div class="section-head">
         <span class="tag">Corporate Overview</span>
@@ -1247,20 +1301,30 @@
           </p>
 
           <div class="card-grid">
-            <div class="info-card">
+            <div class="info-card reveal">
               <i class="fas fa-industry"></i>
               <h4>Refining Complex</h4>
               <p>High-specification processing units for premium fuel and petrochemical output.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card reveal">
               <i class="fas fa-ship"></i>
               <h4>Global Logistics</h4>
               <p>Storage, routing, and export coordination for fast-moving trade execution.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card reveal">
               <i class="fas fa-leaf"></i>
               <h4>ESG Discipline</h4>
               <p>Measured environmental and compliance reporting with strong governance controls.</p>
+            </div>
+            <div class="info-card reveal">
+              <i class="fas fa-train-subway"></i>
+              <h4>Rail-Freight Network</h4>
+              <p>Dedicated heavy-haul rail corridors connecting refineries to export terminals with real-time tracking.</p>
+            </div>
+            <div class="info-card reveal">
+              <i class="fas fa-project-diagram"></i>
+              <h4>Trunk Pipeline Systems</h4>
+              <p>High-capacity pipeline infrastructure for crude and product transport across key strategic regions.</p>
             </div>
           </div>
         </div>
@@ -1268,7 +1332,7 @@
     </div>
   </section>
 
-  <section class="section alt">
+  <section class="section alt reveal">
     <div class="container">
       <div class="section-head">
         <span class="tag">Operational Pillars</span>
@@ -1277,17 +1341,17 @@
       </div>
 
       <div class="card-grid">
-        <div class="info-card">
+        <div class="info-card reveal">
           <i class="fas fa-oil-can"></i>
           <h4>Production Integrity</h4>
           <p>Operational outputs, quality control, and benchmark reporting across refinery units.</p>
         </div>
-        <div class="info-card">
+        <div class="info-card reveal">
           <i class="fas fa-network-wired"></i>
-          <h4>Supply Chain</h4>
-          <p>Integrated transport planning, terminal coordination, and storage utilization.</p>
+          <h4>Multi-Modal Logistics</h4>
+          <p>Integrated marine terminals, rail-freight corridors, and trunk pipeline coordination for end-to-end supply chain execution.</p>
         </div>
-        <div class="info-card">
+        <div class="info-card reveal">
           <i class="fas fa-chart-line"></i>
           <h4>Investor Visibility</h4>
           <p>Reports, disclosures, and strategic updates presented in a structured corporate format.</p>
@@ -1296,7 +1360,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section reveal">
     <div class="container">
       <div class="section-head" style="text-align:center; margin-left:auto; margin-right:auto;">
         <span class="tag">News & Media</span>
@@ -1307,7 +1371,7 @@
       </div>
 
       <div class="news-grid">
-        <div class="news-item">
+        <div class="news-item reveal lift-card">
           <div class="news-thumb" style="background-image:url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1200&auto=format&fit=crop');"></div>
           <div class="news-content">
             <span class="news-date">APRIL 14, 2024</span>
@@ -1316,7 +1380,7 @@
           </div>
         </div>
 
-        <div class="news-item">
+        <div class="news-item reveal lift-card">
           <div class="news-thumb" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop');"></div>
           <div class="news-content">
             <span class="news-date">MARCH 22, 2024</span>
@@ -1325,7 +1389,7 @@
           </div>
         </div>
 
-        <div class="news-item">
+        <div class="news-item reveal lift-card">
           <div class="news-thumb" style="background-image:url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop');"></div>
           <div class="news-content">
             <span class="news-date">FEBRUARY 05, 2024</span>
@@ -1337,7 +1401,7 @@
     </div>
   </section>
 
-  <section class="section" style="background: var(--navy); color:#fff;">
+  <section class="section reveal" style="background: var(--navy); color:#fff;">
     <div class="container">
       <div class="section-head">
         <span class="tag">Real-Time Monitoring</span>
@@ -1348,22 +1412,22 @@
       </div>
 
       <div class="dashboard-grid">
-        <div class="dash-card">
+        <div class="dash-card reveal lift-card">
           <h4>Atmospheric Distillation</h4>
           <div class="value">98.4%</div>
           <small>Current Efficiency</small>
         </div>
-        <div class="dash-card">
+        <div class="dash-card reveal lift-card">
           <h4>Global TSA Assets</h4>
           <div class="value">2.1M m³</div>
           <small>Storage Utilization</small>
         </div>
-        <div class="dash-card">
+        <div class="dash-card reveal lift-card">
           <h4>Safety Index</h4>
           <div class="value">100/100</div>
           <small>Accident-Free Days: 450+</small>
         </div>
-        <div class="dash-card">
+        <div class="dash-card reveal lift-card">
           <h4>Export Readiness</h4>
           <div class="value">Active</div>
           <small>Global Logistics Status</small>
@@ -1372,7 +1436,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section reveal">
     <div class="container">
       <div class="grid-2">
         <div>
@@ -1383,17 +1447,17 @@
           </p>
 
           <div class="card-grid">
-            <div class="info-card">
+            <div class="info-card reveal">
               <i class="fas fa-plane"></i>
               <h4>Aviation Fuel</h4>
               <p>High-performance fuel for turbine and piston applications.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card reveal">
               <i class="fas fa-truck"></i>
               <h4>Diesel EN590</h4>
               <p>Ultra-low sulfur diesel for international road and industrial use.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card reveal">
               <i class="fas fa-ship"></i>
               <h4>Marine Products</h4>
               <p>Bunker and marine-grade supply for port and shipping operations.</p>
@@ -1403,7 +1467,7 @@
           <a href="products.html" class="btn btn-gold" style="margin-top: 28px;">Download Product Catalog</a>
         </div>
 
-        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop" class="img-stack" alt="Logistics">
+        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop" class="img-stack reveal" alt="Logistics">
       </div>
     </div>
   </section>
@@ -1492,6 +1556,7 @@
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
+    // Price Ticker Simulation
     function updatePrices() {
       const base = { urals: 82.45, espo: 84.10, brent: 85.12 };
 
@@ -1506,9 +1571,9 @@
         if (brent) brent.innerText = "$" + (base.brent + fluc).toFixed(2);
       }, 3000);
     }
-
     updatePrices();
 
+    // Navigation: Desktop Mega-Menu & Mobile Drawer
     const menuBtn = document.getElementById('menuBtn');
     const navWrap = document.getElementById('navWrap');
     const navItems = document.querySelectorAll('.nav-item.has-mega');
@@ -1555,16 +1620,11 @@
 
     navItems.forEach(item => {
       const toggle = item.querySelector('.nav-toggle');
-
       if (toggle) {
         toggle.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
-
-          navItems.forEach(other => {
-            if (other !== item) other.classList.remove('open');
-          });
-
+          navItems.forEach(other => { if (other !== item) other.classList.remove('open'); });
           item.classList.toggle('open');
         });
       }
@@ -1572,7 +1632,6 @@
 
     document.addEventListener('click', (e) => {
       const clickedInsideNav = navWrap && navWrap.contains(e.target);
-
       if (!clickedInsideNav) {
         navItems.forEach(item => item.classList.remove('open'));
       }
@@ -1597,6 +1656,19 @@
         closeDrawer();
       }
     });
+
+    // Scroll-Reveal Animation System
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>

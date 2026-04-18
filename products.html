@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Marine Logistics & TSA Framework | ООО АВТОДОРТРЕЙД-БТК</title>
+  <title>Refined Products & Petrochemical Catalog | ООО АВТОДОРТРЕЙД-БТК</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -19,6 +19,7 @@
       --card: #08111c;
       --text: #e5e7eb;
       --line: rgba(255,255,255,0.08);
+      --success: #10b981;
       --container: 1200px;
     }
 
@@ -31,9 +32,10 @@
       line-height: 1.7;
       overflow-x: hidden;
       width: 100%;
-      /* MANDATORY TRANSLATE FIX */
       top: 0px !important; 
       position: static !important;
+      background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 0);
+      background-size: 50px 50px;
     }
 
     a { text-decoration: none; }
@@ -44,243 +46,181 @@
       margin-inline: auto;
     }
 
-    /* TOP TICKER */
+    /* --- TICKER --- */
     .ticker-bar {
-      background: #020617;
-      color: var(--gold);
-      padding: 10px 0;
-      font-size: 12px;
-      font-weight: 600;
-      overflow: hidden;
-      white-space: nowrap;
-      letter-spacing: 1px;
-      border-bottom: 1px solid rgba(200,161,90,0.25);
+      background: #020617; color: var(--gold); padding: 10px 0; font-size: 11px;
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; overflow: hidden;
+      white-space: nowrap; border-bottom: 1px solid rgba(200,161,90,0.25);
     }
-    .ticker-move {
-      display: inline-block;
-      animation: ticker 38s linear infinite;
-      min-width: 200%;
-    }
-    .tick {
-      display: inline-block;
-      padding: 0 26px;
-      border-right: 1px solid var(--line);
-    }
-    .tick span { color: #fff; margin-left: 5px; }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    .ticker-move { display: inline-block; animation: ticker 40s linear infinite; min-width: 200%; }
+    .tick { display: inline-block; padding: 0 30px; border-right: 1px solid var(--line); }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* NAV */
+    /* --- NAV MASTER --- */
     .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 4000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding: 14px clamp(16px, 4vw, 6%);
-      background: rgba(3, 8, 18, 0.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 4000; display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; padding: 14px clamp(16px, 4vw, 6%);
+      background: rgba(3, 8, 18, 0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);
     }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: #fff;
-      min-width: 0;
-    }
+    .logo-container { display: flex; align-items: center; gap: 14px; color: #fff; min-width: 0; }
     .logo-emblem {
-      width: 48px;
-      height: 48px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      background: linear-gradient(135deg, var(--gold), #8c6c34);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      flex-shrink: 0;
+      width: 48px; height: 48px; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--gold), #8c6c34); box-shadow: 0 10px 25px rgba(0,0,0,0.2); flex-shrink: 0; overflow: hidden;
     }
-    .logo-text {
-      font-weight: 800;
-      font-size: 1.05rem;
-      line-height: 1.05;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-    .logo-text span {
-      display: block;
-      font-size: 0.68rem;
-      color: var(--gold);
-      letter-spacing: 3px;
-      margin-top: 4px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
+    .logo-emblem svg { width: 32px; height: 32px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); }
+    .logo-text { font-weight: 800; font-size: 1.05rem; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+    .logo-text span { display: block; font-size: 0.68rem; color: var(--gold); letter-spacing: 3px; margin-top: 4px; font-weight: 600; white-space: nowrap; }
 
     .nav-wrap { display: flex; align-items: center; gap: 18px; position: relative; }
     .nav-links { list-style: none; display: flex; align-items: center; gap: 28px; }
-
-    .nav-link {
-      color: rgba(255,255,255,0.82); font-size: 11px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 1.4px; transition: 0.25s;
-      padding: 10px 0; display: inline-block;
+    .nav-item { position: relative; }
+    
+    .nav-toggle, .nav-link {
+      background: none; border: none; color: rgba(255,255,255,0.82); font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.4px; cursor: pointer; padding: 10px 0; transition: 0.25s; display: inline-block;
     }
-    .nav-link:hover { color: var(--gold); }
+    .nav-item:hover > .nav-toggle, .nav-item.open > .nav-toggle, .nav-link:hover { color: var(--gold); }
+
+    /* MEGA MENU */
+    .mega-menu {
+      position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px);
+      width: min(1120px, 92vw); background: #08111c; border-top: 4px solid var(--gold);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.18); border-radius: 10px; padding: 30px; display: grid;
+      grid-template-columns: repeat(4, 1fr); gap: 22px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: 0.25s ease; z-index: 5000;
+    }
+    .nav-item:hover .mega-menu, .nav-item.open .mega-menu, .mega-menu:hover { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .mega-col h4 { color: #f8fafc; font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .mega-col a { display: block; color: #cbd5e1; font-size: 13px; padding: 9px 0; transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .mega-col a:hover { color: var(--gold); transform: translateX(4px); }
 
     .nav-cta {
-      display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px;
-      border-radius: 999px; background: linear-gradient(135deg, var(--gold), #9f7c42);
-      color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1px; box-shadow: 0 12px 25px rgba(200,161,90,0.25);
-      white-space: nowrap; flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), #9f7c42); color: #fff; font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 12px 25px rgba(200,161,90,0.25); white-space: nowrap; flex-shrink: 0;
     }
-    .menu-btn {
-      display: none; background: none; border: 1px solid rgba(255,255,255,0.18);
-      color: #fff; width: 44px; height: 44px; border-radius: 10px;
-      font-size: 18px; flex-shrink: 0; cursor: pointer;
-    }
+    .menu-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.18); color: #fff; width: 44px; height: 44px; border-radius: 10px; font-size: 18px; flex-shrink: 0; cursor: pointer; }
 
-    /* ==========================================================================
-       TRANSLATOR PREMIUM SKIN
-       ========================================================================== */
+    /* SMART TRANSLATOR FIXES */
     #google_translate_element { display: inline-flex; align-items: center; min-width: 100px; }
     .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
     .goog-te-gadget img { display: none !important; }
     .goog-te-gadget select {
-      background: rgba(255, 255, 255, 0.05) !important;
-      border: 1px solid var(--gold) !important;
-      color: var(--gold) !important;
-      font-family: 'Inter', sans-serif !important;
-      font-size: 10px !important;
-      font-weight: 800 !important;
-      text-transform: uppercase !important;
-      padding: 8px 12px !important;
-      border-radius: 4px !important;
-      outline: none !important;
-      cursor: pointer !important;
+      background: rgba(255, 255, 255, 0.05) !important; border: 1px solid var(--gold) !important; color: var(--gold) !important;
+      font-family: 'Inter', sans-serif !important; font-size: 10px !important; font-weight: 800 !important; text-transform: uppercase !important;
+      padding: 8px 12px !important; border-radius: 4px !important; outline: none !important; cursor: pointer !important;
     }
-    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; visibility: hidden !important; }
-    #goog-gt-tt, .goog-tooltip, .goog-te-balloon-frame { display: none !important; }
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame, .VIpgJm-ZpYbe-OR_B-nm6s6 { display: none !important; visibility: hidden !important; }
+    #goog-gt-tt, .goog-te-balloon-frame, .goog-tooltip, .goog-tooltip:hover { display: none !important; visibility: hidden !important; }
+    .goog-text-highlight { background: none !important; box-shadow: none !important; }
 
-    /* INNER HERO */
-    .page-hero {
-      background:
-        linear-gradient(90deg, rgba(3,8,18,0.95) 0%, rgba(3,8,18,0.7) 60%, rgba(3,8,18,0.2) 100%),
-        url('https://images.unsplash.com/photo-1541427468627-a46bea104c95?q=80&w=2000&auto=format&fit=crop');
-      background-size: cover; background-position: center;
-      padding: clamp(80px, 10vw, 120px) 0 clamp(60px, 8vw, 90px);
-      color: #fff; border-bottom: 1px solid var(--line);
-    }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px; font-size: 11px;
-      font-weight: 800; text-transform: uppercase; letter-spacing: 3px;
-      color: var(--gold-2); margin-bottom: 18px;
-    }
-    .page-hero h1 {
-      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4.2rem);
-      line-height: 1; margin-bottom: 16px; word-break: break-word; max-width: 800px;
-    }
-
-    /* PAGE LAYOUT */
-    .section { padding: clamp(60px, 8vw, 90px) 0; background: #07101d; }
-    .page-layout {
-      display: grid; grid-template-columns: 280px 1fr; gap: clamp(30px, 5vw, 60px); align-items: start;
-    }
-
-    /* SIDEBAR NAV */
-    .side-nav {
-      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 24px; position: sticky; top: 100px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    .side-nav h4 {
-      color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
-    }
-    .side-nav ul { list-style: none; }
-    .side-nav a {
-      display: flex; align-items: center; justify-content: space-between; color: #cbd5e1;
-      font-size: 0.95rem; padding: 12px 14px; border-radius: 8px; margin-bottom: 4px; transition: 0.2s;
-    }
-    .side-nav a:hover { background: rgba(255,255,255,0.04); color: #fff; }
-    .side-nav a.active {
-      background: rgba(200,161,90,0.1); color: var(--gold); font-weight: 600; border-left: 3px solid var(--gold);
-    }
-
-    /* DASHBOARD */
-    .dashboard-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0;
-    }
-    .dash-card {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 16px;
-      padding: 26px 20px; text-align: center; color: #fff; border-bottom: 3px solid var(--gold);
-    }
-    .dash-card .value {
-      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: #fff; margin-bottom: 6px;
-    }
-
-    /* CARDS & TSA STEPS */
-    .card-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px;
-    }
-    .info-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 30px 24px; transition: 0.3s; }
-    .info-card:hover { border-color: rgba(200,161,90,0.4); transform: translateY(-4px); }
-    .info-card i { color: var(--gold); font-size: 1.8rem; margin-bottom: 20px; display: inline-block; }
-    .info-card .sub { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; font-weight: 600; display: block; }
-
-    .tsa-grid { display: grid; gap: 16px; margin-bottom: 50px; }
-    .tsa-step {
-      display: flex; gap: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--line);
-      border-left: 3px solid var(--gold); padding: 24px; border-radius: 12px; align-items: flex-start;
-    }
-    .tsa-num {
-      width: 40px; height: 40px; border-radius: 8px; background: rgba(200,161,90,0.1);
-      color: var(--gold); font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-
-    .alert-box {
-      background: rgba(200,161,90,0.05); border: 1px solid rgba(200,161,90,0.2);
-      border-left: 4px solid var(--gold); padding: 24px; border-radius: 12px; margin-bottom: 40px;
-      display: flex; gap: 20px; align-items: flex-start;
-    }
-
-    /* FOOTER */
-    footer { background: #020617; color: #fff; padding: 80px 0 40px; border-top: 4px solid var(--gold); }
-    .fine-print { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; padding-top: 24px; text-align: center; color: #64748b; font-size: 0.78rem; }
-
-    /* MOBILE DRAWER SYSTEM */
-    .mobile-drawer { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: 0.3s; }
+    /* --- MOBILE DRAWER MASTER --- */
+    .mobile-drawer { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; }
     .mobile-drawer.open { opacity: 1; pointer-events: auto; }
-    .drawer-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.68); backdrop-filter: blur(6px); }
-    .drawer-panel { position: absolute; top: 0; right: 0; width: min(92vw, 420px); height: 100%; background: #07111d; transform: translateX(100%); transition: 0.35s cubic-bezier(.2,.8,.2,1); padding: 18px; overflow-y: auto; }
+    .drawer-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(6px); }
+    .drawer-panel {
+      position: absolute; top: 0; right: 0; width: min(92vw, 420px); height: 100%; background: linear-gradient(180deg, #07111d 0%, #050b14 100%);
+      border-left: 1px solid rgba(255,255,255,0.08); transform: translateX(100%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+      padding: 18px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
     .mobile-drawer.open .drawer-panel { transform: translateX(0); }
-    .drawer-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 15px; }
-    .drawer-close { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 42px; height: 42px; border-radius: 10px; cursor: pointer; }
-    .drawer-section-btn { width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid var(--line); padding: 16px 14px; border-radius: 12px; text-align: left; font-weight: 700; display: flex; align-items: center; justify-content: space-between; cursor: pointer; margin-bottom: 10px; }
-    .drawer-links { max-height: 0; overflow: hidden; transition: 0.3s ease; padding-left: 10px; }
+    .drawer-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .drawer-brand { display: flex; align-items: center; gap: 12px; color: #fff; min-width: 0; }
+    .drawer-close { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0; cursor: pointer; }
+    .drawer-sections { padding: 16px 0 30px; }
+    .drawer-section { margin-bottom: 10px; }
+    .drawer-section-btn {
+      width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid rgba(255,255,255,0.08); padding: 16px 14px;
+      border-radius: 12px; text-align: left; font-weight: 700; display: flex; align-items: center; justify-content: space-between; gap: 12px; letter-spacing: 0.4px; cursor: pointer;
+    }
+    .drawer-links { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 6px; }
     .drawer-section.open .drawer-links { max-height: 900px; }
-    .drawer-links a { display: block; padding: 12px; color: #cbd5e1; }
+    .drawer-links a { display: block; padding: 12px 10px; color: #cbd5e1; border-left: 2px solid transparent; text-decoration: none; }
+    .drawer-links a:hover { color: var(--gold); border-left-color: var(--gold); background: rgba(200,161,90,0.06); }
 
-    /* RESPONSIVE */
+    /* --- PAGE HERO (HEAVY INDUSTRIAL STORAGE) --- */
+    .page-hero {
+      position: relative;
+      background: 
+        linear-gradient(to right, rgba(5, 11, 20, 0.95), rgba(5, 11, 20, 0.5)), 
+        url('https://images.unsplash.com/photo-1542361345-89ce1dd07166?q=80&w=2000&auto=format&fit=crop'); 
+      background-size: cover; background-position: center;
+      padding: clamp(80px, 12vw, 150px) 0 clamp(60px, 8vw, 100px); border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--gold-2); margin-bottom: 18px; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 20px; color: #fff; max-width: 800px; }
+    .page-hero p { color: #94a3b8; font-size: 1.15rem; max-width: 700px; }
+
+    /* --- GRID & SIDEBAR --- */
+    .section { padding: 80px 0; }
+    .page-layout { display: grid; grid-template-columns: 280px 1fr; gap: 60px; align-items: start; }
+    .side-nav { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 30px; position: sticky; top: 100px; }
+    .side-nav h4 { color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; border-bottom: 1px solid var(--line); padding-bottom: 15px; }
+    .side-nav ul { list-style: none; }
+    .side-nav a { display: flex; align-items: center; justify-content: space-between; color: #94a3b8; text-decoration: none; padding: 12px 0; font-size: 0.95rem; transition: 0.2s; border-left: 2px solid transparent; }
+    .side-nav a:hover { color: #fff; }
+    .side-nav a.active { color: #fff; border-left-color: var(--gold); padding-left: 15px; background: rgba(200,161,90,0.05); }
+
+    /* --- DASHBOARD --- */
+    .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 50px; }
+    .dash-card { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 12px; padding: 30px 20px; text-align: center; border-bottom: 3px solid var(--gold); }
+    .dash-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px; }
+    .dash-card .value { font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 5px; }
+    .dash-card small { font-size: 10px; opacity: 0.6; color: #cbd5e1; display: block; }
+
+    /* --- PRODUCT CARDS --- */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
+    .prod-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 35px; transition: 0.3s; position: relative; overflow: hidden; }
+    .prod-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .prod-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
+    .prod-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+    .prod-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 12px; }
+    .prod-card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+    .prod-specs { list-style: none; border-top: 1px solid var(--line); padding-top: 15px; }
+    .prod-specs li { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; }
+    .prod-specs .label { color: #64748b; }
+    .prod-specs .val { color: #cbd5e1; font-weight: 600; }
+
+    /* --- DATA TABLE (WIDTH PROTECTED) --- */
+    .table-container { background: #020617; border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 50px; width: 100%; }
+    .spec-table { width: 100%; border-collapse: collapse; min-width: 700px; text-align: left; }
+    .spec-table th { padding: 20px; background: rgba(255,255,255,0.03); color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid var(--line); }
+    .spec-table td { padding: 20px; border-bottom: 1px solid var(--line); color: #cbd5e1; font-size: 0.95rem; font-family: 'JetBrains Mono', monospace; }
+    .spec-table tr:last-child td { border-bottom: none; }
+
+    /* --- ALLOCATION BOX --- */
+    .allocation-box { display: flex; gap: 25px; background: rgba(200,161,90,0.05); border: 1px solid rgba(200,161,90,0.2); border-left: 4px solid var(--gold); padding: 35px; border-radius: 12px; align-items: flex-start; margin-bottom: 40px; }
+    .allocation-box i { font-size: 2.5rem; color: var(--gold); margin-top: 5px; }
+    .allocation-text h4 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
+    .allocation-text p { color: #94a3b8; font-size: 1.05rem; line-height: 1.6; }
+
+    /* --- FOOTER MASTER --- */
+    footer { background: #020617; color: #fff; padding: 80px 0 40px; border-top: 4px solid var(--gold); margin-top: 80px; }
+    .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; }
+    .f-col h4 { color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
+    .f-col a { display: block; color: #94a3b8; font-size: 14px; margin-bottom: 10px; transition: 0.2s; }
+    .f-col a:hover { color: var(--gold); }
+    .fine-print { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; padding-top: 24px; color: #64748b; font-size: 0.78rem; text-align: center; }
+
+    /* --- RESPONSIVE FIXES --- */
     @media (max-width: 1100px) {
       .nav-links, .nav-cta { display: none; }
-      .menu-btn { display: inline-flex; align-items: center; justify-content: center; order: 3; }
-      #google_translate_element { order: 2; margin-right: 15px; }
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
       .page-layout { grid-template-columns: 1fr; }
-      .side-nav { position: static; margin-bottom: 20px; }
+      .side-nav { display: none; }
       .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 700px) {
       .container { width: min(var(--container), calc(100% - 24px)); }
       .navbar { padding: 12px; }
-      .logo-text { font-size: 0.85rem; }
+      .logo-emblem { width: 42px; height: 42px; }
+      .logo-text { font-size: 0.82rem; white-space: normal; }
+      .logo-text span { letter-spacing: 2px; font-size: 0.58rem; }
+      .f-grid { grid-template-columns: 1fr; gap: 24px; }
       .drawer-panel { width: min(96vw, 420px); padding: 14px; }
+      .dashboard-grid { grid-template-columns: 1fr 1fr; }
+      .allocation-box { flex-direction: column; gap: 15px; }
     }
   </style>
 </head>
@@ -288,29 +228,54 @@
 
   <div class="ticker-bar">
     <div class="ticker-move">
-      <div class="tick">URALS BLEND: <span id="urals-price">$82.45</span></div>
-      <div class="tick">ESPO CRUDE: <span id="espo-price">$84.10</span></div>
-      <div class="tick">BRENT INDEX: <span id="brent-price">$85.12</span></div>
-      <div class="tick">GLOBAL TSA STATUS: <span style="color:#10b981">OPERATIONAL (92%)</span></div>
+      <div class="tick">DIESEL EN590: <span style="color:#10b981">AVAILABLE</span></div>
+      <div class="tick">JET FUEL JP54: <span style="color:#10b981">AVAILABLE</span></div>
+      <div class="tick">QUALITY STANDARD: <span style="color:#fff">EURO-6 COMPLIANT</span></div>
+      <div class="tick">SGS INSPECTION: <span style="color:#10b981">PASSED (100%)</span></div>
+      <div class="tick">DIESEL EN590: <span>AVAILABLE</span></div>
+      <div class="tick">JET FUEL JP54: <span>AVAILABLE</span></div>
     </div>
   </div>
 
   <nav class="navbar">
     <a href="index.html" class="logo-container">
-      <div class="logo-emblem"><i class="fas fa-shield-halved"></i></div>
-      <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / GLOBAL ENERGY</span></div>
+      <div class="logo-emblem">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+            <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+        </svg>
+      </div>
+      <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / PRODUCTION</span></div>
     </a>
 
-    <div class="nav-wrap">
-      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+    <div class="nav-wrap" id="navWrap">
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation"><i class="fas fa-bars"></i></button>
+
       <ul class="nav-links">
-        <li><a href="refining.html" class="nav-link">Refining</a></li>
-        <li><a href="products.html" class="nav-link">Production</a></li>
-        <li><a href="tsa.html" class="nav-link" style="color:var(--gold);">Logistics</a></li>
+        <li class="nav-item has-mega">
+          <button class="nav-toggle">Governance</button>
+          <div class="mega-menu">
+            <div class="mega-col"><h4>Board & Control</h4><a href="board.html">Board of Directors</a><a href="risk.html">Risk Management</a><a href="audit.html">Internal Audit</a></div>
+            <div class="mega-col"><h4>Company Profile</h4><a href="about.html">About BTK Group</a><a href="history.html">Corporate History</a><a href="strategy.html">Strategic Prospects</a></div>
+            <div class="mega-col"><h4>Investors</h4><a href="reports.html">Financial Reports</a><a href="shareholders.html">Shareholder Info</a><a href="docs.html">Statutory Docs</a></div>
+            <div class="mega-col"><h4>ESG Center</h4><a href="esg.html">Sustainability Report</a><a href="environment.html">Environmental Policy</a><a href="impact.html">Social Impact</a></div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <button class="nav-toggle" style="color:var(--gold);">Industrial Business</button>
+          <div class="mega-menu">
+            <div class="mega-col"><h4>Upstream</h4><a href="geology.html">Exploration & Geology</a><a href="reserves.html">Hydrocarbon Reserves</a><a href="gas.html">Natural Gas Ops</a></div>
+            <div class="mega-col"><h4>Refining & Sales</h4><a href="refining.html">Refining Complex</a><a href="products.html" style="color:var(--gold)">Petrochemical Sales</a><a href="gas-proc.html">Gas Processing</a></div>
+            <div class="mega-col"><h4>Logistics</h4><a href="tsa.html">Storage Infrastructure</a><a href="tsa.html">TSA Agreement</a><a href="tsa.html">Marine Terminals</a></div>
+            <div class="mega-col"><h4>Global Talent</h4><a href="contact.html">Refinery Engineers</a><a href="contact.html">Operations Staff</a><a href="contact.html">Global Careers</a></div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="products.html" style="color:var(--gold);">Production</a></li>
+        <li class="nav-item"><a class="nav-link" href="tsa.html">Logistics</a></li>
+        <li class="nav-item"><a class="nav-link" href="compliance.html">Sustainability</a></li>
       </ul>
 
       <div id="google_translate_element"></div>
-
       <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
     </div>
   </nav>
@@ -319,40 +284,44 @@
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="drawer-panel">
       <div class="drawer-top">
-        <div class="drawer-brand" style="display:flex; align-items:center; gap:12px; color:#fff;">
-          <div class="logo-emblem" style="width:36px; height:36px;"><i class="fas fa-shield-halved"></i></div>
-          <span style="font-weight:800; font-size:0.9rem;">BTK GROUP</span>
+        <div class="drawer-brand">
+          <div class="logo-emblem">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+                <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+            </svg>
+          </div>
+          <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / CATALOG</span></div>
         </div>
-        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
       </div>
 
       <div class="drawer-sections">
         <div class="drawer-section">
           <button class="drawer-section-btn">Governance <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
-            <a href="board.html">Board of Directors</a>
-            <a href="about.html">About BTK Group</a>
-            <a href="docs.html">Statutory Docs</a>
+            <a href="board.html">Board of Directors</a><a href="risk.html">Risk Management</a><a href="audit.html">Internal Audit</a><a href="about.html">About BTK Group</a><a href="history.html">Corporate History</a><a href="strategy.html">Strategic Prospects</a><a href="reports.html">Financial Reports</a><a href="shareholders.html">Shareholder Info</a><a href="docs.html">Statutory Docs</a><a href="esg.html">Sustainability Report</a>
           </div>
         </div>
         <div class="drawer-section">
           <button class="drawer-section-btn">Industrial Business <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
-            <a href="geology.html">Exploration & Geology</a>
-            <a href="refining.html">Refining Complex</a>
-            <a href="tsa.html" style="color:var(--gold);">TSA Framework</a>
+            <a href="geology.html">Exploration & Geology</a><a href="reserves.html">Hydrocarbon Reserves</a><a href="gas.html">Natural Gas Ops</a><a href="refining.html">Refining Complex</a><a href="products.html" style="color:var(--gold);">Petrochemical Sales</a><a href="gas-proc.html">Gas Processing</a><a href="tsa.html">Storage Infrastructure</a><a href="tsa.html">TSA Agreement</a><a href="tsa.html">Marine Terminals</a>
           </div>
         </div>
-        <a href="contact.html" class="nav-cta" style="margin-top:20px; width:100%; justify-content:center; text-decoration:none;">Trade Portal</a>
+        <div class="drawer-section">
+          <button class="drawer-section-btn">Quick Links <i class="fas fa-chevron-down"></i></button>
+          <div class="drawer-links"><a href="products.html" style="color:var(--gold);">Production</a><a href="tsa.html">Logistics</a><a href="compliance.html">Sustainability</a><a href="contact.html">Trade Portal</a></div>
+        </div>
       </div>
     </div>
   </div>
 
   <header class="page-hero">
     <div class="container">
-      <div class="eyebrow"><i class="fas fa-anchor" style="font-size:10px;"></i> Maritime Fleet & Port Logistics</div>
-      <h1>Strategic Logistics & TSA Network</h1>
-      <p>Securing physical commodity delivery through an interconnected web of deep-water terminals, ice-class fleets, and sovereign tank storage agreements.</p>
+      <div class="eyebrow"><i class="fas fa-flask" style="font-size:10px;"></i> Refined Products Catalog</div>
+      <h1>Petrochemical & Distillate Sales</h1>
+      <p>Providing global energy markets with high-grade, low-sulfur middle distillates and virgin fuel oils, fully certified by international SGS verification.</p>
     </div>
   </header>
 
@@ -361,51 +330,154 @@
       <div class="page-layout">
         
         <aside class="side-nav">
-          <h4>Logistics Menu</h4>
+          <h4>Production Menu</h4>
           <ul>
-            <li><a href="tsa.html" class="active">TSA Framework <i class="fas fa-arrow-right" style="font-size:10px;"></i></a></li>
-            <li><a href="#hubs">Global FOB Hubs</a></li>
-            <li><a href="#delivery">Delivery Incoterms</a></li>
+            <li><a href="products.html" class="active">Product Catalog <i class="fas fa-arrow-right" style="font-size:10px; color:var(--gold);"></i></a></li>
+            <li><a href="refining.html">Refining Facilities</a></li>
+            <li><a href="gas-proc.html">Gas Processing</a></li>
           </ul>
         </aside>
 
         <div class="content-area">
-          <h2>Global Distribution Architecture</h2>
-          <p>
-            ООО "АВТОДОРТРЕЙД-БТК" maintains total control over its downstream supply chain. By integrating our refining output directly with major deep-water ports and international Tank Storage Agreements (TSA), we eliminate intermediary risk.
+          <h2 style="font-family:'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); color:#fff; margin-bottom: 20px;">Export Commodities</h2>
+          <p style="color:#94a3b8; font-size:1.15rem; margin-bottom: 40px; max-width: 800px;">
+            Our primary distillation units and catalytic crackers are tuned to maximize the output of Euro-5 and Euro-6 compliant fuels. All export batches are supplied with a full suite of analytical testing documentation.
           </p>
 
           <div class="dashboard-grid">
-            <div class="dash-card"><h4>Storage Capacity</h4><div class="value">24.5</div><small>Million Barrels Active</small></div>
-            <div class="dash-card"><h4>Chartered Fleet</h4><div class="value">42</div><small>VLCC & Suezmax</small></div>
-            <div class="dash-card"><h4>Terminal Hubs</h4><div class="value">6</div><small>Strategic FOB</small></div>
-            <div class="dash-card"><h4>On-Time Delivery</h4><div class="value">99.8%</div><small>Logistics SLA</small></div>
+            <div class="dash-card"><h4>Avg. Sulfur</h4><div class="value" style="color:#10b981;">< 10</div><small>PPM (EN590)</small></div>
+            <div class="dash-card"><h4>Quality Assurance</h4><div class="value">ISO</div><small>9001 & 14001</small></div>
+            <div class="dash-card"><h4>Primary Inspector</h4><div class="value">SGS</div><small>Global Verified</small></div>
+            <div class="dash-card"><h4>Annual Export</h4><div class="value">18.2</div><small>Million Metric Tons</small></div>
           </div>
 
-          <h3 id="hubs" style="border-top: 1px solid var(--line); padding-top: 40px;">Strategic FOB Terminals</h3>
-          <div class="card-grid">
-            <div class="info-card"><i class="fas fa-water"></i><h4>Rotterdam (Europort)</h4><span class="sub">European Gateway</span><p>Primary hub for EN590 Diesel and Aviation Kerosene distribution via deep-water draft berths.</p></div>
-            <div class="info-card"><i class="fas fa-ship"></i><h4>Houston (Texas City)</h4><span class="sub">Americas Hub</span><p>Secured tank farms within the US Gulf Coast, dedicated to heavy crude and refined product blending.</p></div>
-            <div class="info-card"><i class="fas fa-oil-can"></i><h4>Fujairah (UAE)</h4><span class="sub">Middle East / Asia</span><p>Crucial bunkering port and strategic reserve hub for VLSFO and Middle Eastern crude blending.</p></div>
-          </div>
-
-          <div class="alert-box">
-            <i class="fas fa-file-contract"></i>
-            <div>
-              <h4 id="delivery">Authorized Delivery Terms (Incoterms 2020)</h4>
-              <p>Contracts strictly under international terms: <strong>FOB (Free On Board)</strong>, <strong>CIF (Cost, Insurance, and Freight)</strong>, and <strong>TTO (Tanker Take Over)</strong>.</p>
+          <div class="allocation-box">
+            <i class="fas fa-balance-scale-right"></i>
+            <div class="allocation-text">
+              <h4>Pricing & Contract Allocations</h4>
+              <p>Commodity pricing is strictly tied to the trailing average of <strong>Platts European Marketscan</strong> or <strong>Argus Media</strong> indices. ООО "АВТОДОРТРЕЙД-БТК" prioritizes 12-month revolving contracts (R&E) but offers spot allocations (TTO/FOB) based on uncommitted monthly tank inventory.</p>
             </div>
           </div>
 
-          <h3 id="tsa" style="border-top: 1px solid var(--line); padding-top: 40px;">Standard TSA Operating Procedure</h3>
-          <div class="tsa-grid">
-            <div class="tsa-step"><div class="tsa-num">1</div><div class="tsa-content"><h4>ICPO & Corporate Vetting</h4><p>Buyer submits ICPO and Company Profile. Legal desk conducts KYC/AML compliance checks.</p></div></div>
-            <div class="tsa-step"><div class="tsa-num">2</div><div class="tsa-content"><h4>Commercial Invoice & SGA</h4><p>BTK issues CI and SGA. Buyer countersigns to lock in pricing formulas.</p></div></div>
-            <div class="tsa-step"><div class="tsa-num">3</div><div class="tsa-content"><h4>Tank Storage Agreement (TSA)</h4><p>Buyer provides TSA from an authorized terminal. BTK validates coordinates and signs endorsement.</p></div></div>
-            <div class="tsa-step"><div class="tsa-num">4</div><div class="tsa-content"><h4>Injection & Dip Test</h4><p>BTK issues Injection Schedule and unconditional Dip Test Authorization (DTA).</p></div></div>
-            <div class="tsa-step"><div class="tsa-num">5</div><div class="tsa-content"><h4>SGS / BV Audit</h4><p>Buyer’s inspector (SGS/Intertek) conducts deep molecular analysis of product in shore tanks.</p></div></div>
-            <div class="tsa-step"><div class="tsa-num">6</div><div class="tsa-content"><h4>Final Settlement (MT103)</h4><p>Upon SGS success, buyer transfers funds via MT103 against shipping documents and Title.</p></div></div>
-            <div class="tsa-step"><div class="tsa-num">7</div><div class="tsa-content"><h4>Product Lifting</h4><p>Title is transferred. Buyer's vessel (cleared via Q88) attaches to manifold and injections begin.</p></div></div>
+          <h3 style="font-family:'Playfair Display', serif; font-size: 1.8rem; color:#fff; border-top: 1px solid var(--line); padding-top: 40px; margin-bottom: 25px;">Core Portfolio</h3>
+          <div class="product-grid">
+            <div class="prod-card">
+              <span class="prod-tag">Automotive & Logistics</span>
+              <h3>Diesel Fuel EN590 (10 PPM)</h3>
+              <p>Ultra-Low Sulfur Diesel optimized for modern heavy-duty engines and European winter logistics.</p>
+              <ul class="prod-specs">
+                <li><span class="label">Standard</span><span class="val">GOST 32511-2013</span></li>
+                <li><span class="label">Sulfur Max</span><span class="val">10.0 mg/kg</span></li>
+                <li><span class="label">Cetane Index</span><span class="val">Min 51.0</span></li>
+              </ul>
+            </div>
+
+            <div class="prod-card">
+              <span class="prod-tag">Commercial Aviation</span>
+              <h3>Aviation Kerosene (JP54 / Jet A-1)</h3>
+              <p>Highly refined aviation turbine fuel featuring excellent thermal stability and low freezing points.</p>
+              <ul class="prod-specs">
+                <li><span class="label">Standard</span><span class="val">Def Stan 91-91</span></li>
+                <li><span class="label">Freezing Point</span><span class="val">Max -47°C</span></li>
+                <li><span class="label">Flash Point</span><span class="val">Min 38°C</span></li>
+              </ul>
+            </div>
+
+            <div class="prod-card">
+              <span class="prod-tag">Marine / Heavy Industrial</span>
+              <h3>Fuel Oil M100 (Mazut)</h3>
+              <p>Heavy residual fuel utilized primarily for bunker fuel blending, thermal power plants, and industrial boilers.</p>
+              <ul class="prod-specs">
+                <li><span class="label">Standard</span><span class="val">GOST 10585-2013</span></li>
+                <li><span class="label">Kinematic Viscosity</span><span class="val">118 mm²/s</span></li>
+                <li><span class="label">Ash Content</span><span class="val">Max 0.14%</span></li>
+              </ul>
+            </div>
+
+            <div class="prod-card">
+              <span class="prod-tag">Energy Generation</span>
+              <h3>Virgin Fuel Oil (D6)</h3>
+              <p>A highly unrefined, heavy residual fuel directly off the atmospheric distillation column, utilized for large-scale power generation.</p>
+              <ul class="prod-specs">
+                <li><span class="label">Density</span><span class="val">Max 0.8900</span></li>
+                <li><span class="label">Flash Point</span><span class="val">Min 150°C</span></li>
+                <li><span class="label">Water Content</span><span class="val">Max 0.5%</span></li>
+              </ul>
+            </div>
+
+            <div class="prod-card">
+              <span class="prod-tag">Agriculture & Chem</span>
+              <h3>Automotive Urea (AdBlue / 46%)</h3>
+              <p>High-purity aqueous urea solution used in SCR systems to reduce NOx emissions in heavy-duty vehicles.</p>
+              <ul class="prod-specs">
+                <li><span class="label">Nitrogen Content</span><span class="val">Min 46.0%</span></li>
+                <li><span class="label">Biuret</span><span class="val">Max 1.0%</span></li>
+                <li><span class="label">Moisture</span><span class="val">Max 0.5%</span></li>
+              </ul>
+            </div>
+
+            <div class="prod-card">
+              <span class="prod-tag">Gas Products</span>
+              <h3>Liquefied Natural Gas (LNG)</h3>
+              <p>Cryogenically liquefied methane tailored for long-haul maritime transport and global energy distribution.</p>
+              <ul class="prod-specs">
+                <li><span class="label">Methane Content</span><span class="val">> 90.0%</span></li>
+                <li><span class="label">Gross Heating Value</span><span class="val">~40 MJ/m³</span></li>
+                <li><span class="label">State</span><span class="val">Cryogenic (-162°C)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 style="font-family:'Playfair Display', serif; font-size: 1.8rem; color:#fff; border-top: 1px solid var(--line); padding-top: 40px; margin-bottom: 25px;">Flagship Specs: EN590 Diesel (10 PPM)</h3>
+          <div class="table-container">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Test Parameter</th>
+                  <th>Unit</th>
+                  <th>Guaranteed Value</th>
+                  <th>Test Method (ASTM/ISO)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Density at 15°C</td>
+                  <td>kg/m³</td>
+                  <td>820.0 - 845.0</td>
+                  <td>EN ISO 3675</td>
+                </tr>
+                <tr>
+                  <td>Cetane Number</td>
+                  <td>-</td>
+                  <td>Min 51.0</td>
+                  <td>EN ISO 5165</td>
+                </tr>
+                <tr>
+                  <td>Sulfur Content</td>
+                  <td>mg/kg</td>
+                  <td>Max 10.0</td>
+                  <td>EN ISO 20846</td>
+                </tr>
+                <tr>
+                  <td>Flash Point</td>
+                  <td>°C</td>
+                  <td>Min 55.0</td>
+                  <td>EN ISO 2719</td>
+                </tr>
+                <tr>
+                  <td>Water Content</td>
+                  <td>mg/kg</td>
+                  <td>Max 200.0</td>
+                  <td>EN ISO 12937</td>
+                </tr>
+                <tr>
+                  <td>Lubricity (ws1.4 at 60°C)</td>
+                  <td>μm</td>
+                  <td>Max 460.0</td>
+                  <td>EN ISO 12156-1</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
         </div>
@@ -415,37 +487,155 @@
 
   <footer>
     <div class="container">
+      <div class="f-grid">
+        <div class="f-col">
+          <div class="logo-container" style="margin-bottom: 20px;">
+            <div class="logo-emblem" style="width: 40px !important; height: 40px !important;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+                    <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+                </svg>
+            </div>
+            <div class="logo-text">АВТОДОРТРЕЙД<span>БТК</span></div>
+          </div>
+          <p style="color:#94a3b8; font-size:0.92rem; margin-bottom: 16px;">
+            A leading vertically integrated energy enterprise delivering refined products, secure logistics, and disciplined governance.
+          </p>
+          <p style="color:#fff; font-size:0.84rem;"><strong>HQ:</strong> Presnenskaya Nab. 12, Moscow, Russia</p>
+        </div>
+
+        <div class="f-col">
+          <h4>Operations</h4>
+          <a href="refining.html">Refining Assets</a>
+          <a href="products.html">Product Portfolio</a>
+          <a href="tsa.html">TSA Network</a>
+          <a href="compliance.html">ESG Reporting</a>
+        </div>
+
+        <div class="f-col">
+          <h4>Governance</h4>
+          <a href="board.html">Corporate Board</a>
+          <a href="about.html">Mission & Vision</a>
+          <a href="docs.html">Investor Relations</a>
+          <a href="strategy.html">Global Strategy</a>
+        </div>
+
+        <div class="f-col">
+          <h4>Partner Portal</h4>
+          <a href="contact.html">Buyer Inquiry</a>
+          <a href="contact.html">Career Opportunities</a>
+          <a href="contact.html">Submit LOI/ICPO</a>
+          <div style="margin-top: 16px;">
+            <a href="#" style="display:inline; margin-right: 12px; color:#cbd5e1;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="display:inline; color:#cbd5e1;"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
       <div class="fine-print">
-        <p><strong>INN:</strong> 7703324065 | <strong>OGRN:</strong> 1027739129186</p>
-        <p>© 2026 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved. Strategic Energy & Logistics.</p>
+        <p><strong>INN:</strong> 7703324065 | <strong>OGRN:</strong> 1027739129186 | <strong>Nelson Index:</strong> 11.4</p>
+        <p style="margin-top: 8px;">© 2026 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved. Strategic Energy & Logistics.</p>
       </div>
     </div>
   </footer>
 
   <script type="text/javascript">
     function googleTranslateElementInit() {
-      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,ru', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
+      new google.translate.TranslateElement({
+        pageLanguage: 'en', 
+        includedLanguages: 'en,ru', 
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+        autoDisplay: false
+      }, 'google_translate_element');
     }
   </script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
     const menuBtn = document.getElementById('menuBtn');
+    const navWrap = document.getElementById('navWrap');
+    const navItems = document.querySelectorAll('.nav-item.has-mega');
+
     const mobileDrawer = document.getElementById('mobileDrawer');
     const drawerOverlay = document.getElementById('drawerOverlay');
     const drawerClose = document.getElementById('drawerClose');
+    const drawerSections = document.querySelectorAll('.drawer-section');
     const drawerSectionBtns = document.querySelectorAll('.drawer-section-btn');
 
-    function openDrawer() { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeDrawer() { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; }
+    function openDrawer() {
+      if (!mobileDrawer) return;
+      mobileDrawer.classList.add('open');
+      mobileDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
 
-    if (menuBtn) menuBtn.onclick = openDrawer;
-    if (drawerOverlay) drawerOverlay.onclick = closeDrawer;
-    if (drawerClose) drawerClose.onclick = closeDrawer;
+    function closeDrawer() {
+      if (!mobileDrawer) return;
+      mobileDrawer.classList.remove('open');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      drawerSections.forEach(section => section.classList.remove('open'));
+    }
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openDrawer();
+      });
+    }
+
+    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
 
     drawerSectionBtns.forEach((btn) => {
-      btn.onclick = () => { btn.parentElement.classList.toggle('open'); };
+      btn.addEventListener('click', () => {
+        const section = btn.parentElement;
+        const isOpen = section.classList.contains('open');
+        drawerSections.forEach(s => s.classList.remove('open'));
+        if (!isOpen) section.classList.add('open');
+      });
     });
-  <script src="btk-fix.js"></script>
+
+    navItems.forEach(item => {
+      const toggle = item.querySelector('.nav-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          navItems.forEach(other => {
+            if (other !== item) other.classList.remove('open');
+          });
+          item.classList.toggle('open');
+        });
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      const clickedInsideNav = navWrap && navWrap.contains(e.target);
+      if (!clickedInsideNav) {
+        navItems.forEach(item => item.classList.remove('open'));
+      }
+    });
+
+    document.querySelectorAll('.mega-menu a, .nav-link, .nav-cta, .drawer-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navItems.forEach(item => item.classList.remove('open'));
+        closeDrawer();
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDrawer();
+        navItems.forEach(item => item.classList.remove('open'));
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1100) {
+        closeDrawer();
+      }
+    });
+  </script>
 </body>
 </html>

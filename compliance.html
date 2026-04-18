@@ -6,11 +6,11 @@
   <title>Compliance & ESG | ООО АВТОДОРТРЕЙД-БТК</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --navy: #081628;
+      --navy: #050b14;
       --navy-2: #0d1d33;
       --gold: #c8a15a;
       --gold-2: #e0c48a;
@@ -24,25 +24,86 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 1px 1px, rgba(200,161,90,0.08) 1px, transparent 0),
+        var(--bg);
+      background-size: 48px 48px;
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
       width: 100%;
-      /* MANDATORY TRANSLATE FIX */
       top: 0px !important; 
       position: static !important;
     }
 
     a { text-decoration: none; }
-    img { max-width: 100%; display: block; border-radius: 12px; }
+    img { max-width: 100%; display: block; }
 
     .container {
       width: min(var(--container), calc(100% - 32px));
       margin-inline: auto;
     }
+
+    /* ===============================
+       INTERACTION SYSTEM
+    ================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      transition: 
+        opacity 0.9s cubic-bezier(.2,.8,.2,1),
+        transform 0.9s cubic-bezier(.2,.8,.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .lift-card {
+      transition: 
+        transform 0.4s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.4s cubic-bezier(.2,.8,.2,1);
+    }
+    .lift-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+    }
+
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 24px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      border-radius: 0;
+      transition: 0.25s cubic-bezier(.2,.8,.2,1);
+      min-width: 170px;
+      cursor: pointer;
+      color: #fff;
+      border: 1px solid transparent;
+    }
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .btn:hover::after { opacity: 0.4; }
+    .btn-gold { background: var(--gold); border-color: var(--gold); }
+    .btn-gold:hover { background: transparent; color: var(--gold); }
+    .btn-outline { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.02); }
+    .btn-outline:hover { background: #fff; color: var(--navy); }
 
     /* TOP TICKER */
     .ticker-bar {
@@ -87,129 +148,134 @@
       border-bottom: 1px solid var(--line);
     }
 
+    /* BRAND ANCHOR LOGO LOGIC */
     .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: #fff;
-      min-width: 0;
+      display: flex; align-items: center; gap: 14px; color: #fff; min-width: 0; cursor: pointer; text-decoration: none;
     }
     .logo-emblem {
-      width: 48px;
-      height: 48px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      background: linear-gradient(135deg, var(--gold), #8c6c34);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      flex-shrink: 0;
+      width: 48px; height: 48px; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--gold), #8c6c34); box-shadow: 0 10px 25px rgba(0,0,0,0.2); flex-shrink: 0;
     }
-    .logo-text {
-      font-weight: 800;
-      font-size: 1.05rem;
-      line-height: 1.05;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
+    .logo-emblem svg {
+      width: 32px; height: 32px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+    }
+    .logo-text h1 {
+      font-weight: 800; font-size: 1.05rem; line-height: 1.05; text-transform: uppercase; white-space: nowrap; margin: 0; letter-spacing: 0.5px;
     }
     .logo-text span {
-      display: block;
-      font-size: 0.68rem;
-      color: var(--gold);
-      letter-spacing: 3px;
-      margin-top: 4px;
-      font-weight: 600;
-      white-space: nowrap;
+      display: block; font-size: 0.68rem; color: var(--gold); letter-spacing: 3px; margin-top: 4px; font-weight: 600;
     }
 
     .nav-wrap { display: flex; align-items: center; gap: 18px; position: relative; }
     .nav-links { list-style: none; display: flex; align-items: center; gap: 28px; }
     .nav-item { position: relative; }
-
+    
     .nav-toggle, .nav-link {
       background: none; border: none; color: rgba(255,255,255,0.82);
       font-size: 11px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1.4px; cursor: pointer; padding: 10px 0; transition: 0.25s;
+      letter-spacing: 1.4px; cursor: pointer; padding: 10px 0; transition: 0.25s; display: inline-block;
     }
-    .nav-item:hover > .nav-toggle, .nav-item.open > .nav-toggle { color: var(--gold); }
-    .nav-link:hover { color: var(--gold); }
+    .nav-item:hover > .nav-toggle, .nav-item.open > .nav-toggle, .nav-link:hover { color: var(--gold); }
 
-    /* MEGA MENU */
+    /* MEGA MENU RESTORATION */
     .mega-menu {
-      position: absolute; top: calc(100% + 14px); left: 50%;
-      transform: translateX(-50%) translateY(8px); width: min(1120px, 92vw);
-      background: #08111c; border-top: 4px solid var(--gold);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.18); border-radius: 10px;
-      padding: 30px; display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 22px; opacity: 0; visibility: hidden; pointer-events: none;
+      position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px);
+      width: min(1120px, 92vw); background: #08111c; border-top: 4px solid var(--gold);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.18); border-radius: 10px; padding: 30px; display: grid;
+      grid-template-columns: repeat(4, 1fr); gap: 22px; opacity: 0; visibility: hidden; pointer-events: none;
       transition: 0.25s ease; z-index: 5000;
     }
-    .nav-item:hover .mega-menu, .nav-item.open .mega-menu, .mega-menu:hover {
-      opacity: 1; visibility: visible; pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
-    }
-    .mega-col h4 {
-      color: #f8fafc; font-size: 11px; text-transform: uppercase;
-      letter-spacing: 1.4px; margin-bottom: 14px; padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-    }
-    .mega-col a {
-      display: block; color: #cbd5e1; font-size: 13px; padding: 9px 0;
-      transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
+    .nav-item:hover .mega-menu, .nav-item.open .mega-menu, .mega-menu:hover { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .mega-col h4 { color: #f8fafc; font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .mega-col a { display: block; color: #cbd5e1; font-size: 13px; padding: 9px 0; transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04); }
     .mega-col a:hover { color: var(--gold); transform: translateX(4px); }
 
     .nav-cta {
       display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px;
       border-radius: 999px; background: linear-gradient(135deg, var(--gold), #9f7c42);
       color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1px; box-shadow: 0 12px 25px rgba(200,161,90,0.25);
-      white-space: nowrap; flex-shrink: 0;
+      letter-spacing: 1px; white-space: nowrap; box-shadow: 0 12px 25px rgba(200,161,90,0.25);
     }
     .menu-btn {
       display: none; background: none; border: 1px solid rgba(255,255,255,0.18);
-      color: #fff; width: 44px; height: 44px; border-radius: 10px;
-      font-size: 18px; flex-shrink: 0;
+      color: #fff; width: 44px; height: 44px; border-radius: 10px; font-size: 18px; cursor: pointer;
     }
 
-    /* INNER PAGE HERO */
-    .page-hero {
-      background:
-        linear-gradient(90deg, rgba(3,8,18,0.85) 0%, rgba(3,8,18,0.5) 60%, rgba(3,8,18,0.1) 100%),
-        url('https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=2000&auto=format&fit=crop');
-      background-size: cover; background-position: center;
-      padding: clamp(80px, 10vw, 120px) 0 clamp(60px, 8vw, 90px);
-      color: #fff; border-bottom: 1px solid var(--line);
+    /* CAGED GOOGLE TRANSLATE - PRO LOOK */
+    .translate-cage {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--gold); border-radius: 4px; padding: 4px 10px; display: flex; align-items: center; gap: 8px; vertical-align: middle;
     }
+    .translate-cage i { color: var(--gold); font-size: 12px; }
+    #google_translate_element { display: inline-block; }
+    .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+    .goog-te-gadget img { display: none !important; }
+    .goog-te-gadget select {
+      background: transparent !important; border: none !important; color: var(--gold) !important;
+      font-family: 'Inter', sans-serif !important; font-size: 10px !important; font-weight: 800 !important; text-transform: uppercase !important; outline: none !important; cursor: pointer !important; padding-right: 0 !important;
+    }
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; visibility: hidden !important; }
+    #goog-gt-tt, .goog-te-balloon-frame, .goog-tooltip { display: none !important; visibility: hidden !important; }
+
+    /* ================================================
+       HERO - INDUSTRIAL COMPLIANCE / AUDIT FACILITY 
+    ================================================ */
+    .page-hero {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(3,8,18,0.92) 0%, rgba(3,8,18,0.75) 55%, rgba(3,8,18,0.35) 100%),
+        url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2400&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      padding: clamp(80px, 10vw, 120px) 0 clamp(60px, 8vw, 90px);
+      color: #fff;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+    
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(200,161,90,0.08) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    
     .eyebrow {
       display: inline-flex; align-items: center; gap: 10px; font-size: 11px;
       font-weight: 800; text-transform: uppercase; letter-spacing: 3px;
-      color: var(--gold-2); margin-bottom: 18px; flex-wrap: wrap;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      color: var(--gold-2); margin-bottom: 18px;
     }
+    
     .page-hero h1 {
-      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4.2rem);
-      line-height: 1; margin-bottom: 16px; word-break: break-word; max-width: 800px;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 5.8rem);
+      line-height: 0.98; margin-bottom: 22px; max-width: 11ch;
     }
+    
     .page-hero p {
-      max-width: 680px; font-size: clamp(1rem, 2vw, 1.15rem);
-      color: #fff; font-weight: 500;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+      max-width: 640px; font-size: clamp(1rem, 2vw, 1.1rem); color: rgba(255,255,255,0.9);
+      margin-bottom: 30px; padding-left: 18px; border-left: 3px solid var(--gold);
     }
+    
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
     /* PAGE LAYOUT */
-    .section { padding: clamp(60px, 8vw, 90px) 0; background: #07101d; }
-    .page-layout {
-      display: grid; grid-template-columns: 280px 1fr; gap: clamp(30px, 5vw, 60px); align-items: start;
-    }
-
-    /* SIDEBAR NAV */
+    .section { padding: clamp(72px, 8vw, 96px) 0; background: #07101d; }
+    .section.alt { background: #0a1524; }
+    
+    /* SIDEBAR NAV - STICKY BEHAVIOR REMOVED */
     .side-nav {
       background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 24px; position: sticky; top: 100px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      padding: 24px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
     .side-nav h4 {
       color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
@@ -227,49 +293,44 @@
 
     /* MAIN CONTENT */
     .content-area h2 {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.1; color: #f8fafc; margin-bottom: 24px;
+      font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 4vw, 3.4rem);
+      line-height: 1.05; color: #f8fafc; margin-bottom: 16px;
     }
     .content-area > p { color: #9ca3af; font-size: 1.05rem; margin-bottom: 24px; }
+    .muted { color: #9ca3af; max-width: 900px; }
+    .tag {
+      display: inline-block; color: var(--gold); font-size: 0.72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px;
+    }
     h3 {
       font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem);
-      color: #f8fafc; margin-bottom: 24px; padding-top: 20px;
+      color: #f8fafc; margin-bottom: 24px; padding-top: 30px;
     }
 
-    /* DASHBOARD BANNER */
+    /* DASHBOARD */
     .dashboard-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0;
     }
     .dash-card {
       background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 16px;
-      padding: 26px 20px; text-align: center; color: #fff; min-width: 0;
+      padding: 26px 20px; text-align: center; border-bottom: 3px solid var(--gold);
     }
-    .dash-card h4 {
-      color: rgba(255,255,255,0.74); font-size: 10px; text-transform: uppercase;
-      letter-spacing: 2px; margin-bottom: 12px;
-    }
-    .dash-card .value {
-      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--gold); margin-bottom: 6px;
-    }
-    .dash-card small { color: rgba(255,255,255,0.72); font-size: 0.8rem; }
+    .dash-card h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; opacity: 0.7; }
+    .dash-card .value { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .dash-card small { color: rgba(255,255,255,0.72); }
 
     /* CARDS */
     .card-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 40px 0;
     }
     .info-card {
       background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 28px 24px; box-shadow: 0 10px 24px rgba(15,23,42,0.04); transition: 0.3s;
+      padding: 30px 24px; transition: 0.3s;
     }
     .info-card:hover { border-color: rgba(200,161,90,0.4); transform: translateY(-4px); }
-    .info-card i {
-      color: var(--gold); font-size: 1.6rem; margin-bottom: 18px; display: inline-block;
-      padding: 14px; background: rgba(200,161,90,0.1); border-radius: 12px;
-    }
-    .info-card h4 {
-      color: #f8fafc; font-size: 1.1rem; margin-bottom: 10px; font-weight: 700;
-    }
-    .info-card p { color: #9ca3af; font-size: 0.92rem; line-height: 1.6; }
+    .info-card i { color: var(--gold); font-size: 1.8rem; margin-bottom: 20px; }
+    .info-card h4 { color: #f8fafc; font-size: 1.1rem; margin-bottom: 12px; }
+    .info-card p { color: #9ca3af; font-size: 0.95rem; line-height: 1.6; }
 
     /* CALLOUT BOX */
     .callout-box {
@@ -277,115 +338,133 @@
       border: 1px solid var(--line); border-left: 4px solid var(--gold);
       padding: 30px; border-radius: 12px; margin: 50px 0;
     }
-    .callout-box img { width: 300px; height: 200px; object-fit: cover; border: 1px solid var(--line); }
+    .callout-box img { width: 300px; height: 200px; object-fit: cover; border: 1px solid var(--line); border-radius: 8px; }
     .callout-text h4 { color: #fff; font-size: 1.2rem; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
     .callout-text p { color: #9ca3af; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
 
+    /* COMPLIANCE TABLE */
+    .table-wrap { 
+      width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin: 40px 0;
+    }
+    .data-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 700px; }
+    .data-table th { padding: 18px 24px; background: rgba(255,255,255,0.02); color: var(--gold); font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid var(--line); font-weight: 800; }
+    .data-table td { padding: 18px 24px; border-bottom: 1px solid var(--line); color: #cbd5e1; font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+
+    /* LOGISTICS INTEGRATION */
+    .logistics-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0;
+    }
+    .logistics-card {
+      background: #08111c; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
+      padding: 24px;
+    }
+    .logistics-card .mode { color: var(--gold); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+    .logistics-card h4 { color: #fff; font-size: 1.1rem; margin-bottom: 10px; }
+    .logistics-card p { color: var(--text-dim); font-size: 0.94rem; margin-bottom: 14px; }
+    .logistics-card .metric { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-dim); }
+    .logistics-card .metric strong { color: var(--gold); }
+
     /* FOOTER */
+    .footer-strip {
+      background: linear-gradient(135deg, var(--navy), #020617);
+      color: #fff; padding: 34px 0; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-strip-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; align-items: center;
+    }
     footer {
       background: #020617; color: #fff; padding: 80px 0 40px; border-top: 4px solid var(--gold);
     }
-    .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; }
-    .f-col h4 {
-      color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px;
+    .f-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px;
     }
-    .f-col a { display: block; color: #94a3b8; font-size: 14px; margin-bottom: 10px; }
+    .f-col h4 {
+      color: var(--gold); font-size: 12px; text-transform: uppercase;
+      letter-spacing: 2px; margin-bottom: 18px;
+    }
+    .f-col a {
+      display: block; color: #94a3b8; font-size: 14px; margin-bottom: 10px;
+    }
     .f-col a:hover { color: var(--gold); }
     .fine-print {
-      border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; padding-top: 24px;
-      color: #64748b; font-size: 0.78rem; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px;
+      padding-top: 24px; color: #64748b; font-size: 0.78rem; text-align: center;
     }
 
     /* MOBILE DRAWER */
-    .mobile-drawer {
-      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
-    }
+    .mobile-drawer { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: 0.3s ease; }
     .mobile-drawer.open { opacity: 1; pointer-events: auto; }
-    .drawer-overlay {
-      position: absolute; inset: 0; background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(6px);
-    }
-    .drawer-panel {
+    .drawer-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(6px); }
+    .drawer-panel { 
       position: absolute; top: 0; right: 0; width: min(92vw, 420px); height: 100%;
-      background: linear-gradient(180deg, #07111d 0%, #050b14 100%); border-left: 1px solid var(--line);
-      transform: translateX(100%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1); padding: 18px; overflow-y: auto;
+      background: linear-gradient(180deg, #07111d 0%, #050b14 100%);
+      border-left: 1px solid rgba(255,255,255,0.08);
+      transform: translateX(100%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+      padding: 18px; overflow-y: auto;
     }
     .mobile-drawer.open .drawer-panel { transform: translateX(0); }
-    .drawer-top {
-      display: flex; align-items: center; justify-content: space-between; gap: 14px;
-      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+    .drawer-top { 
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .drawer-brand { display: flex; align-items: center; gap: 12px; color: #fff; min-width: 0; }
+    .drawer-brand { display: flex; align-items: center; gap: 12px; color: #fff; }
     .drawer-close {
       background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      color: #fff; width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+      color: #fff; width: 42px; height: 42px; border-radius: 10px; cursor: pointer;
     }
     .drawer-sections { padding: 16px 0 30px; }
     .drawer-section { margin-bottom: 10px; }
     .drawer-section-btn {
-      width: 100%; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid var(--line);
-      padding: 16px 14px; border-radius: 12px; text-align: left; font-weight: 700;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px; letter-spacing: 0.4px;
+      width: 100%; background: rgba(255,255,255,0.04); color: #fff;
+      border: 1px solid rgba(255,255,255,0.08); padding: 16px 14px; border-radius: 12px;
+      text-align: left; font-weight: 700; display: flex; align-items: center;
+      justify-content: space-between; gap: 12px; cursor: pointer;
     }
-    .drawer-links { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 6px; }
+    .drawer-links {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 6px;
+    }
     .drawer-section.open .drawer-links { max-height: 900px; }
     .drawer-links a {
       display: block; padding: 12px 10px; color: #cbd5e1; border-left: 2px solid transparent;
     }
-    .drawer-links a:hover {
-      color: var(--gold); border-left-color: var(--gold); background: rgba(200,161,90,0.06);
-    }
-
-    /* ==========================================================================
-       TRANSLATOR AGGRESSIVE FIX: Locked Alignment
-       ========================================================================== */
-    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame, .VIpgJm-ZpYbe-OR_B-nm6s6 { display: none !important; visibility: hidden !important; }
-    #goog-gt-tt, .goog-te-balloon-frame, .goog-tooltip { display: none !important; visibility: hidden !important; }
-    .goog-text-highlight { background: none !important; box-shadow: none !important; }
-    .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
-    .goog-te-gadget img { display: none !important; }
-    #google_translate_element { display: inline-flex; align-items: center; min-width: 110px; }
-    .goog-te-gadget select {
-      background: rgba(255, 255, 255, 0.05) !important;
-      border: 1px solid var(--gold) !important;
-      color: var(--gold) !important;
-      font-family: 'Inter', sans-serif !important;
-      font-size: 10px !important;
-      font-weight: 800 !important;
-      text-transform: uppercase !important;
-      padding: 8px 12px !important;
-      border-radius: 4px !important;
-      outline: none !important;
-      cursor: pointer !important;
-    }
+    .drawer-links a:hover { color: var(--gold); border-left-color: var(--gold); background: rgba(200,161,90,0.06); }
 
     /* RESPONSIVE */
     @media (max-width: 1100px) {
       .nav-links, .nav-cta { display: none; }
-      .menu-btn { display: inline-flex; align-items: center; justify-content: center; order: 3; }
-      #google_translate_element { order: 2; margin-right: 10px; }
-      .mega-menu { display: none; }
-      .nav-wrap.open .nav-links {
-        display: flex; position: absolute; top: 64px; left: 0; right: 0;
-        background: rgba(3, 8, 18, 0.99); padding: 18px 6% 24px; flex-direction: column;
-        align-items: flex-start; gap: 8px; border-bottom: 1px solid var(--line); z-index: 4500;
-      }
-      .nav-item, .nav-toggle, .nav-link { width: 100%; text-align: left; padding: 14px 0; }
-      .logo-text { font-size: 0.98rem; }
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
       .page-layout { grid-template-columns: 1fr; }
       .side-nav { position: static; margin-bottom: 20px; }
+      .dashboard-grid, .logistics-grid, .footer-strip-grid, .f-grid { grid-template-columns: 1fr; }
       .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
       .callout-box { flex-direction: column; }
       .callout-box img { width: 100%; }
     }
+
     @media (max-width: 700px) {
       .container { width: min(var(--container), calc(100% - 24px)); }
       .navbar { padding: 12px 12px; }
       .logo-emblem { width: 42px; height: 42px; }
-      .logo-text { font-size: 0.82rem; white-space: normal; }
-      .logo-text span { letter-spacing: 2px; font-size: 0.58rem; }
-      .page-hero { padding: 60px 0 40px; }
-      .footer-strip-grid, .f-grid { grid-template-columns: 1fr; }
+      .logo-text h1 { font-size: 0.82rem; white-space: normal; }
+      .page-hero { min-height: auto; padding: 60px 0 40px; }
+      .hero-content { max-width: 100%; }
+      .page-hero h1 { max-width: none; }
+      .hero-btns { flex-direction: column; }
+      .btn { width: 100%; }
+      .section { padding: 64px 0; }
+      .info-card, .logistics-card, .dash-card { padding: 20px; }
+      .footer-strip-grid { grid-template-columns: 1fr; gap: 14px; }
+      footer { padding: 60px 0 36px; }
+      .f-grid { gap: 24px; }
+      .fine-print { font-size: 0.72rem; }
       .drawer-panel { width: min(96vw, 420px); padding: 14px; }
+    }
+
+    @media (max-width: 420px) {
+      .logo-text h1 { font-size: 0.75rem; }
+      .page-hero h1 { font-size: clamp(2.1rem, 13vw, 3rem); }
+      .eyebrow { font-size: 10px; letter-spacing: 2px; }
     }
   </style>
 </head>
@@ -393,18 +472,28 @@
 
   <div class="ticker-bar">
     <div class="ticker-move">
-      <div class="tick">URALS BLEND: <span id="urals-price">$82.45</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">ESPO CRUDE: <span id="espo-price">$84.10</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">BRENT INDEX: <span id="brent-price">$85.12</span> <i class="fas fa-caret-up"></i></div>
-      <div class="tick">GLOBAL TSA STATUS: <span style="color:#10b981">OPERATIONAL (92%)</span></div>
-      <div class="tick">REFINERY THROUGHPUT: <span>93.7K BBL/D</span></div>
+      <div class="tick">ESG RATING: <span style="color:#10b981">A+ (MOODY'S)</span></div>
+      <div class="tick">CARBON INTENSITY: <span>-14.2% YoY</span></div>
+      <div class="tick">SAFETY INDEX: <span>100/100</span></div>
+      <div class="tick">AUDIT TRANSPARENCY: <span>98.4%</span></div>
+      <div class="tick">KYC COMPLIANCE: <span>100% VERIFIED</span></div>
+      <div class="tick">WATER RECYCLING: <span>84.2%</span></div>
+      <div class="tick">ESG RATING: <span style="color:#10b981">A+ (MOODY'S)</span></div>
     </div>
   </div>
 
   <nav class="navbar">
     <a href="index.html" class="logo-container">
-      <div class="logo-emblem"><i class="fas fa-shield-halved"></i></div>
-      <div class="logo-text">АВТОДОРТРЕЙД<span>БТК / GLOBAL ENERGY</span></div>
+      <div class="logo-emblem">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+            <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h1>АВТОДОРТРЕЙД</h1>
+        <span>БТК / GLOBAL ENERGY</span>
+      </div>
     </a>
 
     <div class="nav-wrap" id="navWrap">
@@ -414,34 +503,31 @@
 
       <ul class="nav-links">
         <li class="nav-item has-mega">
-          <button class="nav-toggle">Governance</button>
+          <button class="nav-toggle" style="color:var(--gold);">Governance</button>
           <div class="mega-menu">
-            <div class="mega-col">
-              <h4>Board & Control</h4>
-              <a href="board.html">Board of Directors</a>
-              <a href="risk.html">Risk Management</a>
-              <a href="audit.html">Internal Audit</a>
-            </div>
-            <div class="mega-col">
-              <h4>Company Profile</h4>
-              <a href="about.html">About BTK Group</a>
-              <a href="history.html">Corporate History</a>
-              <a href="strategy.html">Strategic Prospects</a>
-            </div>
-            <div class="mega-col">
-              <h4>Investors</h4>
-              <a href="reports.html">Financial Reports</a>
-              <a href="shareholders.html">Shareholder Info</a>
-              <a href="docs.html">Statutory Docs</a>
-            </div>
+            <div class="mega-col"><h4>Board & Control</h4><a href="board.html">Board of Directors</a><a href="risk.html">Risk Management</a><a href="audit.html">Internal Audit</a></div>
+            <div class="mega-col"><h4>Company Profile</h4><a href="about.html">About BTK Group</a><a href="history.html">Corporate History</a><a href="strategy.html">Strategic Prospects</a></div>
+            <div class="mega-col"><h4>Investors</h4><a href="reports.html">Financial Reports</a><a href="shareholders.html">Shareholder Info</a><a href="docs.html">Statutory Docs</a></div>
+            <div class="mega-col"><h4>ESG Center</h4><a href="compliance.html" style="color:var(--gold);">ESG & Compliance</a><a href="environment.html">Environmental Policy</a><a href="impact.html">Social Impact</a></div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <button class="nav-toggle">Industrial Business</button>
+          <div class="mega-menu">
+            <div class="mega-col"><h4>Upstream</h4><a href="geology.html">Exploration & Geology</a><a href="reserves.html">Hydrocarbon Reserves</a><a href="gas.html">Natural Gas Ops</a></div>
+            <div class="mega-col"><h4>Refining & Sales</h4><a href="refining.html">Refining Complex</a><a href="products.html">Petrochemical Sales</a><a href="gas-proc.html">Gas Processing</a></div>
+            <div class="mega-col"><h4>Logistics</h4><a href="logistic.html">Storage Infrastructure</a><a href="logistic.html">TSA Agreement</a><a href="logistic.html">Marine Terminals</a></div>
+            <div class="mega-col"><h4>Global Talent</h4><a href="contact.html">Refinery Engineers</a><a href="contact.html">Operations Staff</a><a href="contact.html">Global Careers</a></div>
           </div>
         </li>
         <li class="nav-item"><a class="nav-link" href="products.html">Production</a></li>
-        <li class="nav-item"><a class="nav-link" href="tsa.html">Logistics</a></li>
-        <li class="nav-item"><a class="nav-link" href="compliance.html" style="color:var(--gold);">Sustainability</a></li>
+        <li class="nav-item"><a class="nav-link" href="logistic.html">Logistics</a></li>
       </ul>
 
-      <div id="google_translate_element"></div>
+      <div class="translate-cage">
+        <i class="fas fa-globe"></i>
+        <div id="google_translate_element"></div>
+      </div>
 
       <a href="contact.html" class="nav-cta"><i class="fas fa-arrow-right"></i> Trade Portal</a>
     </div>
@@ -451,11 +537,21 @@
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="drawer-panel">
       <div class="drawer-top">
-        <div class="drawer-brand" style="display:flex; align-items:center; gap:12px; color:#fff;">
-          <div class="logo-emblem" style="width:36px; height:36px;"><i class="fas fa-shield-halved"></i></div>
-          <span style="font-weight:800; font-size:0.9rem;">BTK GROUP</span>
+        <div class="drawer-brand">
+          <div class="logo-emblem" style="width:36px; height:36px;">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px;">
+                <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+                <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+            </svg>
+          </div>
+          <div class="logo-text" style="font-size:0.9rem;">
+            <h1 style="font-size:0.9rem;">АВТОДОРТРЕЙД</h1>
+            <span>БТК</span>
+          </div>
         </div>
-        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
 
       <div class="drawer-sections">
@@ -463,16 +559,18 @@
           <button class="drawer-section-btn">Governance <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
             <a href="board.html">Board of Directors</a>
-            <a href="risk.html">Risk Management</a>
-            <a href="audit.html">Internal Audit</a>
-            <a href="about.html">About Us</a>
+            <a href="about.html">About BTK Group</a>
+            <a href="docs.html">Statutory Documents</a>
+            <a href="compliance.html" style="color:var(--gold);">ESG & Compliance</a>
           </div>
         </div>
         <div class="drawer-section">
-          <button class="drawer-section-btn">Industrial <i class="fas fa-chevron-down"></i></button>
+          <button class="drawer-section-btn">Operations <i class="fas fa-chevron-down"></i></button>
           <div class="drawer-links">
-            <a href="products.html">Production</a>
-            <a href="tsa.html">Logistics</a>
+            <a href="refining.html">Refining Complex</a>
+            <a href="gas-proc.html">Gas Processing</a>
+            <a href="products.html">Product Registry</a>
+            <a href="tsa.html">Storage Infrastructure</a>
           </div>
         </div>
         <a href="contact.html" class="nav-cta" style="margin-top:20px; width:100%; justify-content:center;">Trade Portal</a>
@@ -480,15 +578,23 @@
     </div>
   </div>
 
-  <header class="page-hero">
+  <header class="page-hero reveal">
     <div class="container">
-      <div class="eyebrow"><i class="fas fa-shield-alt" style="font-size:10px;"></i> Risk & Compliance</div>
-      <h1>ESG Framework & Quality Assurance</h1>
-      <p>Uncompromising environmental stewardship, absolute laboratory precision, and strict adherence to sovereign energy trade regulations.</p>
+      <div class="hero-content">
+        <div class="eyebrow"><i class="fas fa-shield-alt" style="font-size:10px;"></i> Risk & Compliance</div>
+        <h1>ESG Framework & Quality Assurance</h1>
+        <p>
+          Uncompromising environmental stewardship, absolute laboratory precision, and strict adherence to sovereign energy trade regulations across all multi-modal logistics corridors.
+        </p>
+        <div class="hero-btns">
+          <a href="#protocols" class="btn btn-gold">View Protocols</a>
+          <a href="docs.html" class="btn btn-outline">Download Report</a>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section class="section">
+  <section class="section reveal" id="protocols">
     <div class="container">
       <div class="page-layout">
         
@@ -504,73 +610,186 @@
 
         <div class="content-area">
           <h2>Institutional Safeguards & Integrity</h2>
-          <p>
-            For a vertically integrated energy major, trust is not assumed; it is physically engineered. ООО "АВТОДОРТРЕЙД-БТК" maintains an impregnable compliance architecture covering all aspects of Environmental, Social, and Governance (ESG) standards, international trade law, and physical product chemistry.
+          <p class="muted">
+            For a vertically integrated energy major, trust is not assumed; it is physically engineered. ООО "АВТОДОРТРЕЙД-БТК" maintains an impregnable compliance architecture covering all aspects of Environmental, Social, and Governance (ESG) standards, international trade law, and physical product chemistry across our entire logistics network.
           </p>
 
           <div class="dashboard-grid">
-            <div class="dash-card">
-              <h4>Zero Flaring</h4>
-              <div class="value">2030</div>
-              <small>Emissions Target</small>
-            </div>
-            <div class="dash-card">
-              <h4>LTI Rate</h4>
-              <div class="value">0.02</div>
-              <small>Lost Time Injury Frequency</small>
-            </div>
-            <div class="dash-card">
-              <h4>KYC/AML</h4>
-              <div class="value">100%</div>
-              <small>Counterparty Clearance</small>
-            </div>
-            <div class="dash-card">
-              <h4>Water Recycling</h4>
-              <div class="value">84%</div>
-              <small>Refinery Closed-Loop</small>
-            </div>
+            <div class="dash-card reveal lift-card"><h4>Zero Flaring</h4><div class="value">2030</div><small>Emissions Target</small></div>
+            <div class="dash-card reveal lift-card"><h4>LTI Rate</h4><div class="value">0.02</div><small>Lost Time Injury Frequency</small></div>
+            <div class="dash-card reveal lift-card"><h4>KYC/AML</h4><div class="value">100%</div><small>Counterparty Clearance</small></div>
+            <div class="dash-card reveal lift-card"><h4>Water Recycling</h4><div class="value">84%</div><small>Refinery Closed-Loop</small></div>
           </div>
 
-          <h3 style="border-top: 1px solid var(--line); padding-top: 40px;">Physical Assurance Protocols</h3>
-          <p>We do not rely on proxy data. Our QA/QC framework ensures that every metric ton of hydrocarbon leaving our TSA network matches contractual specifications perfectly.</p>
+          <h3 style="margin-top:60px;">Physical Assurance Protocols</h3>
+          <p class="muted">We do not rely on proxy data. Our QA/QC framework ensures that every metric ton of hydrocarbon leaving our TSA network matches contractual specifications perfectly through integrated trunk pipeline, rail-freight, and marine terminal verification systems.</p>
 
           <div class="card-grid">
-            <div class="info-card">
+            <div class="info-card reveal lift-card">
               <i class="fas fa-microscope"></i>
               <h4>Molecular Laboratory Audits</h4>
-              <p>In-house mass spectrometry and gas chromatography testing to verify sulfur limits, flash points, and density thresholds prior to third-party SGS inspections.</p>
+              <p>In-house mass spectrometry and gas chromatography testing to verify sulfur limits, flash points, and density thresholds prior to third-party SGS inspections across all product streams.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card reveal lift-card">
               <i class="fas fa-globe-americas"></i>
               <h4>Trade Sanctions Compliance</h4>
-              <p>Rigorous Counter-Terrorism Financing (CTF) and Anti-Money Laundering (AML) checks. We execute 100% due diligence on all vessels, consignees, and banking institutions.</p>
+              <p>Rigorous Counter-Terrorism Financing (CTF) and Anti-Money Laundering (AML) checks. We execute 100% due diligence on all vessels, consignees, and banking institutions across all trade corridors.</p>
             </div>
-            <div class="info-card">
+            <div class="info-card reveal lift-card">
               <i class="fas fa-hard-hat"></i>
               <h4>Infrastructure Integrity</h4>
-              <p>Routine ultrasonic thickness measurements and robotic internal inspections of our massive storage tank farms to preemptively eliminate environmental contamination risks.</p>
+              <p>Routine ultrasonic thickness measurements and robotic internal inspections of our massive storage tank farms to preemptively eliminate environmental contamination risks across all logistics nodes.</p>
+            </div>
+            <div class="info-card reveal lift-card">
+              <i class="fas fa-file-contract"></i>
+              <h4>Regulatory Alignment</h4>
+              <p>All operations adhere to Russian Federal Law 116-FZ "On Industrial Safety", GOST technical standards, and international ESG frameworks with independent third-party verification.</p>
             </div>
           </div>
 
-          <div class="callout-box">
-            <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=600&q=80" alt="Laboratory Valve Testing">
+          <div class="callout-box reveal">
+            <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?q=80&w=600&auto=format&fit=crop" alt="Laboratory Analysis Screen">
             <div class="callout-text">
               <h4>The Open-Book Verification Protocol</h4>
-              <p>In an industry fraught with intermediary risk, we provide absolute clarity to verified corporate buyers. Upon successful corporate profiling and execution of a mutual NDA, prospective buyers are granted access to our secure verification portal.</p>
-              <a href="contact.html" class="nav-cta" style="margin-top: 10px;">Submit KYC Documentation</a>
+              <p>In an industry fraught with intermediary risk, we provide absolute clarity to verified corporate buyers. Upon successful corporate profiling and execution of a mutual NDA, prospective buyers are granted access to our secure verification portal for real-time compliance monitoring.</p>
+              <a href="contact.html" class="btn btn-gold" style="margin-top:15px;">Submit KYC Documentation</a>
             </div>
           </div>
 
-          <h3 style="border-top: 1px solid var(--line); padding-top: 40px;">Environmental Capital Allocation</h3>
-          <p>Over the last fiscal year, we have authorized massive capital expenditures aimed directly at modernizing our downstream ESG footprint. Multi-million dollar allocations have been utilized to install advanced Vapor Recovery Units (VRUs) at marine loading docks and to upgrade effluent water treatment plants across all inland refining assets.</p>
+          <h3 style="margin-top:60px;">Compliance Registry</h3>
+          <p class="muted">All mandatory filings with Russian Federal authorities and international regulatory bodies, maintained with full audit trail and version control.</p>
+          
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Protocol Identifier</th>
+                  <th>Category</th>
+                  <th>Standard</th>
+                  <th>Status</th>
+                  <th>Verification</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>RAS-ESG-01</td><td>Air Quality & Emission Controls</td><td>GOST R 55528-2013</td><td><span style="color:#10b981;font-weight:700">✓ Verified</span></td><td>SGS Russia</td></tr>
+                <tr><td>IFRS-GOV-04</td><td>Statutory Financial Transparency</td><td>IFRS 17 / RAS</td><td><span style="color:#10b981;font-weight:700">✓ Verified</span></td><td>PwC Moscow</td></tr>
+                <tr><td>HSE-LAB-02</td><td>Industrial Safety Protocols</td><td>ISO 45001:2018</td><td><span style="color:#10b981;font-weight:700">✓ Verified</span></td><td>Bureau Veritas</td></tr>
+                <tr><td>ENV-WTR-05</td><td>Water Management & Recycling</td><td>ISO 14046:2014</td><td><span style="color:#10b981;font-weight:700">✓ Verified</span></td><td>DNV GL</td></tr>
+                <tr><td>TRADE-AML-03</td><td>Anti-Money Laundering</td><td>FATF Recommendations</td><td><span style="color:#10b981;font-weight:700">✓ Compliant</span></td><td>Rosfinmonitoring</td></tr>
+                <tr><td>LOG-INT-01</td><td>Logistics Integrity</td><td>ISO 28000:2007</td><td><span style="color:#10b981;font-weight:700">✓ Certified</span></td><td>LRQA</td></tr>
+              </tbody>
+            </table>
+          </div>
 
+          <h3 style="margin-top:60px;">Multi-Modal ESG Integration</h3>
+          <p class="muted">BTK's commitment to environmental stewardship and regulatory compliance extends across our entire logistics network—ensuring sustainable and compliant practices in pipeline operations, rail-freight corridors, and marine terminal management.</p>
+          
+          <div class="logistics-grid">
+            <div class="logistics-card reveal lift-card">
+              <div class="mode"><i class="fas fa-project-diagram"></i> Trunk Pipelines</div>
+              <h4>Leak Prevention & Monitoring</h4>
+              <p>Advanced SCADA systems with fiber-optic leak detection, regular integrity assessments, and rapid response protocols minimizing environmental impact across 4,200 km of continental corridor.</p>
+              <div class="metric"><span>Leak Detection</span><strong>< 0.01%</strong></div>
+              <div class="metric"><span>Response Time</span><strong>< 15 Minutes</strong></div>
+            </div>
+            <div class="logistics-card reveal lift-card">
+              <div class="mode"><i class="fas fa-train-subway"></i> Rail-Freight Operations</div>
+              <h4>Regulatory Compliance</h4>
+              <p>Full adherence to Russian Federal Railway Safety Regulations, international hazardous materials transport standards, and real-time cargo tracking for end-to-end compliance visibility.</p>
+              <div class="metric"><span>Safety Record</span><strong>Zero Incidents</strong></div>
+              <div class="metric"><span>Compliance</span><strong>100% Audited</strong></div>
+            </div>
+            <div class="logistics-card reveal lift-card">
+              <div class="mode"><i class="fas fa-ship"></i> Marine Terminals</div>
+              <h4>Port Environmental Management</h4>
+              <p>Shore power connections for vessels at berth, vapor recovery systems during loading operations, and ballast water treatment to prevent invasive species transfer in sensitive marine ecosystems.</p>
+              <div class="metric"><span>Vapor Recovery</span><strong>99.2%</strong></div>
+              <div class="metric"><span>Shore Power</span><strong>100% Berths</strong></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="section alt reveal" style="text-align:center;">
+    <div class="container">
+      <span class="tag">Institutional Partnership</span>
+      <h3 style="margin-bottom:20px;">Advance Compliance Excellence Together</h3>
+      <p class="muted" style="margin:0 auto 30px; max-width:700px;">
+        ООО "АВТОДОРТРЕЙД-БТК" invites institutional partners, regulators, and stakeholders to collaborate on advancing compliance excellence through transparent governance, innovative technology, and shared commitment to environmental stewardship and regulatory adherence.
+      </p>
+      <a href="contact.html" class="btn btn-gold">Initiate Compliance Dialogue</a>
+    </div>
+  </section>
+
+  <div class="footer-strip">
+    <div class="container">
+      <div class="footer-strip-grid">
+        <div>
+          <strong style="color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">Compliance Contact</strong>
+          <p style="margin-top: 10px; color: rgba(255,255,255,0.78);">ESG reporting, regulatory inquiries, and compliance documentation requests.</p>
+        </div>
+        <div>
+          <p style="font-size: 0.9rem;"><i class="fas fa-envelope" style="color: var(--gold); margin-right: 10px;"></i> compliance@btk-group.example</p>
+        </div>
+        <div>
+          <p style="font-size: 0.9rem;"><i class="fas fa-phone" style="color: var(--gold); margin-right: 10px;"></i> +7 (495) 000-00-00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="container">
+      <div class="f-grid">
+        <div class="f-col">
+          <div class="logo-container" style="margin-bottom: 20px;">
+            <div class="logo-emblem" style="width: 40px; height: 40px;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4.5 5.5V11C4.5 15.8 7.7 20.2 12 22C16.3 20.2 19.5 15.8 19.5 11V5.5L12 2Z" fill="var(--navy)"/>
+                    <path d="M12 7C12 7 8 11.5 8 14.5C8 16.7091 9.79086 18.5 12 18.5C14.2091 18.5 16 16.7091 16 14.5C16 11.5 12 7 12 7Z" fill="var(--gold-2)"/>
+                </svg>
+            </div>
+            <div class="logo-text">
+              <h1 style="font-size: 0.9rem;">АВТОДОРТРЕЙД</h1>
+              <span>БТК</span>
+            </div>
+          </div>
+          <p style="color:#94a3b8; font-size:0.92rem; margin-bottom: 16px;">
+            A leading vertically integrated energy enterprise delivering refined products, secure logistics, and disciplined governance.
+          </p>
+          <p style="color:#fff; font-size:0.84rem;"><strong>HQ:</strong> Presnenskaya Nab. 12, Moscow, Russia</p>
+        </div>
+
+        <div class="f-col">
+          <h4>Operations</h4>
+          <a href="refining.html">Refining Assets</a>
+          <a href="gas-proc.html">Gas Processing</a>
+          <a href="products.html">Product Portfolio</a>
+          <a href="environment.html">Environmental Policy</a>
+        </div>
+
+        <div class="f-col">
+          <h4>Governance</h4>
+          <a href="board.html">Corporate Board</a>
+          <a href="about.html">Mission & Vision</a>
+          <a href="docs.html">Statutory Documents</a>
+          <a href="strategy.html">Global Strategy</a>
+        </div>
+
+        <div class="f-col">
+          <h4>Partner Portal</h4>
+          <a href="contact.html">Buyer Inquiry</a>
+          <a href="contact.html">Career Opportunities</a>
+          <a href="contact.html">Submit LOI/ICPO</a>
+          <div style="margin-top: 16px;">
+            <a href="#" style="display:inline; margin-right: 12px;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="display:inline;"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
       <div class="fine-print">
         <p><strong>INN:</strong> 7703324065 | <strong>OGRN:</strong> 1027739129186 | <strong>Nelson Index:</strong> 11.2</p>
         <p style="margin-top: 8px;">© 2026 ООО АВТОДОРТРЕЙД-БТК. All Rights Reserved. Strategic Energy & Logistics.</p>
@@ -581,9 +800,9 @@
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
-        pageLanguage: 'en', 
-        includedLanguages: 'en,ru', 
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+        pageLanguage: 'en',
+        includedLanguages: 'en,ru',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
       }, 'google_translate_element');
     }
@@ -591,36 +810,74 @@
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
-    function updatePrices() {
-      const base = { urals: 82.45, espo: 84.10, brent: 85.12 };
-      setInterval(() => {
-        const fluc = (Math.random() * 0.1) - 0.05;
-        const urals = document.getElementById('urals-price');
-        if (urals) urals.innerText = "$" + (base.urals + fluc).toFixed(2);
-      }, 3000);
-    }
-    updatePrices();
-
+    // Navigation: Desktop & Mobile
     const menuBtn = document.getElementById('menuBtn');
+    const navWrap = document.getElementById('navWrap');
+    const navItems = document.querySelectorAll('.nav-item.has-mega');
     const mobileDrawer = document.getElementById('mobileDrawer');
     const drawerOverlay = document.getElementById('drawerOverlay');
     const drawerClose = document.getElementById('drawerClose');
     const drawerSections = document.querySelectorAll('.drawer-section');
     const drawerSectionBtns = document.querySelectorAll('.drawer-section-btn');
 
-    function openDrawer() { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeDrawer() { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; }
-
-    if (menuBtn) menuBtn.onclick = openDrawer;
-    if (drawerOverlay) drawerOverlay.onclick = closeDrawer;
-    if (drawerClose) drawerClose.onclick = closeDrawer;
-
-    drawerSectionBtns.forEach((btn) => {
-      btn.onclick = () => {
+    function openDrawer() {
+      if (!mobileDrawer) return;
+      mobileDrawer.classList.add('open');
+      mobileDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      if (!mobileDrawer) return;
+      mobileDrawer.classList.remove('open');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      drawerSections.forEach(s => s.classList.remove('open'));
+    }
+    if (menuBtn) menuBtn.addEventListener('click', e => { e.stopPropagation(); openDrawer(); });
+    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    
+    drawerSectionBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
         const section = btn.parentElement;
-        section.classList.toggle('open');
-      };
+        const isOpen = section.classList.contains('open');
+        drawerSections.forEach(s => s.classList.remove('open'));
+        if (!isOpen) section.classList.add('open');
+      });
     });
-  <script src="btk-fix.js"></script>
+
+    navItems.forEach(item => {
+      const toggle = item.querySelector('.nav-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault(); e.stopPropagation();
+          navItems.forEach(other => { if (other !== item) other.classList.remove('open'); });
+          item.classList.toggle('open');
+        });
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (navWrap && !navWrap.contains(e.target)) { navItems.forEach(item => item.classList.remove('open')); }
+    });
+
+    document.querySelectorAll('.drawer-links a').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeDrawer(); });
+
+    // Scroll-Reveal Animation System
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
 </body>
 </html>
