@@ -1078,6 +1078,39 @@
       <div class="tick">ESPO CRUDE: <span>$84.10</span></div>
     </div>
   </div>
+<style>
+    /* Specific fix for the Governance mega-menu width and readability */
+    .nav-item.has-mega .mega-menu {
+      width: 1000px; /* Constrained width for better readability */
+      max-width: 95vw;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 40px;
+      gap: 40px;
+    }
+    
+    .mega-col h4 {
+      color: var(--gold-2);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 10px;
+    }
+
+    .mega-col a {
+      font-size: 0.95rem;
+      padding: 8px 0;
+      display: block;
+      color: rgba(255,255,255,0.8);
+      transition: color 0.3s;
+    }
+
+    .mega-col a:hover {
+      color: var(--gold);
+    }
+  </style>
 
   <nav class="navbar">
     <a href="index.html" class="logo-container">
@@ -1467,7 +1500,40 @@
           <a href="products.html" class="btn btn-gold" style="margin-top: 28px;">Download Product Catalog</a>
         </div>
 
-        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop" class="img-stack reveal" alt="Logistics">
+        <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=1200&auto=format&fit=crop" class="img-stack reveal" alt="Oil Refinery Facility">
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt reveal" style="border-top: 1px solid rgba(0,0,0,0.05);">
+    <div class="container">
+      <div class="grid-2" style="align-items: center;">
+        <div class="reveal">
+          <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; border: 3px solid var(--gold-2); box-shadow: 0 20px 40px rgba(0,0,0,0.2); display: block;">
+            <source src="distillation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div>
+          <span class="tag">Technical Process</span>
+          <h3>Crude Oil Fractional Distillation</h3>
+          <p class="muted">
+            Our refinery utilizes state-of-the-art <strong>fractional distillation</strong> to separate crude oil into high-purity components. This process involves heating the feedstock and allowing vapors to rise through multi-stage fractionating columns.
+          </p>
+          <p class="muted">
+            As vapors cool at different heights, they condense into specific fractions—from light refinery gases and gasoline to heavy diesel and bitumen. This precision ensures our products meet the highest international energy standards.
+          </p>
+          <div class="card-grid" style="margin-top: 25px;">
+            <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid var(--gold-2);">
+              <h4 style="margin:0 0 5px 0; font-size: 0.95rem;">Automated Control</h4>
+              <p style="font-size: 0.85rem; margin:0;">Real-time thermal monitoring for optimal yield.</p>
+            </div>
+            <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid var(--gold-2);">
+              <h4 style="margin:0 0 5px 0; font-size: 0.95rem;">High Purity</h4>
+              <p style="font-size: 0.85rem; margin:0;">Clean separation of EN590 and Jet A-1 fuels.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1556,24 +1622,6 @@
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
-    // Price Ticker Simulation
-    function updatePrices() {
-      const base = { urals: 82.45, espo: 84.10, brent: 85.12 };
-
-      setInterval(() => {
-        const fluc = (Math.random() * 0.1) - 0.05;
-        const urals = document.getElementById('urals-price');
-        const espo = document.getElementById('espo-price');
-        const brent = document.getElementById('brent-price');
-
-        if (urals) urals.innerText = "$" + (base.urals + fluc).toFixed(2);
-        if (espo) espo.innerText = "$" + (base.espo + fluc).toFixed(2);
-        if (brent) brent.innerText = "$" + (base.brent + fluc).toFixed(2);
-      }, 3000);
-    }
-    updatePrices();
-
-    // Navigation: Desktop Mega-Menu & Mobile Drawer
     const menuBtn = document.getElementById('menuBtn');
     const navWrap = document.getElementById('navWrap');
     const navItems = document.querySelectorAll('.nav-item.has-mega');
@@ -1657,7 +1705,6 @@
       }
     });
 
-    // Scroll-Reveal Animation System
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
